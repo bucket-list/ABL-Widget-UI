@@ -1,0 +1,30 @@
+    <div class ="text-center">
+        <h1 style="color:white">ABL API Demo</h1>
+    </div>
+<div id="albumWrapper">
+<!--     <div id="header" class="img-title">
+        <h2>{{currentImage.title}}</h2>
+
+        <select ng-model="categories"
+                ng-options="category for category in imageCategories">
+            <option value="">all</option>
+        </select>
+    </div> -->
+    
+    <div id="albumImage" style="position:relative">
+        <img ng-src="{{currentImage.image}}" alt="{{currentImage.title}}">
+        <span class="pricetag"><h3 style="color:white">${{currentImage.price}}</h3></span>
+        <div class="description"><p class="updescription">{{currentImage.title}}<br />
+        <small>{{currentImage.description}} </small></p>
+        <span class="price">${{currentImage.price}}</span>
+        <button onclick="location.href='#/form/interests'" ng-click="setData(currentImage)" class="btn btn-primary btn-lg overimg-left" ><strong>More Info</strong></button>
+        
+    </div></div>
+    <div id="thumbWrapper">
+        <ul id="thumbList" style="padding: 0px">
+            <li ng-repeat="image in images | filter:categories" ng-click="setCurrentImage(image)">
+                <img ng-src="{{image.thumbnail}}" alt="{{image.title}}">
+            </li>
+        </ul>
+    </div>
+</div>

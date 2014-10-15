@@ -1,0 +1,45 @@
+<!-- <div style="margin-top: 28px;"><img ng-src="{{currentImage.thumbnail}}"></div> -->
+<div class="container slider">
+    <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage"
+         ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
+         ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide.image}}">
+
+    <a class="arrow prev" ng-click="nextSlide()"></a>
+    <a class="arrow next" ng-click="prevSlide()"></a>
+    <nav class="nav">
+        <div class="wrapper">
+            <ul class="dots">
+                <li class="dot" ng-repeat="slide in slides">
+                    <a href="#" ng-class="{'active':isCurrentSlideIndex($index)}"
+                       ng-click="setCurrentSlideIndex($index);">{{slide.description}}</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+        <h3 id="price">Price: ${{currentImage.price}}</h3>
+        <h3 id="date">Date:</h3>
+        <h4 class="modal-title" id="myModalLabel">{{currentImage.title}}</h4>
+     <div id="date-range14-container"></div>
+        <h3> Descriptions: </h3> 
+        <p> {{currentImage.description}}</p>
+      </div>
+      <div >
+        <h3>Number of People:</h3>
+        <select class="pull-left" id="numberOf">
+        <option id= "1" value="1">1</option>
+        <option id= "2" value="2">2</option>
+        <option id= "3" value="3">3</option>
+        <option id= "4" value="4">4</option>
+        <option id= "5" value="5">5</option>
+        <option id= "6" value="6">6</option>
+        <option id= "7" value="7">7</option>
+        <option id= "8" value="8">8</option>
+        </select>
+  
+        <p style="font-size: 16px"> <strong>&nbsp; from ${{currentImage.price}} each</strong></p>
+
+        <hr style="height: 2px;  color:#707070;">
+        <h4> Total: $1600 </h4>
+        
+      </div>
+<div id="dropin"></div>
