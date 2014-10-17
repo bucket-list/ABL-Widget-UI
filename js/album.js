@@ -53,8 +53,7 @@ app.controller('PaymentCtrl', function ($scope, $http, productService) {
                 //     console.log(error);
                 //   }
                 // });
-console.log("Fuck 1"+ $scope.formData+$scope.checkoutForm);
-  // create a blank object to hold our form information
+            // create a blank object to hold our form information
             // $scope will allow this to pass between controller and view
            $scope.formData = {};
 
@@ -63,19 +62,18 @@ console.log("Fuck 1"+ $scope.formData+$scope.checkoutForm);
                 var form = this;
                 //console.log("Fuck "+$scope.formData);
                //$scope.message = formdata;
-               alert("Form Data: "+form.formData.fullName);
+               //alert("Form Data: "+form.formData.fullName);
             $.getJSON("http://jsonip.com?callback=?", function (data) {
                 $.getJSON("http://www.telize.com/geoip/"+data.ip, function (geodata) {
                      form.formData.geoip = geodata;
-                     alert(form.formData.geoip);
                 });
                 });
 
                 $http({
                     method  : 'POST',
-                    url     : 'http://localhost:8081/api/checkout',
+                    url     : 'http://162.242.170.162:8081/api/checkout',
                     data    : $.param(form.formData),  // pass in data as strings
-                    headers : { 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Bearer uXkiKZ5lDQ0eMkeQ8khA7E36nlVzFKRnhxL0y39GU4JgDHbF0F1nbDDJok2ALi8x63rYfQ9IamckIHbwQXUP9SwYWGQbhGDsSbEeHaRzxvgtXHZTJHL6xEjkRSogrW2yxUuTvcP6OdNBJqRUjNQt9Ljyaiq8Rs9OJ1vnMwsvfajY82FSqnwWV19Wf6kjsKzOZxYkDP5ycpVysKv8wGJVRI4SVgQL24FWJbMcjPruBWfPlgPkXOtK1fKDnLLTusSI' }  // set the headers so angular passing info as form data (not request payload)
+                    headers : { 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic YWdyaWdnczpGdWNreW91MjAxNA==' }  // set the headers so angular passing info as form data (not request payload)
                 })
                     .success(function(data) {
                         console.log(data);
@@ -139,14 +137,14 @@ app.directive('datetimemenu', function(element){
 
 app.controller('MainCtrl', function ($scope, productService) {
     $scope.currentImage = productService.getCurrentProduct();
-    $scope.slides = 
-        [
-          {image: '../img/img00.jpg', description: 'Image 00'},
-            {image: '../img/img01.jpg', description: 'Image 01'},
-            {image: '../img/img02.jpg', description: 'Image 02'},
-            {image: '../img/img03.jpg', description: 'Image 03'},
-            {image: '../img/img04.jpg', description: 'Image 04'}
-        ];
+    $scope.slides = $scope.currentImage.image_array;
+        // [
+        //   {image: '../img/img00.jpg', description: 'Image 00'},
+        //     {image: '../img/img01.jpg', description: 'Image 01'},
+        //     {image: '../img/img02.jpg', description: 'Image 02'},
+        //     {image: '../img/img03.jpg', description: 'Image 03'},
+        //     {image: '../img/img04.jpg', description: 'Image 04'}
+        // ];
 
         $scope.currentIndex = 0;
 
@@ -257,7 +255,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
     $scope.fetch = function () {
         $http.defaults.headers.get = { 'Basic' : 'YWdyaWdnczpGdWNreW91MjAxNA' };
         //$http.defaults.headers.common.Authorization = 'Basic YWdyaWdnczpGdWNreW91MjAxNA==';
-        $http.get("http://localhost:8081/api/product?city=kelowna", {headers: {'Authorization': 'Bearer uXkiKZ5lDQ0eMkeQ8khA7E36nlVzFKRnhxL0y39GU4JgDHbF0F1nbDDJok2ALi8x63rYfQ9IamckIHbwQXUP9SwYWGQbhGDsSbEeHaRzxvgtXHZTJHL6xEjkRSogrW2yxUuTvcP6OdNBJqRUjNQt9Ljyaiq8Rs9OJ1vnMwsvfajY82FSqnwWV19Wf6kjsKzOZxYkDP5ycpVysKv8wGJVRI4SVgQL24FWJbMcjPruBWfPlgPkXOtK1fKDnLLTusSI'}}).success($scope.handleImagesLoaded);
+        $http.get("http://162.242.170.162:8081/api/product?city=Whistler", {headers: {'Authorization': 'Basic YWdyaWdnczpGdWNreW91MjAxNA=='}}).success($scope.handleImagesLoaded);
     };
 
     $scope.setCurrentImage = function (image) {
