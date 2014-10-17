@@ -21,20 +21,6 @@ app.service('productService', function ($window) {
     };
 });
 
-// app.controller('SecondCtrl', ['$scope','$rootScope',
-//     function($scope,$rootScope) {
-
-//       $rootScope.$on("Update", function(event, image) {
-//         $scope.currentImage = image;
-//       });
-//     }
-//   ])
-// app.config(['$http', function($httpProvider) {
-//         $httpProvider.defaults.useXDomain = true;
-//         delete $httpProvider.defaults.headers.common['X-Requested-With'];
-//     }
-// ]);
-
 app.controller('PaymentCtrl', function ($scope, $http, productService, $state) { 
     $scope.currentImage = productService.getCurrentProduct();
     //total price is calculated here and accessed here
@@ -111,51 +97,17 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state) {
     //this watches the ng-model input for changes and changes the payment price according to that and stores it
     $scope.$watch('numberOfAdults', function() {
         $scope.calculatePrice();
-        // $scope.paymentSubtotal = $scope.numberOfAdults * $scope.currentImage.price + $scope.numberOfYouth * $scope.currentImage.price;
-        // $scope.paymentHosting = $scope.numberOfAdults * $scope.currentImage.host_fee_value;
-        // $scope.paymentTax = $scope.numberOfAdults * $scope.currentImage.tax_fee_value;
-        // $scope.paymentPrice = $scope.numberOfAdults * $scope.currentImage.totalPrice;
-       // alert($scope.paymentPrice);
     });
     $scope.$watch('numberOfYouth', function() {
         $scope.calculatePrice();
-    //    if($scope.numberOfYouth>0) {
-    //     $scope.paymentSubtotal += $scope.numberOfYouth * $scope.currentImage.price;
-    //     $scope.paymentHosting += ;
-    //     $scope.paymentTax += ;
-    //     $scope.paymentPrice += ;
-    // }
+
     });
     $scope.$watch('numberOfChildren', function() {
         $scope.calculatePrice();
-    //     if($scope.numberOfChildren>0) {
-    //     $scope.paymentSubtotal += $scope.numberOfChildren * $scope.currentImage.price;
-    //     $scope.paymentHosting += $scope.numberOfChildren * $scope.currentImage.host_fee_value;
-    //     $scope.paymentTax += ;
-    //     $scope.paymentPrice += ;
-    // }
+
     });    
     $scope.geoip = {};
-                // $http.get("http://www.telize.com/ip/", {headers: {"Access-Control-Allow-Origin:":"http://localhost:8080/"}}, function (error, response, body) {
-                //   if (!error && response.statusCode == 200) {
-                //     $scope.ip = body;
-                //     console.log($scope.geoip); // Print the google web page.
-                //   }
-                //   else {
-                //     console.log(error);
-                //   }
-                // });
-    
 
-                // $http.get("http://www.telize.com/geoip/"+$scope.ip, function (error, response, body) {
-                //   if (!error && response.statusCode == 200) {
-                //     $scope.geoip = body;
-                //     console.log(geoip); // Print the google web page.
-                //   }
-                //   else {
-                //     console.log(error);
-                //   }
-                // });
             // create a blank object to hold our form information
             // $scope will allow this to pass between controller and view
            $scope.formData = {};
@@ -200,38 +152,7 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state) {
         //var formApp = app.controller('formCtl', []);
      //$('#date_time').datetimepicker();
 });
-// PaymentCtrl.$inject = ['$scope'];
-     // create angular controller and pass in $scope and $http
-        // function payFormCtl($scope, $http) {
 
-        //     // create a blank object to hold our form information
-        //     // $scope will allow this to pass between controller and view
-        //     $scope.formData = {};
-
-        //     // process the form
-        //     $scope.processPaymentForm = function() {
-        //         $http({
-        //             method  : 'POST',
-        //             url     : 'http://localhost:8081/api/checkout',
-        //             data    : $.param($scope.formData),  // pass in data as strings
-        //             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
-        //         })
-        //             .success(function(data) {
-        //                 console.log(data);
-
-        //                 if (!data.success) {
-        //                     // if not successful, bind errors to error variables
-        //                     $scope.errorName = data.errors.name;
-        //                     $scope.errorSuperhero = data.errors.superheroAlias;
-        //                 } else {
-        //                     // if successful, bind success message to message
-        //                     $scope.message = data.message;
-        //                 }
-        //             });
-
-        //     };
-
-        // }
 app.directive('datetimemenu', function(element){
     
     return {
@@ -244,13 +165,6 @@ app.directive('datetimemenu', function(element){
 app.controller('MainCtrl', function ($scope, productService) {
     $scope.currentImage = productService.getCurrentProduct();
     $scope.slides = $scope.currentImage.image_array;
-        // [
-        //   {image: '../img/img00.jpg', description: 'Image 00'},
-        //     {image: '../img/img01.jpg', description: 'Image 01'},
-        //     {image: '../img/img02.jpg', description: 'Image 02'},
-        //     {image: '../img/img03.jpg', description: 'Image 03'},
-        //     {image: '../img/img04.jpg', description: 'Image 04'}
-        // ];
 
         $scope.currentIndex = 0;
 
@@ -316,39 +230,6 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
           
           $scope.initSlider();
 
-  //   function getData() {
-  //   $http({
-  //     method: "get",
-  //     datatype: "json", 
-  //     url: "http://localhost:8081/api/product", 
-  //     headers: { 'Authorization': 'Basic YWdyaWdnczpGdWNreW91MjAxNA=='}
-  //   }).success($scope.handleImagesLoaded
-  //   // function(data, status, headers, config) {
-  //   //   console.log("GET successful!"+" Data: "+data);
-  //   //   $scope.appData = data; //angular.fromJson(data).items;
-  //   //   $scope.currentProduct = _.first($scope.appData);
-  //   // }
-  //   ).error(function(data, status, headers, config) {
-  //     alert("WTF GET failed! "+data+" "+ status+" "+headers);
-  //   });
-  // };
-
-
-// THIS IS OUR GET REQUEST
-// getData();
-//     function getData() {
-//     $http({
-//       method: "get",
-//       datatype: "json", 
-//       url: "http://dev.ablsolution.com/api/v1/product/381c2e2243d3cfdac8e05987dde1bfbf415ae6654c1308ce42278568ffd950f0/?s=BC",
-//       params: { action: "get" }
-//     }).success(function(data, status, headers, config) {
-//       console.log("GET successful!");
-//       $scope.appData = angular.fromJson(data).items;
-//     }).error(function(data, status, headers, config) {
-//       alert("GET failed!");
-//     });
-//   };
 
     $scope.handleImagesLoaded = function (data, status) {
         $scope.images = data;
@@ -373,7 +254,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
       };
 
     // Defer fetch for 1 second to give everything an opportunity layout
-    $timeout($scope.fetch, 1000);
+    $timeout($scope.fetch, 5);
 }).filter('capitalize', function() {
     return function(input, all) {
       return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) : '';
