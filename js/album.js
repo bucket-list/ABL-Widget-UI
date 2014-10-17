@@ -1,4 +1,4 @@
-var app = angular.module('ABL.controllers', ['ngAnimate','ui.bootstrap.datetimepicker']);
+var app = angular.module('ABL.controllers', ['ngAnimate']);
 
 app.service('productService', function ($window) {
     //var allProducts = getData();
@@ -42,12 +42,99 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state) {
     //         $scope.masterPrice = $scope.numberOf * $scope.currentImage.totalPrice;
     //         return $scope.masterPrice;
     // }
+    $scope.today = function() {
+        $scope.dt = new Date();
+    };
+    $scope.today();
 
+  $scope.clear = function () {
+    $scope.dt = null;
+  };
+
+  // Disable weekend selection
+  $scope.disabled = function(date, mode) {
+    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+  };
+
+  $scope.toggleMin = function() {
+    $scope.minDate = $scope.minDate ? null : new Date();
+  };
+  $scope.toggleMin();
+
+  $scope.open = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+
+    $scope.opened = true;
+  };
+
+  $scope.dateOptions = {
+    formatYear: 'yy',
+    startingDay: 1
+  };
+
+  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+  $scope.format = $scope.formats[0];
+
+
+        $scope.onTimeSet = function (newDate, oldDate) {
+            console.log(newDate);
+            console.log(oldDate);
+        }
+        // $scope.paymentSubtotalAd = $scope.currentImage.price;
+        // $scope.paymentHostingAd = $scope.currentImage.host_fee_value;
+        // $scope.paymentTaxAd = $scope.currentImage.tax_fee_value;
+        // $scope.paymentPriceAd = $scope.currentImage.totalPrice;
+        $scope.calculatePrice = function () {
+            
+                                    // $scope.numberOfAdults * $scope.currentImage.price 
+                                    // + $scope.numberOfYouth * $scope.currentImage.youthTotalPrice
+                                    // + $scope.numberOfChildren * $scope.currentImage.youthTotalPrice;
+            $scope.adultSubtotal = $scope.numberOfAdults * $scope.currentImage.price;
+            $scope.youthSubtotal = $scope.numberOfYouth * $scope.currentImage.youthPrice;
+            $scope.childSubtotal = $scope.numberOfChildren * $scope.currentImage.childPrice;
+
+            $scope.paymentSubtotal = $scope.adultSubtotal + $scope.youthSubtotal + $scope.childSubtotal;
+
+            $scope.paymentHosting = $scope.numberOfAdults * $scope.currentImage.host_fee_value 
+                                    + $scope.numberOfYouth * $scope.currentImage.youth_host_fee_value
+                                    + $scope.numberOfChildren * $scope.currentImage.host_fee_value;
+
+            $scope.paymentTax = $scope.numberOfAdults * $scope.currentImage.tax_fee_value 
+                                + $scope.numberOfYouth * $scope.currentImage.youth_tax_fee_value 
+                                + $scope.numberOfChildren * $scope.currentImage.child_tax_fee_value;
+
+            $scope.paymentPrice = $scope.numberOfAdults * $scope.currentImage.totalPrice 
+                                    + $scope.numberOfYouth * $scope.currentImage.youthTotalPrice 
+                                    + $scope.numberOfChildren * $scope.currentImage.childTotalPrice;
+        }
     //this watches the ng-model input for changes and changes the payment price according to that and stores it
-    $scope.$watch('numberOf', function() {
-        $scope.paymentPrice = $scope.numberOf * $scope.currentImage.totalPrice;
-
+    $scope.$watch('numberOfAdults', function() {
+        $scope.calculatePrice();
+        // $scope.paymentSubtotal = $scope.numberOfAdults * $scope.currentImage.price + $scope.numberOfYouth * $scope.currentImage.price;
+        // $scope.paymentHosting = $scope.numberOfAdults * $scope.currentImage.host_fee_value;
+        // $scope.paymentTax = $scope.numberOfAdults * $scope.currentImage.tax_fee_value;
+        // $scope.paymentPrice = $scope.numberOfAdults * $scope.currentImage.totalPrice;
+       // alert($scope.paymentPrice);
     });
+    $scope.$watch('numberOfYouth', function() {
+        $scope.calculatePrice();
+    //    if($scope.numberOfYouth>0) {
+    //     $scope.paymentSubtotal += $scope.numberOfYouth * $scope.currentImage.price;
+    //     $scope.paymentHosting += ;
+    //     $scope.paymentTax += ;
+    //     $scope.paymentPrice += ;
+    // }
+    });
+    $scope.$watch('numberOfChildren', function() {
+        $scope.calculatePrice();
+    //     if($scope.numberOfChildren>0) {
+    //     $scope.paymentSubtotal += $scope.numberOfChildren * $scope.currentImage.price;
+    //     $scope.paymentHosting += $scope.numberOfChildren * $scope.currentImage.host_fee_value;
+    //     $scope.paymentTax += ;
+    //     $scope.paymentPrice += ;
+    // }
+    });    
     $scope.geoip = {};
                 // $http.get("http://www.telize.com/ip/", {headers: {"Access-Control-Allow-Origin:":"http://localhost:8080/"}}, function (error, response, body) {
                 //   if (!error && response.statusCode == 200) {
@@ -274,7 +361,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
     $scope.fetch = function () {
         $http.defaults.headers.get = { 'Basic' : 'YWdyaWdnczpGdWNreW91MjAxNA' };
         //$http.defaults.headers.common.Authorization = 'Basic YWdyaWdnczpGdWNreW91MjAxNA==';
-        $http.get("http://162.242.170.162:8081/api/product?city=Whistler", {headers: {'Authorization': 'Basic YWdyaWdnczpGdWNreW91MjAxNA=='}}).success($scope.handleImagesLoaded);
+        $http.get("http://162.242.170.162:8081/api/product?city=whistler", {headers: {'Authorization': 'Basic YWdyaWdnczpGdWNreW91MjAxNA=='}}).success($scope.handleImagesLoaded);
     };
 
     $scope.setCurrentImage = function (image) {

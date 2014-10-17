@@ -1,0 +1,161 @@
+h1 {
+	color: #FFF;
+	opacity: 1;
+}
+.mainPrice {
+	position: absolute;
+	top:10%;
+	left: 10%;
+
+}
+.price {
+    font-color: black;
+
+
+}
+.pricetag:after{
+    position:absolute;
+    right:0;
+    margin:1px 7px;
+    font-weight:bold;
+    font-size:25px;
+}
+.pricetag:before{
+    position: absolute;
+    background: #339933;
+    content: "\25CF";
+    color: #339933 ;
+    text-shadow: 0 0 0px #339933;
+    font-size: 25px;
+    line-height: 13px;
+    top: 6px;
+    left: -15px;
+    width: 30px;
+    height: 28px;
+    transform: rotate(46deg);
+    
+    border-radius: 2px;
+    z-index: -1;
+}
+
+.pricetag {
+    white-space:nowrap;
+    margin:0 5px 0 10px;
+    height:40px;
+    border-radius: 0 5px 5px 0;
+    padding: 0 15px 0 8px;
+    background:#339933;
+    
+    color:#999;
+    line-height:23px;
+    display: block;
+    position: absolute;
+    top: 80px;
+    right: 24px;
+    z-index: 3;
+}
+
+#mainSlider {
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+}
+.slider-nav img {
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+}
+.image {
+  	position: relative;
+   	-webkit-border-bottom-right-radius: 15px;
+	-webkit-border-bottom-left-radius: 15px;
+	-moz-border-radius-bottomright: 15px;
+	-moz-border-radius-bottomleft: 15px;
+	border-bottom-right-radius: 15px;
+	border-bottom-left-radius: 15px;
+}
+
+.title_overlay {
+	-webkit-border-top-left-radius: 15px;
+	-webkit-border-top-right-radius: 15px;
+	-moz-border-radius-topleft: 15px;
+	-moz-border-radius-topright: 15px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	position: relative;
+	top:0px;
+	left: 0;
+	width: 100%;
+	background-color: #FFF;
+	background: #6B6B6B;
+	opacity:0.7;
+	z-index: 999;
+	height: 60px;
+}
+
+.date-picker-wrapper{top:10px;right:1pc; z-index: 9999 !important;}
+.desc-overlay {
+   position: absolute;
+   text-align: center;
+   left: 0;
+   bottom:0;
+   width: 100%;
+   margin: 0 auto;
+   width: 300px;
+   height: 50px;
+}
+.overimg-top {
+   position: absolute;
+   z-index: 1000;
+   top:0;
+   width: 100%;
+   text-align: center;
+   margin: 10px auto;
+   height: 50px;
+}
+
+.overimg-left {
+   position: absolute;
+   left: 10px;
+   bottom:10px;
+   margin: 0 auto;
+   height: 50px;
+}
+.overimg-right {
+   position: absolute;
+   right: 10px;
+   bottom:10px;
+   margin: 0 auto;
+   height: 50px;
+}
+#date {
+	position: absolute;
+	right:60%;
+	top:0px;
+}
+#title {
+  position: absolute;
+  left:10%;
+  top:0px;
+}
+#location {
+  position: absolute;
+  right:20%;
+  top:0px;
+}
+#price {
+	position: absolute;
+	left:2%;
+	top:0px;
+}
+#buyForm {
+position: relative;
+}
+
+select:focus, option:focus, select::-moz-focus-inner, option::-moz-focus-inner {
+    outline: none;
+    border: none;
+}
+.modal .modal-dialog { width: 800px; }
+
+.modal .modal-dialog1 { width: 1078px; }

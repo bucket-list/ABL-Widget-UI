@@ -1,35 +1,41 @@
     <a href="#/form/interests">
       <span style="text-decoration: none; color:black;" class="fa fa-chevron-left fa-2x"></span>
     </a>
-<div class="text-center">
+    <div class="text-center">
     <h2>{{currentImage.title}}</h2>
       </div>
       <div id="purchase_window">
       <div style="margin-top: 28px;"><img ng-src="{{currentImage.thumbnail}}"></div>
         <h3 id="price">Price: ${{currentImage.price}}</h3>
-      <div class="row">
-        <div class= "col-md-5" ng-init="numberOf=1;">
-        <h3>Number of People:</h3>
-<!--         <select class="pull-left" id="numberOf">
-        <option id= "1" value="1">1</option>
-        <option id= "2" value="2">2</option>
-        <option id= "3" value="3">3</option>
-        <option id= "4" value="4">4</option>
-        <option id= "5" value="5">5</option>
-        <option id= "6" value="6">6</option>
-        <option id= "7" value="7">7</option>
-        <option id= "8" value="8">8</option>
-        </select>{{currentImage.minOcc}} -->
-        <div style="display=inline;">
-        <input type="number" min="1" max= "{{currentImage.maxOcc}}" ng-model="numberOf">
-        <p style="font-size: 16px"> <strong>&nbsp; from ${{currentImage.price}} each</strong></p>
+      <div class="row" >
+        <div class= "col-md-12" ng-init="numberOfAdults=1;" style="display=inline;">
+        <h3>Adult:</h3>
+        <input type="number" min="0" max= "{{currentImage.maxOcc}}" ng-model="numberOfAdults">
+        <p style="font-size: 16px;"> <strong>from ${{currentImage.price}} each</strong></p>
+      </div>
+      <div class= "col-md-4" ng-init="numberOfYouth=0;"style="display=inline;">
+        <h3>Youth (12-18)</h3>
+        <div>
+        <input type="number" min="0" max= "{{currentImage.maxOcc}}" ng-model="numberOfYouth">
+        <p style="font-size: 16px"> <strong>from ${{currentImage.youthPrice}} each</strong></p>
+      </div>
+      </div>
+      <div class= "col-md-4" ng-init="numberOfChildren=0;">
+        <h3>Children (12 and under)</h3>
+        <div >
+        <input type="number" min="0" max= "{{currentImage.maxOcc}}" ng-model="numberOfChildren">
+        <p style="font-size: 16px"> <strong>from ${{currentImage.childPrice}} each</strong></p>
       </div>
       </div>
 
         <div class="cart col-md-4 pull-right">
-          <h4>Subtotal:</h4><span class="pull-right">{{currentImage.price | currency}}</span><br>
-          <h4>Processing Fee:</h4><span class="pull-right">{{currentImage.host_fee_value | currency}}</span><br>
-          <h4>Tax:</h4><span class="pull-right">{{currentImage.tax_fee_value | currency}}</span><br>
+          <div ng-if="numberOfAdults!=0;" class="animate-if"><h4>Adult:</h4><span class="pull-right">{{numberOfAdults}}X{{adultSubtotal | currency}}</span><br></div>
+          <div ng-if="numberOfYouth!=0;" class="animate-if"><h4>Youth:</h4><span class="pull-right">{{numberOfYouth}}X{{youthSubtotal | currency}}</span><br></div>
+          <div ng-if="numberOfChildren!=0;" class="animate-if"><h4>Children:</h4><span class="pull-right">{{numberOfChildren}}X{{childSubtotal | currency}}</span><br></div>
+          <br>
+          <h4>Subtotal:</h4><span class="pull-right">{{paymentSubtotal | currency}}</span><br>
+          <h4>Processing Fee:</h4><span class="pull-right">{{paymentHosting | currency}}</span><br>
+          <h4>Tax:</h4><span class="pull-right">{{paymentTax | currency}}</span><br>
           <h4>Total:</h4><span class="pull-right">
            <!-- + currentImage.host_fee_value + currentImage.tax_fee_value -->
           <!-- {{numberOf * currentImage.totalPrice | currency}} -->
@@ -44,6 +50,16 @@
         <h3>Select Dates </h3>
         <p>{{currentImage.description}}</p>
       </div>
+      <!--         <select class="pull-left" id="numberOf">
+        <option id= "1" value="1">1</option>
+        <option id= "2" value="2">2</option>
+        <option id= "3" value="3">3</option>
+        <option id= "4" value="4">4</option>
+        <option id= "5" value="5">5</option>
+        <option id= "6" value="6">6</option>
+        <option id= "7" value="7">7</option>
+        <option id= "8" value="8">8</option>
+        </select>{{currentImage.minOcc}} -->
 <!--         Selected Date: {{ data.date | date:'yyyy-MM-dd a' }}
             <datetimepicker data-ng-model="data.embeddedDate" data-datetimepicker-config="{ startView:'day', minView:'day' }"></datetimepicker> -->
       
@@ -55,21 +71,27 @@
               <div class="input-group date" id="date_time">
                 <input type="text" class="form-control" placeholder=""/>
                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-              </div> 
+              </div> data-on-set-time="onTimeSet()"
             </div> -->
+            <input type="text" class="form-control col-md-6" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+
             <div id="messages" class="well" ng-show="message">{{ message }}</div>
             <span class="help-block" ng-show="errorName">{{ errorName }}</span>
             <div class="dropdown col-md-6" style="margin-bottom: 20px;">
               <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" >
                 <div class="input-group">
-                  <input type="text" class="form-control" name="date" data-ng-model="formData.dateDropDownInput">
+                  <input type="text" class="form-control" name="date"  data-ng-model='formData.dateDropDownInput'>
                     <span class="input-group-addon">
                       <i class="glyphicon glyphicon-calendar"></i>
                     </span>
                 </div>
               </a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                <datetimepicker data-ng-model="formData.dateDropDownInput" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"/>
+                <datetimepicker data-ng-model="formData.dateDropDownInput"  
+                data-datetimepicker-config="{ dropdownSelector: '#dropdown2'}"/>
               </ul>
             </div>
           </div>

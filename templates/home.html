@@ -12,7 +12,7 @@
     </div> -->
     
     <div id="albumImage" style="position:relative">
-        <img ng-src="{{currentImage.image_lg}}" alt="{{currentImage.title}}">
+        <img width="250px" height="450px" ng-src="{{currentImage.image_lg}}" alt="{{currentImage.title}}">
         <span class="pricetag"><h3 style="color:white">${{currentImage.price}}</h3></span>
         <div class="description"><p class="updescription">{{currentImage.title}}<br />
         <small>{{currentImage.highLight}} </small></p>
@@ -23,7 +23,7 @@
     <div id="thumbWrapper">
         <ul id="thumbList" style="padding: 0px">
             <li ng-repeat="image in images | filter:categories" ng-click="setCurrentImage(image)">
-                <img width="100px" height="100px" ng-src="{{image.image_lg}}" alt="{{image.title}}">
+                <img width="150px" height="150px" ng-src="{{image.image_lg}}" alt="{{image.title}}">
             </li>
         </ul>
     </div>

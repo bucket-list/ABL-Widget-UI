@@ -1,7 +1,7 @@
 
 // create our angular app and inject ngAnimate and ui-router 
 // =============================================================================
-angular.module('formApp', ['ngAnimate', 'ABL.controllers', 'ui.router', 'slick'])
+angular.module('formApp', ['ngAnimate', 'ABL.controllers', 'ui.router', 'ui.bootstrap'])
 
 // configuring our routes 
 // =============================================================================
