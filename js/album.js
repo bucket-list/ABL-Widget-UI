@@ -1,10 +1,11 @@
 var app = angular.module('ABL.controllers', ['ngAnimate','ui.bootstrap.datetimepicker']);
 
-app.service('productService', function() {
+app.service('productService', function ($window) {
     //var allProducts = getData();
     var currentProduct = {};
     var setData = function(dataFromView) {
         currentProduct = dataFromView;
+        $window.sessionStorage["currentProductData"] = dataFromView;
     };
     var getCurrentProduct = function(){
         return currentProduct;

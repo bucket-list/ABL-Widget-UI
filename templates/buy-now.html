@@ -1,3 +1,6 @@
+    <a href="#/form/more-info">
+      <span style="text-decoration: none; color:black;" class="fa fa-chevron-left fa-2x"></span>
+    </a>
 <div>
     <h4>{{currentImage.title}}</h4>
       </div>
@@ -5,7 +8,26 @@
       <div style="margin-top: 28px;"><img ng-src="{{currentImage.thumbnail}}"></div>
         <h3 id="price">Price: ${{currentImage.price}}</h3>
         <h3 id="date">Date:</h3>
-        <div id="date-range12-container"></div>
+               <div >
+        <h3>Number of People:</h3>
+        <select class="pull-left" id="numberOf">
+        <option id= "1" value="1">1</option>
+        <option id= "2" value="2">2</option>
+        <option id= "3" value="3">3</option>
+        <option id= "4" value="4">4</option>
+        <option id= "5" value="5">5</option>
+        <option id= "6" value="6">6</option>
+        <option id= "7" value="7">7</option>
+        <option id= "8" value="8">8</option>
+        </select>
+  
+        <p style="font-size: 16px"> <strong>&nbsp; from ${{currentImage.price}} each</strong></p>
+
+        <hr style="height: 2px;  color:#707070;">
+        <h4> Total: $1600 </h4>
+        
+      </div>
+
         <h4>More Information </h4>
         <p>{{currentImage.description}}</p>
 <!--         Selected Date: {{ data.date | date:'yyyy-MM-dd a' }}
@@ -84,5 +106,6 @@
     {{ formData }} <br>
     {{ geoip }}
   </pre>
+  <a href="#/terms"> Terms and Conditions</a>
       <!-- </div> -->
     

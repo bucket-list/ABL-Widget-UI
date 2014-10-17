@@ -15,6 +15,11 @@ angular.module('formApp', ['ngAnimate', 'ABL.controllers', 'ui.router', 'slick']
             templateUrl: 'templates/form.html',
             controller: 'formController'
         })
+
+        .state('terms', {
+            url: '/terms',
+            templateUrl: 'templates/terms.html'
+        })
         
         // nested states 
         // each of these sections will have their own view
