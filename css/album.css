@@ -21,6 +21,10 @@ h3 {
     margin-top:8px;
 }
 
+h4 {
+    display:inline;
+}
+
 .updescription{
  color: rgba(255,255,255,1);
   background: black;
@@ -47,7 +51,7 @@ small {
   font-size:20px;
 }
 .show-description p {
-  height: 150px;
+  height: 200px;
 }
 .show-description small {
   opacity: 1;
@@ -84,7 +88,7 @@ small {
 }
 
 #thumbWrapper {
-    width: 620px;
+    width: 100%;
     overflow: auto;
     border-radius: 10px;
 
@@ -183,6 +187,13 @@ position: absolute;
 right: 2pc;
 color: white;
 font-size: 63px;
+}
+
+.alignleft {
+    float: left;
+}
+.alignright {
+    float: right;
 }
 
 select {

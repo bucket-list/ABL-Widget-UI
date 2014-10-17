@@ -1,7 +1,12 @@
 <!-- <div style="margin-top: 28px;"><img ng-src="{{currentImage.thumbnail}}"></div> -->
+
 <a href="#/form/profile">
   <span style="text-decoration: none; color:black;" class="fa fa-chevron-left fa-2x"></span>
 </a>
+
+        <h2 class="text-center">{{currentImage.title | capitalize}}</h2>
+        <h3 class="text-center">{{currentImage.city | capitalize}}, {{currentImage.state | uppercase}}</h3>
+      
 <div class="container slider">
     <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage"
          ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
@@ -19,9 +24,7 @@
         </div>
     </nav>
 </div>
-        <br><h3 id="title">{{currentImage.title | capitalize}}</h3>
-        <h3 id="location">{{currentImage.city | capitalize}}, {{currentImage.state | uppercase}}</h3>
-        <h3 >Price: ${{currentImage.price}}</h3>
+        <h2 >Price: ${{currentImage.price}}</h2>
         <!-- <h3 id="date">Date:</h3> -->
         
         
@@ -46,22 +49,5 @@
             <li ng-repeat="item in currentImage.whatToBring track by $index">{{item}}</li>
         </ul>
        </div>
-        <button onclick="location.href='#/form/payment'" class="btn btn-warning btn-lg pull-right" ><strong>Book Now</strong></button><!--       <div >
-        <h3>Number of People:</h3>
-        <select class="pull-left" id="numberOf">
-        <option id= "1" value="1">1</option>
-        <option id= "2" value="2">2</option>
-        <option id= "3" value="3">3</option>
-        <option id= "4" value="4">4</option>
-        <option id= "5" value="5">5</option>
-        <option id= "6" value="6">6</option>
-        <option id= "7" value="7">7</option>
-        <option id= "8" value="8">8</option>
-        </select>
-  
-        <p style="font-size: 16px"> <strong>&nbsp; from ${{currentImage.price}} each</strong></p>
+        <button onclick="location.href='#/form/payment'" class="btn btn-warning btn-lg pull-right" ><strong>Book Now</strong></button>      
 
-        <hr style="height: 2px;  color:#707070;">
-        <h4> Total: $1600 </h4>
-        
-      </div> -->

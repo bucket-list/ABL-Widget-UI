@@ -3,12 +3,17 @@ var app = angular.module('ABL.controllers', ['ngAnimate','ui.bootstrap.datetimep
 app.service('productService', function ($window) {
     //var allProducts = getData();
     var currentProduct = {};
+    var sessionCurrentProduct = {};
+    var objectifiedProduct = {};
     var setData = function(dataFromView) {
         currentProduct = dataFromView;
-        $window.sessionStorage["currentProductData"] = dataFromView;
+        $window.sessionStorage["currentProductData"] = JSON.stringify(currentProduct);
+        console.log(dataFromView);
     };
     var getCurrentProduct = function(){
-        return currentProduct;
+        sessionCurrentProduct= $window.sessionStorage["currentProductData"];
+        objectifiedProduct = JSON.parse(sessionCurrentProduct);
+        return objectifiedProduct;
     };
     return {
         setData: setData,
@@ -30,8 +35,19 @@ app.service('productService', function ($window) {
 //     }
 // ]);
 
-app.controller('PaymentCtrl', function ($scope, $http, productService) { 
+app.controller('PaymentCtrl', function ($scope, $http, productService, $state) { 
     $scope.currentImage = productService.getCurrentProduct();
+    //total price is calculated here and accessed here
+    // $scope.paymentPrice = function() {
+    //         $scope.masterPrice = $scope.numberOf * $scope.currentImage.totalPrice;
+    //         return $scope.masterPrice;
+    // }
+
+    //this watches the ng-model input for changes and changes the payment price according to that and stores it
+    $scope.$watch('numberOf', function() {
+        $scope.paymentPrice = $scope.numberOf * $scope.currentImage.totalPrice;
+
+    });
     $scope.geoip = {};
                 // $http.get("http://www.telize.com/ip/", {headers: {"Access-Control-Allow-Origin:":"http://localhost:8080/"}}, function (error, response, body) {
                 //   if (!error && response.statusCode == 200) {
@@ -58,8 +74,11 @@ app.controller('PaymentCtrl', function ($scope, $http, productService) {
            $scope.formData = {};
 
             // process the form
-             $scope.processPaymentForm = function() {
+             $scope.processPaymentForm = function(expr) {
                 var form = this;
+                    $state.go('complete');
+            
+                    
                 //console.log("Fuck "+$scope.formData);
                //$scope.message = formdata;
                //alert("Form Data: "+form.formData.fullName);

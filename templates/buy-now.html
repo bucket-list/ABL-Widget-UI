@@ -1,16 +1,16 @@
-    <a href="#/form/more-info">
+    <a href="#/form/interests">
       <span style="text-decoration: none; color:black;" class="fa fa-chevron-left fa-2x"></span>
     </a>
-<div>
-    <h4>{{currentImage.title}}</h4>
+<div class="text-center">
+    <h2>{{currentImage.title}}</h2>
       </div>
       <div id="purchase_window">
       <div style="margin-top: 28px;"><img ng-src="{{currentImage.thumbnail}}"></div>
         <h3 id="price">Price: ${{currentImage.price}}</h3>
-        <h3 id="date">Date:</h3>
-               <div >
+      <div class="row">
+        <div class= "col-md-5" ng-init="numberOf=1;">
         <h3>Number of People:</h3>
-        <select class="pull-left" id="numberOf">
+<!--         <select class="pull-left" id="numberOf">
         <option id= "1" value="1">1</option>
         <option id= "2" value="2">2</option>
         <option id= "3" value="3">3</option>
@@ -19,17 +19,31 @@
         <option id= "6" value="6">6</option>
         <option id= "7" value="7">7</option>
         <option id= "8" value="8">8</option>
-        </select>
-  
+        </select>{{currentImage.minOcc}} -->
+        <div style="display=inline;">
+        <input type="number" min="1" max= "{{currentImage.maxOcc}}" ng-model="numberOf">
         <p style="font-size: 16px"> <strong>&nbsp; from ${{currentImage.price}} each</strong></p>
-
-        <hr style="height: 2px;  color:#707070;">
-        <h4> Total: $1600 </h4>
-        
+      </div>
       </div>
 
-        <h4>More Information </h4>
+        <div class="cart col-md-4 pull-right">
+          <h4>Subtotal:</h4><span class="pull-right">{{currentImage.price | currency}}</span><br>
+          <h4>Processing Fee:</h4><span class="pull-right">{{currentImage.host_fee_value | currency}}</span><br>
+          <h4>Tax:</h4><span class="pull-right">{{currentImage.tax_fee_value | currency}}</span><br>
+          <h4>Total:</h4><span class="pull-right">
+           <!-- + currentImage.host_fee_value + currentImage.tax_fee_value -->
+          <!-- {{numberOf * currentImage.totalPrice | currency}} -->
+          {{paymentPrice | currency}}
+        </span>
+        </div>
+        
+      </div>
+              <hr style="height: 2px;  color:#4C4C4C;">
+              <div >
+      <div class="col-md-9">
+        <h3>Select Dates </h3>
         <p>{{currentImage.description}}</p>
+      </div>
 <!--         Selected Date: {{ data.date | date:'yyyy-MM-dd a' }}
             <datetimepicker data-ng-model="data.embeddedDate" data-datetimepicker-config="{ startView:'day', minView:'day' }"></datetimepicker> -->
       
@@ -45,7 +59,7 @@
             </div> -->
             <div id="messages" class="well" ng-show="message">{{ message }}</div>
             <span class="help-block" ng-show="errorName">{{ errorName }}</span>
-            <div class="dropdown col-md-6">
+            <div class="dropdown col-md-6" style="margin-bottom: 20px;">
               <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" >
                 <div class="input-group">
                   <input type="text" class="form-control" name="date" data-ng-model="formData.dateDropDownInput">
@@ -58,9 +72,10 @@
                 <datetimepicker data-ng-model="formData.dateDropDownInput" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"/>
               </ul>
             </div>
+          </div>
 
-            <div class="billing col-md-12"> 
-                <h2>Billing Information</h2>
+            <div class="billing col-md-12" style="margin-bottom: 20px;"> 
+                <h3>Billing Information</h3>
             <div class="form-group col-md-6">
                 <label for="fullName">Full Name</label>
                 <input type="text" class="form-control" name="fullName" ng-model="formData.fullName" placeholder="Please enter your full name">
@@ -90,22 +105,27 @@
                 <label for="Country">Zip/Postal Code</label>
                 <input type="text" class="form-control" ng-model="formData.zip_code" name="zip" placeholder="95112">
               </div>
+              <div class="col-md-9">
+              <input type="checkbox" name="agreement" value="yes">&nbsp; I agree to the <a href="#/terms"> Terms and Conditions</a>
+            </div>
             </div>
             <input type="hidden" class="form-control" id="formData.geoip" value="{{geoip}}" />
             <input type="hidden" class="form-control" id="formData.price_paid" value="{{currentProduct.totalPrice}}" />
 
-            <div class="payment col-md-12"> <h2>Payment Method</h2> </div>
+            <div class="payment col-md-12"> <h3>Payment Method</h3> </div>
 
             <div class="braintree"></div>
             <div class="clearfix"></div>        
         <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-        <button type="button" class="btn btn-primary" ng-click="processPaymentForm()">Checkout</button>
       </ng-form>
     </div>
+  <hr style="height: 2px;  color: black;">
+  <button type="button" class="btn btn-primary pull-right" ng-click="processPaymentForm()">Checkout</button>
+    <br></br>
+    <br></br>
         <pre>
     {{ formData }} <br>
     {{ geoip }}
   </pre>
-  <a href="#/terms"> Terms and Conditions</a>
       <!-- </div> -->
     
