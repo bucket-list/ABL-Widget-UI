@@ -1,49 +1,88 @@
-<div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" ng-click="cancel()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">{{currentImage.title}}</h4>
+<div>
+    <h4>{{currentImage.title}}</h4>
       </div>
-      <div class="modal-body" id="purchase_window">
+      <div id="purchase_window">
       <div style="margin-top: 28px;"><img ng-src="{{currentImage.thumbnail}}"></div>
         <h3 id="price">Price: ${{currentImage.price}}</h3>
         <h3 id="date">Date:</h3>
         <div id="date-range12-container"></div>
         <h4>More Information </h4>
         <p>{{currentImage.description}}</p>
-        <form role="form" id="checkout" method="post">
-          
-            <div class="billing"> 
+<!--         Selected Date: {{ data.date | date:'yyyy-MM-dd a' }}
+            <datetimepicker data-ng-model="data.embeddedDate" data-datetimepicker-config="{ startView:'day', minView:'day' }"></datetimepicker> -->
+      
+
+        <!-- <div ng-controller="payFormCtl"> -->
+        <ng-form validate>
+            <!-- <div class="form-group col-md-6 " > 
+              <label for="date_time">Date</label> ng-submit="processPaymentForm()"
+              <div class="input-group date" id="date_time">
+                <input type="text" class="form-control" placeholder=""/>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div> 
+            </div> -->
+            <div id="messages" class="well" ng-show="message">{{ message }}</div>
+            <span class="help-block" ng-show="errorName">{{ errorName }}</span>
+           <!--  <div class="dropdown col-md-6">
+              <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" >
+                <div class="input-group">
+                  <input type="text" class="form-control" name="date" data-ng-model="formData.dateDropDownInput">
+                    <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-calendar"></i>
+                    </span>
+                </div>
+              </a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                <datetimepicker data-ng-model="formData.dateDropDownInput" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"/>
+              </ul>
+            </div> -->
+
+            <div class="billing col-md-12"> 
                 <h2>Billing Information</h2>
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-6">
                 <label for="fullName">Full Name</label>
-                <input type="text" class="form-control" id="fullName" placeholder="Please enter your full name">
+                <input type="text" class="form-control" name="fullName" ng-model="formData.fullName" placeholder="Please enter your full name">
               </div>
-            <div class="form-group col-md-12">
+
+            <div class="form-group col-md-6">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" name="email"  ng-model="formData.email" placeholder="John@example.com">
+              </div>
+            <div class="form-group col-md-6">
                 <label for="Address">Street Address</label>
-                <input type="text" class="form-control" id="Address" placeholder="440 N. Wolfe Road">
+                <input type="text" class="form-control" ng-model="formData.street_address" name="Address" placeholder="440 N. Wolfe Road">
               </div>
                 <div class="form-group col-md-3">
                 <label for="City">City</label>
-                <input type="text" class="form-control" id="City" placeholder="Sunnyvale">
+                <input type="text" class="form-control" ng-model="formData.city"  name="City" placeholder="Sunnyvale">
               </div>
             <div class="form-group col-md-3">
                 <label for="State">State/Province</label>
-                <input type="text" class="form-control" id="State" placeholder="California">
+                <input type="text" class="form-control" ng-model="formData.state" name="State" placeholder="California">
               </div>
             <div class="form-group col-md-3">
                 <label for="Country">Country</label>
-                <input type="text" class="form-control" id="Country" placeholder="USA">
+                <input type="text" class="form-control" ng-model="formData.country" name="Country" placeholder="USA">
             </div>
             <div class="form-group col-md-3">
                 <label for="Country">Zip/Postal Code</label>
-                <input type="text" class="form-control" id="Country" placeholder="95112">
+                <input type="text" class="form-control" ng-model="formData.zip_code" name="zip" placeholder="95112">
               </div>
             </div>
-            <div class="payment"> <h2>Payment Method</h2>
+            <input type="hidden" class="form-control" id="formData.geoip" value="{{geoip}}" />
+            <input type="hidden" class="form-control" id="formData.price_paid" value="{{currentProduct.totalPrice}}" />
+
+            <div class="payment col-md-12"> <h2>Payment Method</h2> </div>
 
             <div class="braintree"></div>
             <div class="clearfix"></div>        
-      </div>
-      <div class="modal-footer" id="footer-padding">
         <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-        <button type="submit" class="btn btn-primary" id="submit_checkout">Checkout</button></form>
-      </div>
+        <button type="button" class="btn btn-primary" ng-click="processPaymentForm()">Checkout</button>
+      </ng-form>
+    </div>
+        <pre>
+    {{ formData }} <br>
+    {{ geoip }}
+  </pre>
+      <!-- </div> -->
+    

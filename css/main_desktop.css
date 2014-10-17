@@ -9,7 +9,7 @@ h1 {
 
 }
 .price {
-    font-color: white;
+    font-color: black;
 
 
 }
@@ -132,6 +132,16 @@ h1 {
 	position: absolute;
 	right:60%;
 	top:0px;
+}
+#title {
+  position: absolute;
+  left:10%;
+  top:0px;
+}
+#location {
+  position: absolute;
+  right:20%;
+  top:0px;
 }
 #price {
 	position: absolute;

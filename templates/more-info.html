@@ -16,14 +16,34 @@
         </div>
     </nav>
 </div>
-        <h3 id="price">Price: ${{currentImage.price}}</h3>
-        <h3 id="date">Date:</h3>
-        <h4 class="modal-title" id="myModalLabel">{{currentImage.title}}</h4>
+        <br><h3 id="title">{{currentImage.title | capitalize}}</h3>
+        <h3 id="location">{{currentImage.city | capitalize}}, {{currentImage.state | uppercase}}</h3>
+        <h3 >Price: ${{currentImage.price}}</h3>
+        <!-- <h3 id="date">Date:</h3> -->
+        
+        
      <div id="date-range14-container"></div>
         <h3> Descriptions: </h3> 
-        <p> {{currentImage.description}}</p>
+        <p> {{currentImage.highLight}}</p>
       </div>
-      <div >
+      <div class="col-md-4"> <h4>Requirements:</h4>
+        <ul> 
+            <li ng-repeat="item in currentImage.requirements track by $index">{{item}}</li>
+        </ul>
+
+       </div>
+        <div class="col-md-4"> <h4>Included:</h4>
+        <ul> 
+            <li ng-repeat="item in currentImage.whatIncluded track by $index">{{item}}</li>
+        </ul>
+
+       </div>
+       <div class="col-md-4"> <h4>What to Bring:</h4>
+        <ul> 
+            <li ng-repeat="item in currentImage.whatToBring track by $index">{{item}}</li>
+        </ul>
+       </div>
+        <button onclick="location.href='#/form/payment'" class="btn btn-warning btn-lg pull-right" ><strong>Book Now</strong></button><!--       <div >
         <h3>Number of People:</h3>
         <select class="pull-left" id="numberOf">
         <option id= "1" value="1">1</option>
@@ -41,5 +61,4 @@
         <hr style="height: 2px;  color:#707070;">
         <h4> Total: $1600 </h4>
         
-      </div>
-<div id="dropin"></div>
+      </div> -->

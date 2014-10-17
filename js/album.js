@@ -1,6 +1,7 @@
-var app = angular.module('ABL.controllers', ['ngAnimate']);
+var app = angular.module('ABL.controllers', ['ngAnimate','ui.bootstrap.datetimepicker']);
 
 app.service('productService', function() {
+    //var allProducts = getData();
     var currentProduct = {};
     var setData = function(dataFromView) {
         currentProduct = dataFromView;
@@ -12,7 +13,6 @@ app.service('productService', function() {
         setData: setData,
         getCurrentProduct: getCurrentProduct
     };
-
 });
 
 // app.controller('SecondCtrl', ['$scope','$rootScope',
@@ -23,15 +23,123 @@ app.service('productService', function() {
 //       });
 //     }
 //   ])
+// app.config(['$http', function($httpProvider) {
+//         $httpProvider.defaults.useXDomain = true;
+//         delete $httpProvider.defaults.headers.common['X-Requested-With'];
+//     }
+// ]);
 
-app.controller('PaymentCtrl', function ($scope, productService) { 
+app.controller('PaymentCtrl', function ($scope, $http, productService) { 
     $scope.currentImage = productService.getCurrentProduct();
-})
+    $scope.geoip = {};
+                // $http.get("http://www.telize.com/ip/", {headers: {"Access-Control-Allow-Origin:":"http://localhost:8080/"}}, function (error, response, body) {
+                //   if (!error && response.statusCode == 200) {
+                //     $scope.ip = body;
+                //     console.log($scope.geoip); // Print the google web page.
+                //   }
+                //   else {
+                //     console.log(error);
+                //   }
+                // });
+    
+
+                // $http.get("http://www.telize.com/geoip/"+$scope.ip, function (error, response, body) {
+                //   if (!error && response.statusCode == 200) {
+                //     $scope.geoip = body;
+                //     console.log(geoip); // Print the google web page.
+                //   }
+                //   else {
+                //     console.log(error);
+                //   }
+                // });
+console.log("Fuck 1"+ $scope.formData+$scope.checkoutForm);
+  // create a blank object to hold our form information
+            // $scope will allow this to pass between controller and view
+           $scope.formData = {};
+
+            // process the form
+             $scope.processPaymentForm = function() {
+                var form = this;
+                //console.log("Fuck "+$scope.formData);
+               //$scope.message = formdata;
+               alert("Form Data: "+form.formData.fullName);
+            $.getJSON("http://jsonip.com?callback=?", function (data) {
+                $.getJSON("http://www.telize.com/geoip/"+data.ip, function (geodata) {
+                     form.formData.geoip = geodata;
+                     alert(form.formData.geoip);
+                });
+                });
+
+                $http({
+                    method  : 'POST',
+                    url     : 'http://localhost:8081/api/checkout',
+                    data    : $.param(form.formData),  // pass in data as strings
+                    headers : { 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Bearer uXkiKZ5lDQ0eMkeQ8khA7E36nlVzFKRnhxL0y39GU4JgDHbF0F1nbDDJok2ALi8x63rYfQ9IamckIHbwQXUP9SwYWGQbhGDsSbEeHaRzxvgtXHZTJHL6xEjkRSogrW2yxUuTvcP6OdNBJqRUjNQt9Ljyaiq8Rs9OJ1vnMwsvfajY82FSqnwWV19Wf6kjsKzOZxYkDP5ycpVysKv8wGJVRI4SVgQL24FWJbMcjPruBWfPlgPkXOtK1fKDnLLTusSI' }  // set the headers so angular passing info as form data (not request payload)
+                })
+                    .success(function(data) {
+                        console.log(data);
+
+                        if (!data.success) {
+                            // if not successful, bind errors to error variables
+                            $scope.errorName = data.errors;
+                            //$scope.errorSuperhero = data.errors.superheroAlias;
+                        } else {
+                            // if successful, bind success message to message
+                            $scope.message = data.message;
+                        }
+                    }).error(function(data) {
+                        console.log(data);
+                    });
+            };
+    // define angular module/app
+        //var formApp = app.controller('formCtl', []);
+     //$('#date_time').datetimepicker();
+});
+// PaymentCtrl.$inject = ['$scope'];
+     // create angular controller and pass in $scope and $http
+        // function payFormCtl($scope, $http) {
+
+        //     // create a blank object to hold our form information
+        //     // $scope will allow this to pass between controller and view
+        //     $scope.formData = {};
+
+        //     // process the form
+        //     $scope.processPaymentForm = function() {
+        //         $http({
+        //             method  : 'POST',
+        //             url     : 'http://localhost:8081/api/checkout',
+        //             data    : $.param($scope.formData),  // pass in data as strings
+        //             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
+        //         })
+        //             .success(function(data) {
+        //                 console.log(data);
+
+        //                 if (!data.success) {
+        //                     // if not successful, bind errors to error variables
+        //                     $scope.errorName = data.errors.name;
+        //                     $scope.errorSuperhero = data.errors.superheroAlias;
+        //                 } else {
+        //                     // if successful, bind success message to message
+        //                     $scope.message = data.message;
+        //                 }
+        //             });
+
+        //     };
+
+        // }
+app.directive('datetimemenu', function(element){
+    
+    return {
+        restrict: 'EAC',
+        template: '<div class="input-group date" id="date_time"><input type="text" class="form-control" placeholder=""/><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div>'
+    };
+    element.datetimepicker();
+});
 
 app.controller('MainCtrl', function ($scope, productService) {
     $scope.currentImage = productService.getCurrentProduct();
     $scope.slides = 
-    [
+        [
           {image: '../img/img00.jpg', description: 'Image 00'},
             {image: '../img/img01.jpg', description: 'Image 01'},
             {image: '../img/img02.jpg', description: 'Image 02'},
@@ -96,9 +204,30 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
             $('.description').on('hover', function() {
                 $(this).toggleClass('show-description');
                 });
+        
+                
+        
             };
           
           $scope.initSlider();
+
+  //   function getData() {
+  //   $http({
+  //     method: "get",
+  //     datatype: "json", 
+  //     url: "http://localhost:8081/api/product", 
+  //     headers: { 'Authorization': 'Basic YWdyaWdnczpGdWNreW91MjAxNA=='}
+  //   }).success($scope.handleImagesLoaded
+  //   // function(data, status, headers, config) {
+  //   //   console.log("GET successful!"+" Data: "+data);
+  //   //   $scope.appData = data; //angular.fromJson(data).items;
+  //   //   $scope.currentProduct = _.first($scope.appData);
+  //   // }
+  //   ).error(function(data, status, headers, config) {
+  //     alert("WTF GET failed! "+data+" "+ status+" "+headers);
+  //   });
+  // };
+
 
 // THIS IS OUR GET REQUEST
 // getData();
@@ -125,7 +254,9 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
     }
 
     $scope.fetch = function () {
-        $http.get($scope.url).success($scope.handleImagesLoaded);
+        $http.defaults.headers.get = { 'Basic' : 'YWdyaWdnczpGdWNreW91MjAxNA' };
+        //$http.defaults.headers.common.Authorization = 'Basic YWdyaWdnczpGdWNreW91MjAxNA==';
+        $http.get("http://localhost:8081/api/product?city=kelowna", {headers: {'Authorization': 'Bearer uXkiKZ5lDQ0eMkeQ8khA7E36nlVzFKRnhxL0y39GU4JgDHbF0F1nbDDJok2ALi8x63rYfQ9IamckIHbwQXUP9SwYWGQbhGDsSbEeHaRzxvgtXHZTJHL6xEjkRSogrW2yxUuTvcP6OdNBJqRUjNQt9Ljyaiq8Rs9OJ1vnMwsvfajY82FSqnwWV19Wf6kjsKzOZxYkDP5ycpVysKv8wGJVRI4SVgQL24FWJbMcjPruBWfPlgPkXOtK1fKDnLLTusSI'}}).success($scope.handleImagesLoaded);
     };
 
     $scope.setCurrentImage = function (image) {
@@ -138,5 +269,10 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
 
     // Defer fetch for 1 second to give everything an opportunity layout
     $timeout($scope.fetch, 1000);
-});
+}).filter('capitalize', function() {
+    return function(input, all) {
+      return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) : '';
+    }
+  });
 
+        
