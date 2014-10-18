@@ -57,7 +57,7 @@
 NAV
 ---------------------------------------------------------*/
 
-.nav {
+.navslider {
     text-align: center;
     display: block;
     position: absolute;
@@ -72,18 +72,18 @@ NAV
     -webkit-user-drag: none;
 }
 
-.nav .wrapper {
+.navslider .wrapper {
     margin: 0 auto;
     width: 100%;
     padding: 1em 0 .8em;
 }
 
-.nav ul {
+.navslider ul {
     margin: 0;
     width: 100%;
 }
 
-.nav .dot, .nav .dot a {
+.navslider .dot, .nav .dot span {
     display: inline-block;
     zoom: 1;
 }
@@ -95,12 +95,12 @@ NAV
     height: 12px;
 }
 
-.dots .dot a {
+.dots .dot span {
     position: absolute;
     top: 2px;
     left: 2px;
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
     text-indent: 100%;
     white-space: nowrap;
     overflow: hidden;
@@ -118,7 +118,7 @@ NAV
     transition: background-color 0.25s, border-color 0.25s;
 }
 
-.dots .dot a.active {
+.dots .dot span.active {
     border-color: #FFF;
     background-color: transparent;
 }

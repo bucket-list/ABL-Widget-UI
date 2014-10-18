@@ -7,11 +7,6 @@ html {
     margin: auto;
 }
 
-body {
-    display: table-cell;
-    vertical-align: middle;
-    background-color: #FFF;
-}
 
 img {
         border-radius:10px;
@@ -19,11 +14,14 @@ img {
 
 h3 {
     margin-top:8px;
+}
+
+.inline h3, h4, p {
     display:inline;
 }
 
-h4 {
-    display:inline;
+.pricepadding {
+    padding:10px;
 }
 
 .updescription{
@@ -47,7 +45,7 @@ h4 {
   border-radius: 0px 0px 10px 10px;
 }
 
-small {
+.highlighted small {
   opacity: 0;
   font-size:20px;
 }
@@ -65,6 +63,15 @@ small {
     position: relative;
 
 }
+
+.btn-xlarge {
+    padding: 18px 28px;
+    font-size: 22px; 
+    line-height: normal;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+            }
 
 #header h2 {
     display: inline;

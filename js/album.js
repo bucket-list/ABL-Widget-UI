@@ -21,6 +21,10 @@ app.service('productService', function ($window) {
     };
 });
 
+app.controller('TermsCtrl', function ($scope, productService) {
+    $scope.currentImage = productService.getCurrentProduct();
+})
+
 app.controller('PaymentCtrl', function ($scope, $http, productService, $state) { 
     $scope.currentImage = productService.getCurrentProduct();
     //total price is calculated here and accessed here

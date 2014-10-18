@@ -14,42 +14,51 @@
 
     <a class="arrow prev" ng-click="nextSlide()"></a>
     <a class="arrow next" ng-click="prevSlide()"></a>
-    <nav class="nav">
+    <nav class="navslider">
         <div class="wrapper">
             <ul class="dots">
                 <li class="dot" ng-repeat="slide in slides">
-                    <a href="#" ng-class="{'active':isCurrentSlideIndex($index)}"
-                       ng-click="setCurrentSlideIndex($index);">{{slide.description}}</a></li>
+                    <span ng-class="{'active':isCurrentSlideIndex($index)}"
+                       ng-click="setCurrentSlideIndex($index);">{{slide.description}}</span></li>
             </ul>
         </div>
     </nav>
 </div>
-        <h2 >Price: ${{currentImage.price}}</h2>
+        
         <!-- <h3 id="date">Date:</h3> -->
-        
-        
-     <div id="date-range14-container"></div>
-      <h3> Overview: </h3> 
+        <tabset>
+          <tab heading="Overview">
+            <div class="container" style="max-width:100%;">
+           <h2 >Price: ${{currentImage.price}}</h2> 
+           <h3> Overview: </h3> 
         <p> {{currentImage.highLight}}</p>
         <h3> Descriptions: </h3> 
         <p> {{currentImage.mainDescription}}</p>
       </div>
-      <div class="col-md-4"> <h4>Requirements:</h4>
+          </tab>
+          <tab heading="More Information">
+            <div class="container row" style="max-width:100%;">
+              <br>
+        <div class="col-md-4"> <div class="text-center"><h4>Requirements:</h4></div>
         <ul> 
             <li ng-repeat="item in currentImage.requirements track by $index">{{item}}</li>
         </ul>
 
        </div>
-        <div class="col-md-4"> <h4>Included:</h4>
+        <div class="col-md-4"> <div class="text-center"><h4>Included:</h4></div>
         <ul> 
             <li ng-repeat="item in currentImage.whatIncluded track by $index">{{item}}</li>
         </ul>
 
        </div>
-       <div class="col-md-4"> <h4>What to Bring:</h4>
+       <div class="col-md-4"> <div class="text-center"><h4>What to Bring:</h4></div>
         <ul> 
             <li ng-repeat="item in currentImage.whatToBring track by $index">{{item}}</li>
         </ul>
        </div>
-        <button onclick="location.href='#/form/payment'" class="btn btn-warning btn-lg pull-right" ><strong>Book Now</strong></button>      
+     </div>
+          </tab>
+    </tabset>
+
+        <button onclick="location.href='#/form/payment'" class="btn btn-warning btn-xlarge pull-right" ><strong>Book Now</strong></button>      
 
