@@ -28,17 +28,16 @@
         <!-- <h3 id="date">Date:</h3> -->
         <tabset>
           <tab heading="Overview">
-            <div class="container" style="max-width:100%;">
-           <h2 >Price: ${{currentImage.price}}</h2> 
-           <h3> Overview: </h3> 
-        <p> {{currentImage.highLight}}</p>
-        <h3> Descriptions: </h3> 
-        <p> {{currentImage.mainDescription}}</p>
-      </div>
+            <div class="container" style="max-width:100%; line-height:25px">
+              <h2 >Price: ${{currentImage.price}}</h2>
+              <h4> Overview: </h4> 
+              <p> {{currentImage.highLight}}</p>
+              <h4> Descriptions: </h4> 
+              <p> {{currentImage.mainDescription}}</p>
+            </div>
           </tab>
           <tab heading="More Information">
             <div class="container row" style="max-width:100%;">
-              <br>
         <div class="col-md-4"> <div class="text-center"><h4>Requirements:</h4></div>
         <ul> 
             <li ng-repeat="item in currentImage.requirements track by $index">{{item}}</li>
