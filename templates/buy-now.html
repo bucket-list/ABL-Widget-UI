@@ -27,7 +27,7 @@
         <p style="font-size: 16px"> <strong>from ${{currentImage.childPrice}} each</strong></p>
       </div>
       </div>
-
+</div>
         <div class="cart col-md-4 pull-right">
           <div ng-if="numberOfAdults!=0;" class="animate-if"><h4>Adult:</h4><span class="pull-right">{{numberOfAdults}}X{{adultSubtotal | currency}}</span><br></div>
           <div ng-if="numberOfYouth!=0;" class="animate-if"><h4>Youth:</h4><span class="pull-right">{{numberOfYouth}}X{{youthSubtotal | currency}}</span><br></div>
@@ -46,10 +46,10 @@
       </div>
               <hr style="height: 2px;  color:#4C4C4C;">
               <div >
-      <div class="col-md-9">
+      <!-- <div class="col-md-9">
         <h3>Select Dates </h3>
         <p>{{currentImage.description}}</p>
-      </div>
+      </div> -->
       <!--         <select class="pull-left" id="numberOf">
         <option id= "1" value="1">1</option>
         <option id= "2" value="2">2</option>
@@ -73,14 +73,10 @@
                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
               </div> data-on-set-time="onTimeSet()"
             </div> -->
-            <input type="text" class="form-control col-md-6" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
 
             <div id="messages" class="well" ng-show="message">{{ message }}</div>
             <span class="help-block" ng-show="errorName">{{ errorName }}</span>
-            <div class="dropdown col-md-6" style="margin-bottom: 20px;">
+<!--             <div class="dropdown col-md-6" style="margin-bottom: 20px;">
               <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" >
                 <div class="input-group">
                   <input type="text" class="form-control" name="date"  data-ng-model='formData.dateDropDownInput'>
@@ -94,9 +90,23 @@
                 data-datetimepicker-config="{ dropdownSelector: '#dropdown2'}"/>
               </ul>
             </div>
-          </div>
+          </div> -->
+            
+<!--         <div id="date" class="input-group" datetimez ng-model="var1">
+          <input data-format="MM-yyyy" type="text" id="input1" name="input1"></input>
+          <span class="input-group-addon">
+            <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+          </span>
+        </div> -->
 
             <div class="billing col-md-12" style="margin-bottom: 20px;"> 
+            <h3>Select Dates </h3>
+            <div class="input-group col-md-6" ><span ></span>
+            <input ng-change="checkDate(dt)" ng-click="open($event)" type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+              <span class="input-group-addon">
+                <i ng-click="open($event)" class="glyphicon glyphicon-calendar"></i>
+              </span>
+            </div>
                 <h3>Billing Information</h3>
             <div class="form-group col-md-6">
                 <label for="fullName">Full Name</label>

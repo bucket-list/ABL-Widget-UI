@@ -1046,6 +1046,7 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
 
       if ( isValid ) {
         this.activeDate = date;
+
       } else {
         $log.error('Datepicker directive: "ng-model" value must be a Date object, a number of milliseconds since 01.01.1970 or a string representing an RFC2822 or ISO 8601 date.');
       }
@@ -1057,7 +1058,6 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
   this.refreshView = function() {
     if ( this.element ) {
       this._refreshView();
-
       var date = ngModelCtrl.$modelValue ? new Date(ngModelCtrl.$modelValue) : null;
       ngModelCtrl.$setValidity('date-disabled', !date || (this.element && !this.isDisabled(date)));
     }
@@ -1077,7 +1077,10 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
   this.isDisabled = function( date ) {
     return ((this.minDate && this.compare(date, this.minDate) < 0) || (this.maxDate && this.compare(date, this.maxDate) > 0) || ($attrs.dateDisabled && $scope.dateDisabled({date: date, mode: $scope.datepickerMode})));
   };
-
+  this.inRange = function( date ) {
+    
+    //return ((this.minDate && this.compare(date, this.minDate) > 0) || (this.maxDate && this.compare(date, this.maxDate) < 0) || );
+  };
   // Split array into smaller arrays
   this.split = function(arr, size) {
     var arrays = [];
@@ -1404,7 +1407,7 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
   closeText: 'Done',
   closeOnDateSelection: true,
   appendToBody: false,
-  showButtonBar: true
+  showButtonBar: false
 })
 
 .directive('datepickerPopup', ['$compile', '$parse', '$document', '$position', 'dateFilter', 'dateParser', 'datepickerPopupConfig',
@@ -1474,6 +1477,9 @@ function ($compile, $parse, $document, $position, dateFilter, dateParser, datepi
           }
         }
       });
+      if (attrs.dateDisabled) {
+        datepickerEl.attr('date-disabled', 'dateDisabled({ date: date, mode: mode })');
+      }
       if (attrs.dateDisabled) {
         datepickerEl.attr('date-disabled', 'dateDisabled({ date: date, mode: mode })');
       }

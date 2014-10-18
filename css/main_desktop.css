@@ -2,6 +2,9 @@ h1 {
 	color: #FFF;
 	opacity: 1;
 }
+.inRange {
+  background-color: #3399FF;
+}
 .mainPrice {
 	position: absolute;
 	top:10%;
