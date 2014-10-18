@@ -5,7 +5,7 @@
   <h2>{{currentImage.title}}</h2>
         <h3 id="price">Price: ${{currentImage.price}}</h3>
 </div>
-<div id="purchase_window" class="row">
+<div id="purchase_window" class="row col-md-12">
   <div>
     <div style="margin-top: 28px;">
       <div class="col-lg-8" style="margin-bottom:10px;" >
@@ -49,60 +49,24 @@
 </div>
 </div>
       <hr style="height: 2px;  color:#4C4C4C;">     
-      <div class="col-md-9">
-        <h3>Select Dates </h3>
-      </div>
 
- 
-      <!--         <select class="pull-left" id="numberOf">
-        <option id= "1" value="1">1</option>
-        <option id= "2" value="2">2</option>
-        <option id= "3" value="3">3</option>
-        <option id= "4" value="4">4</option>
-        <option id= "5" value="5">5</option>
-        <option id= "6" value="6">6</option>
-        <option id= "7" value="7">7</option>
-        <option id= "8" value="8">8</option>
-        </select>{{currentImage.minOcc}} -->
-<!--         Selected Date: {{ data.date | date:'yyyy-MM-dd a' }}
-            <datetimepicker data-ng-model="data.embeddedDate" data-datetimepicker-config="{ startView:'day', minView:'day' }"></datetimepicker> -->
-      
 
-        <!-- <div ng-controller="payFormCtl"> -->
         <ng-form name="userForm" validate>
-            <!-- <div class="form-group col-md-6 " > 
-              <label for="date_time">Date</label> ng-submit="processPaymentForm()"
-              <div class="input-group date" id="date_time">
-                <input type="text" class="form-control" placeholder=""/>
-                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-              </div> data-on-set-time="onTimeSet()"
-            </div> -->
-            <input type="text" class="form-control col-md-6" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
-
             <div id="messages" class="well" ng-show="message">{{ message }}</div>
             <span class="help-block" ng-show="errorName">{{ errorName }}</span>
-            <div class="dropdown col-md-6" style="margin-bottom: 20px;">
-              <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" >
-                <div class="input-group">
-                  <input type="text" class="form-control" name="date"  data-ng-model='formData.dateDropDownInput'>
-                    <span class="input-group-addon">
-                      <i class="glyphicon glyphicon-calendar"></i>
-                    </span>
-                </div>
-              </a>
-              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                <datetimepicker data-ng-model="formData.dateDropDownInput"  
-                data-datetimepicker-config="{ dropdownSelector: '#dropdown2'}"/>
-              </ul>
+            <div class="billing col-md-12" style="margin-bottom: 20px;"> 
+            <h3 class="col-md-12">Select Dates </h3>
+            <div class="form-group col-md-6">
+              <div class="input-group" >
+                <input ng-change="checkDate(dt)" ng-click="open($event)" type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                <span class="input-group-addon">
+                  <i ng-click="open($event)" class="glyphicon glyphicon-calendar"></i>
+                </span>
+              </div>
             </div>
-          </div>
-
-          <div class="billing col-md-12" style="margin-bottom: 20px;"> 
-              <h3>Billing Information</h3>
-            <div class="form-group col-md-6" ng-class="{ 'has-error': userForm.name.$invalid && !userForm.name.$pristine }">
+            <div class="col-md-6"></div>
+            <h3 class="col-md-12">Billing Information</h3>
+            <div class="form-group col-md-6">
                 <label for="fullName">Full Name</label>
                 <input type="text" class="form-control" name="name" ng-model="formData.fullName" placeholder="Please enter your full name" required>
 <!--                 <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">Your name is required.</p> -->
@@ -146,19 +110,14 @@
             <div class="payment col-md-12"> <h3>Payment Method</h3> </div>
 
             <div class="braintree"></div>
-            <div class="clearfix"></div> 
-
-            <hr style="height: 2px;  color: black;">
-  <button type="button" class="btn btn-primary pull-right btn-xlarge" ng-click="processPaymentForm()">Checkout</button>       
-        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+            <div class="clearfix"></div>        
       </ng-form>
     </div>
-
+  <hr style="height: 2px;  color: black;">
+  <button analytics-on="click" analytics-event="Check out - {{currentImage._id}}" analytics-category="Commands" type="button" class="btn btn-primary pull-right btn-xlarge" ng-click="processPaymentForm()">Checkout</button>
     <br></br>
     <br></br>
         <pre>
     {{ formData }} <br>
     {{ geoip }}
-  </pre>
-      <!-- </div> -->
-    
+  </pre>    

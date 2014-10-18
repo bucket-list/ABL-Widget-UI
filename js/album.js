@@ -33,7 +33,7 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state) {
     //         return $scope.masterPrice;
     // }
     $scope.today = function() {
-        $scope.dt = new Date();
+        $scope.dt = new Date($scope.currentImage.startdate);
     };
     $scope.today();
 
@@ -41,15 +41,20 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state) {
     $scope.dt = null;
   };
 
-  // Disable weekend selection
-  $scope.disabled = function(date, mode) {
-    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-  };
+  // // Disable weekend selection
+  // $scope.disabled = function(date, mode) {
+  //   return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+  // };
 
   $scope.toggleMin = function() {
-    $scope.minDate = $scope.minDate ? null : new Date();
+    $scope.minDate = $scope.minDate ? null : new Date($scope.currentImage.startdate);
   };
   $scope.toggleMin();
+
+  $scope.toggleMax = function() {
+    $scope.maxDate = $scope.maxDate ? null : new Date($scope.currentImage.enddate);
+  };
+  $scope.toggleMax();
 
   $scope.open = function($event) {
     $event.preventDefault();
@@ -60,21 +65,17 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state) {
 
   $scope.dateOptions = {
     formatYear: 'yy',
-    startingDay: 1
+    startingDay: 1,
+    "show-weeks": false,
   };
 
   $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $scope.format = $scope.formats[0];
-
-
-        $scope.onTimeSet = function (newDate, oldDate) {
-            console.log(newDate);
-            console.log(oldDate);
-        }
-        // $scope.paymentSubtotalAd = $scope.currentImage.price;
-        // $scope.paymentHostingAd = $scope.currentImage.host_fee_value;
-        // $scope.paymentTaxAd = $scope.currentImage.tax_fee_value;
-        // $scope.paymentPriceAd = $scope.currentImage.totalPrice;
+  $scope.checkDate = function(dt) {
+    if($scope.dt < $scope.minDate){
+        $scope.dt = $scope.minDate;
+    }    //$scope.maxDate = $scope.maxDate ? null : new Date($scope.currentImage.enddate);
+  };
         $scope.calculatePrice = function () {
             
                                     // $scope.numberOfAdults * $scope.currentImage.price 
@@ -157,14 +158,24 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state) {
      //$('#date_time').datetimepicker();
 });
 
-app.directive('datetimemenu', function(element){
-    
-    return {
-        restrict: 'EAC',
-        template: '<div class="input-group date" id="date_time"><input type="text" class="form-control" placeholder=""/><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div>'
-    };
-    element.datetimepicker();
-});
+// app.directive('datetimez', function() {
+//     return {
+//         restrict: 'A',
+//         require : 'ngModel',
+//         link: function(scope, element, attrs, ngModelCtrl) {
+//           element.datetimepicker({
+//            format: "MM-yyyy",
+//            viewMode: "days", 
+//             minViewMode: "months",
+//               pickTime: false,
+//           }).on('changeDate', function(e) {
+//             ngModelCtrl.$setViewValue(e.date);
+//             scope.$apply();
+//           });
+//         }
+//     };
+// });
+
 
 app.controller('MainCtrl', function ($scope, productService) {
     $scope.currentImage = productService.getCurrentProduct();
