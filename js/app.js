@@ -1,7 +1,7 @@
 
 // create our angular app and inject ngAnimate and ui-router 
 // =============================================================================
-angular.module('formApp', ['ngAnimate', 'ABL.controllers', 'ui.router', 'ui.bootstrap', 'angularMoment'])
+angular.module('formApp', ['ngAnimate', 'ABL.controllers', 'ui.router', 'ui.bootstrap', 'ngTouch', 'angularMoment'])
 
 // configuring our routes 
 // =============================================================================
@@ -18,7 +18,8 @@ angular.module('formApp', ['ngAnimate', 'ABL.controllers', 'ui.router', 'ui.boot
 
         .state('terms', {
             url: '/terms',
-            templateUrl: 'templates/terms.html'
+            templateUrl: 'templates/terms.html',
+            controller: 'TermsCtrl'
         })
         
         // nested states 

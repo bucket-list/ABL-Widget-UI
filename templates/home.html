@@ -14,7 +14,7 @@
     <div id="albumImage" style="position:relative">
         <img width="250px" height="450px" ng-src="{{currentImage.image_lg}}" alt="{{currentImage.title}}">
         <span class="pricetag"><h3 style="color:white">${{currentImage.price}}</h3></span>
-        <div class="description"><p class="updescription">{{currentImage.title}}<br />
+        <div class="description highlighted"><p class="updescription">{{currentImage.title}}<br />
         <small>{{currentImage.highLight}} </small></p>
         <span class="price">${{currentImage.price}}</span>
         <button onclick="location.href='#/form/interests'" ng-click="setData(currentImage)" class="btn btn-primary btn-lg overimg-left" ><strong>Book Now</strong></button>
