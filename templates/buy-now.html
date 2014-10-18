@@ -46,58 +46,9 @@
 </div>
 </div>
       <hr style="height: 2px;  color:#4C4C4C;">     
-      <div class="col-md-9">
-        <h3>Select Dates </h3>
-      </div>
-      <!--         <select class="pull-left" id="numberOf">
-        <option id= "1" value="1">1</option>
-        <option id= "2" value="2">2</option>
-        <option id= "3" value="3">3</option>
-        <option id= "4" value="4">4</option>
-        <option id= "5" value="5">5</option>
-        <option id= "6" value="6">6</option>
-        <option id= "7" value="7">7</option>
-        <option id= "8" value="8">8</option>
-        </select>{{currentImage.minOcc}} -->
-<!--         Selected Date: {{ data.date | date:'yyyy-MM-dd a' }}
-            <datetimepicker data-ng-model="data.embeddedDate" data-datetimepicker-config="{ startView:'day', minView:'day' }"></datetimepicker> -->
-      
-
-        <!-- <div ng-controller="payFormCtl"> -->
         <ng-form validate>
-            <!-- <div class="form-group col-md-6 " > 
-              <label for="date_time">Date</label> ng-submit="processPaymentForm()"
-              <div class="input-group date" id="date_time">
-                <input type="text" class="form-control" placeholder=""/>
-                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-              </div> data-on-set-time="onTimeSet()"
-            </div> -->
-
             <div id="messages" class="well" ng-show="message">{{ message }}</div>
             <span class="help-block" ng-show="errorName">{{ errorName }}</span>
-<!--             <div class="dropdown col-md-6" style="margin-bottom: 20px;">
-              <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" >
-                <div class="input-group">
-                  <input type="text" class="form-control" name="date"  data-ng-model='formData.dateDropDownInput'>
-                    <span class="input-group-addon">
-                      <i class="glyphicon glyphicon-calendar"></i>
-                    </span>
-                </div>
-              </a>
-              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                <datetimepicker data-ng-model="formData.dateDropDownInput"  
-                data-datetimepicker-config="{ dropdownSelector: '#dropdown2'}"/>
-              </ul>
-            </div>
-          </div> -->
-            
-<!--         <div id="date" class="input-group" datetimez ng-model="var1">
-          <input data-format="MM-yyyy" type="text" id="input1" name="input1"></input>
-          <span class="input-group-addon">
-            <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-          </span>
-        </div> -->
-
             <div class="billing col-md-12" style="margin-bottom: 20px;"> 
             <h3>Select Dates </h3>
             <div class="input-group col-md-6" ><span ></span>
@@ -147,7 +98,6 @@
 
             <div class="braintree"></div>
             <div class="clearfix"></div>        
-        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
       </ng-form>
     </div>
   <hr style="height: 2px;  color: black;">
@@ -157,6 +107,4 @@
         <pre>
     {{ formData }} <br>
     {{ geoip }}
-  </pre>
-      <!-- </div> -->
-    
+  </pre>    
