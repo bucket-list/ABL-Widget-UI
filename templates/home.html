@@ -17,7 +17,7 @@
         <div class="description highlighted"><p class="updescription">{{currentImage.title}}<br />
         <small>{{currentImage.highLight}} </small></p>
         <span class="price">${{currentImage.price}}</span>
-        <button onclick="location.href='#/form/interests'" ng-click="setData(currentImage)" class="btn btn-primary btn-lg overimg-left" ><strong>Book Now</strong></button>
+        <button onclick="location.href='#/form/interests'" analytics-on="click" analytics-event="More Info - {{currentImage._id}}" analytics-category="Commands" ng-click="setData(currentImage)" class="btn btn-primary btn-lg overimg-left" ><strong>Book Now</strong></button>
         
     </div></div>
     <div id="thumbWrapper">

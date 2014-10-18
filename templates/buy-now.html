@@ -5,7 +5,7 @@
   <h2>{{currentImage.title}}</h2>
         <h3 id="price">Price: ${{currentImage.price}}</h3>
 </div>
-<div id="purchase_window" class="row">
+<div id="purchase_window" class="row col-md-12">
   <div>
     <div style="margin-top: 28px;">
       <div class="col-lg-8" style="margin-bottom:10px;" >
@@ -50,14 +50,17 @@
             <div id="messages" class="well" ng-show="message">{{ message }}</div>
             <span class="help-block" ng-show="errorName">{{ errorName }}</span>
             <div class="billing col-md-12" style="margin-bottom: 20px;"> 
-            <h3>Select Dates </h3>
-            <div class="input-group col-md-6" ><span ></span>
-            <input ng-change="checkDate(dt)" ng-click="open($event)" type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-              <span class="input-group-addon">
-                <i ng-click="open($event)" class="glyphicon glyphicon-calendar"></i>
-              </span>
+            <h3 class="col-md-12">Select Dates </h3>
+            <div class="form-group col-md-6">
+              <div class="input-group" >
+                <input ng-change="checkDate(dt)" ng-click="open($event)" type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                <span class="input-group-addon">
+                  <i ng-click="open($event)" class="glyphicon glyphicon-calendar"></i>
+                </span>
+              </div>
             </div>
-                <h3>Billing Information</h3>
+            <div class="col-md-6"></div>
+            <h3 class="col-md-12">Billing Information</h3>
             <div class="form-group col-md-6">
                 <label for="fullName">Full Name</label>
                 <input type="text" class="form-control" name="fullName" ng-model="formData.fullName" placeholder="Please enter your full name">
@@ -87,7 +90,7 @@
                 <label for="Country">Zip/Postal Code</label>
                 <input type="text" class="form-control" ng-model="formData.zip_code" name="zip" placeholder="95112">
               </div>
-              <div class="col-md-9">
+              <div class="col-md-6 pull-right">
               <input type="checkbox" name="agreement" value="yes">&nbsp; I agree to the <a href="#/terms"> Terms and Conditions</a>
             </div>
             </div>
@@ -101,7 +104,7 @@
       </ng-form>
     </div>
   <hr style="height: 2px;  color: black;">
-  <button type="button" class="btn btn-primary pull-right btn-xlarge" ng-click="processPaymentForm()">Checkout</button>
+  <button analytics-on="click" analytics-event="Check out - {{currentImage._id}}" analytics-category="Commands" type="button" class="btn btn-primary pull-right btn-xlarge" ng-click="processPaymentForm()">Checkout</button>
     <br></br>
     <br></br>
         <pre>
