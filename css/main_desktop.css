@@ -10,7 +10,14 @@ h1 {
 	top:10%;
 	left: 10%;
 }
-
+.cart {
+  position: absolute;
+  top:20px;
+  right:20px;
+}
+#purchase_window {
+  width: 70%;
+}
 /*.price {
     font-color: black;
 }*/
