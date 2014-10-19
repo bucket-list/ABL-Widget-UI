@@ -1,6 +1,6 @@
 
 // create our angular app and inject ngAnimate and ui-router 
-// =============================================================================
+// ============================================================================='angulartics', 'angulartics.google.analytics'
 angular.module('formApp', ['ngAnimate', 'ABL.controllers', 'ui.router', 'ui.bootstrap', 'ngTouch', 'angularMoment'])
 
 // configuring our routes 

@@ -5,30 +5,33 @@
   <h2>{{currentImage.title}}</h2>
         <h3 id="price">Price: ${{currentImage.price}}</h3>
 </div>
-<div id="purchase_window" class="row">
+<div id="purchase_window" class="row col-md-12">
   <div>
     <div style="margin-top: 28px;">
       <div class="col-lg-8" style="margin-bottom:10px;" >
         <div class= "inline pricepadding" ng-init="numberOfAdults=1;" style="display=inline;">
           <h4>Adult:</h4><br>
+          <div class="selectNumber">
           <input type="number" min="0" max= "{{currentImage.maxOcc}}" ng-model="numberOfAdults">
           <p style="font-size: 16px;"> <strong>from ${{currentImage.price}} each</strong></p>
         </div>
+      </div>
         <div class= "inline pricepadding" ng-init="numberOfYouth=0;"style="display=inline;">
           <h4>Youth </h4><p>(12-18)</p>
-        <div>
+        <div class="selectNumber">
           <input type="number" min="0" max= "{{currentImage.maxOcc}}" ng-model="numberOfYouth">
           <p style="font-size: 16px"> <strong>from ${{currentImage.youthPrice}} each</strong></p>
         </div>
-        </div>
+        </div >
         <div class= "inline pricepadding" ng-init="numberOfChildren=0;">
           <h4>Children </h4><p>(12 and under)</p>
-          <div >
+        <div class="selectNumber">
             <input type="number" min="0" max= "{{currentImage.maxOcc}}" ng-model="numberOfChildren">
             <p style="font-size: 16px"> <strong>from ${{currentImage.childPrice}} each</strong></p>
-          </div>
         </div>
       </div>
+    </div>
+
     <div class="cart col-md-4 pull-right" style=" margin-top: 28px;">
       <div ng-if="numberOfAdults!=0;" class="animate-if inline"><h4>Adult:</h4><span class="pull-right">{{numberOfAdults}}X{{adultSubtotal | currency}}</span><br></div>
       <div ng-if="numberOfYouth!=0;" class="animate-if inline"><h4>Youth:</h4><span class="pull-right">{{numberOfYouth}}X{{youthSubtotal | currency}}</span><br></div>
@@ -46,26 +49,32 @@
 </div>
 </div>
       <hr style="height: 2px;  color:#4C4C4C;">     
-        <ng-form validate>
+
+
+        <ng-form name="userForm" validate>
             <div id="messages" class="well" ng-show="message">{{ message }}</div>
             <span class="help-block" ng-show="errorName">{{ errorName }}</span>
             <div class="billing col-md-12" style="margin-bottom: 20px;"> 
-            <h3>Select Dates </h3>
-            <div class="input-group col-md-6" ><span ></span>
-            <input ng-change="checkDate(dt)" ng-click="open($event)" type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-              <span class="input-group-addon">
-                <i ng-click="open($event)" class="glyphicon glyphicon-calendar"></i>
-              </span>
+            <h3 class="col-md-12">Select Dates </h3>
+            <div class="form-group col-md-6">
+              <div class="input-group" >
+                <input ng-change="checkDate(dt)" ng-click="open($event)" type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                <span class="input-group-addon">
+                  <i ng-click="open($event)" class="glyphicon glyphicon-calendar"></i>
+                </span>
+              </div>
             </div>
-                <h3>Billing Information</h3>
+            <div class="col-md-6"></div>
+            <h3 class="col-md-12">Billing Information</h3>
             <div class="form-group col-md-6">
                 <label for="fullName">Full Name</label>
-                <input type="text" class="form-control" name="fullName" ng-model="formData.fullName" placeholder="Please enter your full name">
+                <input type="text" class="form-control" name="name" ng-model="formData.fullName" placeholder="Please enter your full name" required>
+<!--                 <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">Your name is required.</p> -->
               </div>
 
             <div class="form-group col-md-6">
                 <label for="email">Email</label>
-                <input type="text" class="form-control" name="email"  ng-model="formData.email" placeholder="John@example.com">
+                <input type="email" class="form-control" name="email"  ng-model="formData.email" placeholder="John@example.com">
               </div>
             <div class="form-group col-md-6">
                 <label for="Address">Street Address</label>
@@ -86,11 +95,15 @@
             <div class="form-group col-md-3">
                 <label for="Country">Zip/Postal Code</label>
                 <input type="text" class="form-control" ng-model="formData.zip_code" name="zip" placeholder="95112">
-              </div>
-              <div class="col-md-9">
-              <input type="checkbox" name="agreement" value="yes">&nbsp; I agree to the <a href="#/terms"> Terms and Conditions</a>
             </div>
+            <div class="form-group col-md-3">
+                <label for="Country">Contact Number</label>
+                <input type="text" class="form-control" ng-model="formData.phone_number" name="phone" placeholder="Country/Area Code and Phone Number">
             </div>
+            <div class="col-md-9">
+              <input type="checkbox" name="agreement" ng-model = "formData.agreement" value="yes" >&nbsp; <p style="font-size: 18px; display:inline;">I agree to the <a href="#/terms"> Terms of Service</a></p>
+            </div>
+          </div>
             <input type="hidden" class="form-control" id="formData.geoip" value="{{geoip}}" />
             <input type="hidden" class="form-control" id="formData.price_paid" value="{{currentProduct.totalPrice}}" />
 
@@ -101,7 +114,7 @@
       </ng-form>
     </div>
   <hr style="height: 2px;  color: black;">
-  <button type="button" class="btn btn-primary pull-right btn-xlarge" ng-click="processPaymentForm()">Checkout</button>
+  <button analytics-on="click" analytics-event="Check out - {{currentImage._id}}" analytics-category="Commands" type="button" class="btn btn-primary pull-right btn-xlarge" ng-click="processPaymentForm()">Checkout</button>
     <br></br>
     <br></br>
         <pre>
