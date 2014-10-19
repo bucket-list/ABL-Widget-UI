@@ -24,8 +24,6 @@
         </div>
       </nav>
     </div>
-        <!-- <h3 id="date">Date:</h3> -->
-<!-- <<<<<<< HEAD -->
         <div class="col-md-6">
           <h2 >Price: ${{currentImage.price}}</h2> 
           <h3> Overview: </h3> 
@@ -33,23 +31,11 @@
           <p> {{currentImage.highLight}}</p>
           <h3> Descriptions: </h3> 
           <p> {{currentImage.mainDescription}}</p>
-     <!-- <div class="container" style="max-width:100%;"> </div> 
+     <!-- <div class="container" style="max-width:100%;"> </div> -->
         </div>
     </div>
   </div>
   </tab>
--->
-        <tabset>
-          <tab heading="Overview">
-            <div class="container" style="max-width:100%; line-height:25px">
-              <h2 >Price: ${{currentImage.price}}</h2>
-              <h4> Overview: </h4> 
-              <p> {{currentImage.highLight}}</p>
-              <h4> Descriptions: </h4> 
-              <p> {{currentImage.mainDescription}}</p>
-            </div>
-          </tab>
-<!-- >>>>>>> f66c3118b0688414ce6eacfcda3139d4d393fd07 -->
           <tab heading="More Information">
             <div class="container row" style="max-width:100%;">
         <div class="col-md-4"> <div class="text-center"><h4>Requirements:</h4></div>
@@ -72,10 +58,6 @@
      </div>
           </tab>
     </tabset>
-
-<!-- <<<<<<< HEAD
-        <button onclick="location.href='#/form/payment'" class="btn btn-warning btn-xlarge pull-right book-btn" ><strong>Book Now</strong></button>      
-======= -->
         <button analytics-on="click" analytics-event="Book Now - {{currentImage._id}}" analytics-category="Commands" onclick="location.href='#/form/payment'" class="btn btn-warning btn-xlarge pull-right" ><strong>Book Now</strong></button>      
-<!-- >>>>>>> f66c3118b0688414ce6eacfcda3139d4d393fd07 -->
+
 
