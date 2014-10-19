@@ -13,13 +13,19 @@
     
     <div id="albumImage" style="position:relative">
         <img width="250px" height="450px" ng-src="{{currentImage.image_lg}}" alt="{{currentImage.title}}">
-        <span class="pricetag"><h3 style="color:white">${{currentImage.price}}</h3></span>
-        <div class="description highlighted"><p class="updescription">{{currentImage.title}}<br />
-        <small>{{currentImage.highLight}} </small></p>
-        <span class="price">${{currentImage.price}}</span>
-        <button onclick="location.href='#/form/interests'" ng-click="setData(currentImage)" class="btn btn-primary btn-lg overimg-left" ><strong>Book Now</strong></button>
-        
-    </div></div>
+        <span class="pricetag">
+            <h3 style="color:white">${{currentImage.price}}</h3>
+        </span>
+        <div class="description highlighted">
+            <p class="updescription">
+                <span class="productTitle ">{{currentImage.title}}</span><br />
+                <small>{{currentImage.highLight}} </small>
+            </p>
+            <span class="price">${{currentImage.price}}</span>
+                <button onclick="location.href='#/form/interests'" ng-click="setData(currentImage)" class="btn btn-primary btn-lg overimg-left" ><strong>Book Now</strong>
+            </button>
+        </div>
+    </div>
     <div id="thumbWrapper">
         <ul id="thumbList" style="padding: 0px">
             <li ng-repeat="image in images | filter:categories" ng-click="setCurrentImage(image)">

@@ -1,41 +1,42 @@
 <!-- <div style="margin-top: 28px;"><img ng-src="{{currentImage.thumbnail}}"></div> -->
 
-<a href="#/form/profile">
+<a class="back" href="#/form/profile">
   <span style="text-decoration: none; color:black;" class="fa fa-chevron-left fa-2x"></span>
 </a>
-
-        <h2 class="text-center">{{currentImage.title | capitalize}}</h2>
-        <h3 class="text-center">{{currentImage.city | capitalize}}, {{currentImage.state | uppercase}}</h3>
-      
-<div class="container slider">
-    <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage"
-         ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
-         ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide}}" width="100%" height="100%">
-
-    <a class="arrow prev" ng-click="nextSlide()"></a>
-    <a class="arrow next" ng-click="prevSlide()"></a>
-    <nav class="navslider">
+  <h2 class="moreInfoTitle">{{currentImage.title | capitalize}}</h2>
+  <h3 class="moreInfoLocation text-center">{{currentImage.city | capitalize}}, {{currentImage.state | capitalize}}</h3>
+<tabset>
+  <tab heading="Overview">      
+    <div class="container" style="max-width:100%;display: relative;">
+   
+    <div class="slider col-md-6">
+      <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage"
+           ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
+           ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide}}" width="350px" height="300px">
+      <a class="arrow prev" ng-click="nextSlide()"></a>
+      <a class="arrow next" ng-click="prevSlide()"></a>
+      <nav class="navslider">
         <div class="wrapper">
-            <ul class="dots">
-                <li class="dot" ng-repeat="slide in slides">
-                    <span ng-class="{'active':isCurrentSlideIndex($index)}"
-                       ng-click="setCurrentSlideIndex($index);">{{slide.description}}</span></li>
-            </ul>
+          <ul class="dots">
+            <li class="dot" ng-repeat="slide in slides">
+            <span ng-class="{'active':isCurrentSlideIndex($index)}" ng-click="setCurrentSlideIndex($index);">{{slide.description}}</span></li>
+          </ul>
         </div>
-    </nav>
-</div>
+      </nav>
+    </div>
         <!-- <h3 id="date">Date:</h3> -->
-        <tabset>
-          <tab heading="Overview">
-            <div class="container" style="max-width:100%;">
-           <h2 >Price: ${{currentImage.price}}</h2> 
-           <h3> Overview: </h3> 
+        <div class="col-md-6">
+          <h2 >Price: ${{currentImage.price}}</h2> 
+          <h3> Overview: </h3> 
 
-        <p> {{currentImage.highLight}}</p>
-        <h3> Descriptions: </h3> 
-        <p> {{currentImage.mainDescription}}</p>
-      </div>
-          </tab>
+          <p> {{currentImage.highLight}}</p>
+          <h3> Descriptions: </h3> 
+          <p> {{currentImage.mainDescription}}</p>
+     <!-- <div class="container" style="max-width:100%;"> </div> -->
+        </div>
+    </div>
+  </div>
+  </tab>
           <tab heading="More Information">
             <div class="container row" style="max-width:100%;">
               <br>
@@ -60,5 +61,5 @@
           </tab>
     </tabset>
 
-        <button onclick="location.href='#/form/payment'" class="btn btn-warning btn-xlarge pull-right" ><strong>Book Now</strong></button>      
+        <button onclick="location.href='#/form/payment'" class="btn btn-warning btn-xlarge pull-right book-btn" ><strong>Book Now</strong></button>      
 
