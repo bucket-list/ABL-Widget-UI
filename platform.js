@@ -5,7 +5,7 @@ console.log('hello from server');
 
 (function(global) {
     var serverHost = '<%= serverHost %>';
-    var partyId = '<%= partyId %>';
+    var api_key = '<%= api_key %>';
    
     var useIframe = <%= useIframe %>;
 
@@ -39,7 +39,7 @@ console.log('hello from server');
     function createablWidget(ablWidget, id, key) {
         <% if (useIframe) { %>
             var iframe = document.createElement('iframe');
-            iframe.setAttribute('src', serverHost+'/api/3rd/abl-ui/widget/'+id+'/init?iframe=true&partyId='+partyId);
+            iframe.setAttribute('src', serverHost+'/api/3rd/abl-ui/widget/'+id+'/init?iframe=true&api_key='+api_key);
             iframe.setAttribute('class', 'abl-widget');
             iframe.setAttribute('data-abl-id', id);
             iframe.setAttribute('data-api-key', key);
@@ -75,7 +75,7 @@ console.log('hello from server');
                             barPara.innerHTML = JSON.stringify(result);
                         }
                     };
-                    barXhr.open('POST', serverHost+'/api/3rd/abl-ui/widget/'+id+'/bar?partyId='+partyId);
+                    barXhr.open('POST', serverHost+'/api/3rd/abl-ui/widget/'+id+'/bar?api_key='+api_key);
                     var content = {
                         ablId: id,
                     };
@@ -93,7 +93,7 @@ console.log('hello from server');
                     ablWidgetButton.onclick = ablWidgetButtonFunction;
                 }
             };
-            xhr.open("GET", serverHost+'/api/3rd/abl-ui/widget/'+id+'/init?partyId='+partyId);
+            xhr.open("GET", serverHost+'/api/3rd/abl-ui/widget/'+id+'/init?api_key='+api_key);
             xhr.send();
         <% } %>
     }
