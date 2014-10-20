@@ -70,20 +70,23 @@
   </div>
 </div>
       <hr style="height: 2px;  color:#4C4C4C;">     
-        <ng-form name="userForm" validate>
-      
+        <ng-form validate>
+              <pre>
+    {{ formData }} <br>
+    {{ geoip }}
+  </pre>    
   <div class="tables">
             <div class="theGrid">Select a Date:</div><div style="float: left; width: 34%;">Full Name:</div>
             <div style="float: left; width: 33%;">Email:</div>
             <br style="clear: left;" />
-            <div contentEditable="true" title="Click to edit" ng-change="checkDate(dt)" ng-click="open($event)" class="form-control smaller" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close">{{dt | amDateFormat:'dddd, MMMM Do YYYY'}}</div>
+            <div contentEditable="true" title="Click to edit" ng-change="checkDate(dt)" ng-click="open($event)" class="form-control smaller" datepicker-popup="{{format}}" ng-model="formData.date" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close">{{dt | amDateFormat:'dddd, MMMM Do YYYY'}}</div>
             
-            <div contentEditable="true" class="form-control" ng-model="formData.fullName" required>{{form.fullName}}</div>
-            <div contentEditable="true" type="email" class="form-control" ng-model="form.email" required>{{form.email}}</div>
+            <div contentEditable="true" class="form-control" ng-model="formData.fullName" required></div>
+            <div contentEditable="true" type="email" class="form-control" ng-model="formData.email" required></div>
             <br class="clearfix" />
             <div class="theGrid">Street:</div><div class="theGrid">City:</div><div class="theGrid">State:</div>
             <br class="clearfix" />
-            <div contentEditable="true" class="form-control" ng-model="formData.street_address" name="Address">{{form.address}}</div>
+            <div contentEditable="true" class="form-control" ng-model="formData.street_address" name="Address"></div>
             <div contentEditable="true" class="form-control" ng-model="formData.city"  name="City">{{form.city}}</div> 
             <div contentEditable="true" class="form-control" ng-model="formData.state" name="State">{{form.state}}</div>
             <br class="clearfix" />
@@ -100,7 +103,7 @@
 
             <div class="braintree"></div>
             <div class="clearfix"></div>   -->      
-      <button analytics-on="click" analytics-event="Check out - {{currentImage._id}}" analytics-category="Commands" type="button" class="btn btn-primary pull-right btn-xlarge" ng-click="processPaymentForm()">Checkout</button>
+      <button analytics-on="click" analytics-event="Check out - {{currentImage._id}}" analytics-category="Commands" type="button" class="btn btn-warning pull-right btn-xlarge" ng-click="processPaymentForm()">Checkout</button>
     </div>
 </ng-form>
   <!-- </div> -->
@@ -153,10 +156,3 @@
                 <label for="Country">Contact Number</label>
                 <input type="text" class="form-control" ng-model="formData.phone_number" name="phone" placeholder="Country/Area Code and Phone Number">
             </div> -->
-            
-    <br></br>
-    <br></br>
-        <pre>
-    {{ formData }} <br>
-    {{ geoip }}
-  </pre>    
