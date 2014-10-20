@@ -22,6 +22,7 @@
     width: 300px;
     height: 250px;
     /*overflow: hidden;*/
+    float: left;
     position: relative;
     background: #e6e6e6;
     border: 20px solid #f5f5f5;
