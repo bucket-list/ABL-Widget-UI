@@ -12,8 +12,8 @@ h1 {
 }
 .cart {
   position: absolute;
-  top:20px;
-  right:20px;
+  top:0px;
+  right:0px;
 }
 #purchase_window {
   width: 70%;

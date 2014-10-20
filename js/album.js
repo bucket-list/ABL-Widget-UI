@@ -120,7 +120,7 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state) {
             // process the form
              $scope.processPaymentForm = function(expr) {
                 var form = this;
-                    $state.go('complete');
+                    
             
                     
                 //console.log("Fuck "+$scope.formData);
@@ -148,11 +148,13 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state) {
                         } else {
                             // if successful, bind success message to message
                             $scope.message = data.message;
+                            $state.go('complete');
                         }
                     }).error(function(data) {
                         console.log(data);
                     });
             };
+
     // define angular module/app
         //var formApp = app.controller('formCtl', []);
      //$('#date_time').datetimepicker();

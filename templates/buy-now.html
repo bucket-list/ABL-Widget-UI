@@ -1,3 +1,25 @@
+  <style type="text/css">
+    .tables {
+      width: 100%;
+      height: 400px;
+    }
+    div div[contentEditable] {
+      cursor: pointer;
+      background-color: #D0D0D0;
+      width: 31%;
+      font-size: 10px;
+      margin: 5px;
+      float: left;
+    }
+    .theGrid {
+      float: left; 
+      width: 33%;
+    }
+    .tos {
+      float: left; 
+      width: 50%;
+    }
+  </style>
 <a class="back" href="#/form/interests">
   <span style="text-decoration: none; color:black;" class="fa fa-chevron-left fa-2x"></span>
 </a>
@@ -36,7 +58,7 @@
       <div ng-if="numberOfAdults!=0;" class="animate-if inline"><h4>Adult:</h4><span class="pull-right">{{numberOfAdults}}X{{adultSubtotal | currency}}</span><br></div>
       <div ng-if="numberOfYouth!=0;" class="animate-if inline"><h4>Youth:</h4><span class="pull-right">{{numberOfYouth}}X{{youthSubtotal | currency}}</span><br></div>
       <div ng-if="numberOfChildren!=0;" class="animate-if inline"><h4>Children:</h4><span class="pull-right">{{numberOfChildren}}X{{childSubtotal | currency}}</span><br></div>
-          <br>
+      <br>
       <div class="inline"><h4>Subtotal:</h4><span class="pull-right">{{paymentSubtotal | currency}}</span><br></div>
       <div class="inline"><h4>Processing Fee:</h4><span class="pull-right">{{paymentHosting | currency}}</span><br></div>
       <div class="inline"><h4>Tax:</h4><span class="pull-right">{{paymentTax | currency}}</span><br></div>
@@ -48,25 +70,6 @@
   </div>
 </div>
       <hr style="height: 2px;  color:#4C4C4C;">     
-  <style type="text/css">
-    .tables {
-      width: 100%;
-      height: 400px;
-    }
-    div div[contentEditable] {
-      cursor: pointer;
-      background-color: #D0D0D0;
-      width: 31%;
-      font-size: 10px;
-      margin: 5px;
-      float: left;
-    }
-    .theGrid {
-      float: left; 
-      width: 33%;
-    }
-  </style>
-
         <ng-form name="userForm" validate>
       
   <div class="tables">
@@ -75,26 +78,23 @@
             <br style="clear: left;" />
             <div contentEditable="true" title="Click to edit" ng-change="checkDate(dt)" ng-click="open($event)" class="form-control smaller" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close">{{dt | amDateFormat:'dddd, MMMM Do YYYY'}}</div>
             
-             <div contentEditable="true" class="form-control" ng-model="form.fullName" required>{{form.fullName}}</div>
-             <div contentEditable="true" type="email" class="form-control" ng-model="form.email" required>{{form.email}}</div>
-             <br class="clearfix" />
-             <div class="theGrid">Street:</div><div class="theGrid">City:</div><div class="theGrid">State:</div>
-             <br class="clearfix" />
-             <div contentEditable="true" class="form-control" ng-model="forsmata.street_address" name="Address">{{form.address}}</div>
-             <div contentEditable="true" class="form-control" ng-model="forsmata.city"  name="City">{{form.city}}</div> 
-             <div contentEditable="true" class="form-control" ng-model="forsmata.state" name="State">{{form.state}}</div>
-             <br class="clearfix" />
-             <div class="theGrid">Country:</div><div class="theGrid">Zip/Postal Code:</div><div class="theGrid">Phone:</div>
-             <br class="clearfix" />
-             <div contentEditable="true" class="form-control" ng-model="forsmata.state" name="State">{{form.state}}</div>
-             <div contentEditable="true" class="form-control" ng-model="forsmata.state" name="State"></div>
-             <div contentEditable="true" class="form-control" ng-model="forsmata.state" name="State"></div>
-
-<div class="col-sm-9">
-              <input type="checkbox" name="agreement" ng-model = "forsmata.agreement" value="yes" >&nbsp; <p style="font-size: 18px; display:inline;">I agree to the <a href="#/terms"> Terms of Service</a></p>
-            </div>
-            <input type="hidden" class="form-control" id="forsmata.geoip" value="{{geoip}}" />
-            <input type="hidden" class="form-control" id="forsmata.price_paid" value="{{currentProduct.totalPrice}}" />
+            <div contentEditable="true" class="form-control" ng-model="formData.fullName" required>{{form.fullName}}</div>
+            <div contentEditable="true" type="email" class="form-control" ng-model="form.email" required>{{form.email}}</div>
+            <br class="clearfix" />
+            <div class="theGrid">Street:</div><div class="theGrid">City:</div><div class="theGrid">State:</div>
+            <br class="clearfix" />
+            <div contentEditable="true" class="form-control" ng-model="formData.street_address" name="Address">{{form.address}}</div>
+            <div contentEditable="true" class="form-control" ng-model="formData.city"  name="City">{{form.city}}</div> 
+            <div contentEditable="true" class="form-control" ng-model="formData.state" name="State">{{form.state}}</div>
+            <br class="clearfix" />
+            <div class="theGrid">Country:</div><div class="theGrid">Zip/Postal Code:</div><div class="theGrid">Phone:</div>
+            <br class="clearfix" />
+            <div contentEditable="true" class="form-control" ng-model="formData.country" name="Country">{{form.state}}</div>
+            <div contentEditable="true" class="form-control" ng-model="formData.zip_code" name="zip_code"></div>
+            <div contentEditable="true" class="form-control" ng-model="formData.phone" name="phone"></div>
+            <div class="tos"><input type="checkbox" name="agreement" ng-model = "formData.agreement" value="yes" >&nbsp; <p style="font-size: 18px; display:inline;">I agree to the <a href="#/terms"> Terms of Service</a></p></div>
+              <input type="hidden" class="form-control" id="formData.geoip" value="{{geoip}}" />
+              <input type="hidden" class="form-control" id="formData.price_paid" value="{{currentProduct.totalPrice}}" />
 <!-- 
             <div class="payment col-sm-12"> <h3>Payment Method</h3> </div>
 
@@ -121,42 +121,42 @@
             <h3 class="col-sm-12">Billing Information</h3>
             <div class="form-group col-sm-6">
                 <label for="fullName">Full Name</label>
-                <input type="text" class="form-control" name="name" ng-model="forsmata.fullName" placeholder="Please enter your full name" required>
+                <input type="text" class="form-control" name="name" ng-model="formData.fullName" placeholder="Please enter your full name" required>
 <!--                 <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">Your name is required.</p> 
               </div>
 
             <div class="form-group col-sm-6">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" name="email"  ng-model="forsmata.email" placeholder="John@example.com">
+                <input type="email" class="form-control" name="email"  ng-model="formData.email" placeholder="John@example.com">
               </div>
             <div class="form-group col-sm-6">
                 <label for="Address">Street Address</label>
-                <input type="text" class="form-control" ng-model="forsmata.street_address" name="Address" placeholder="440 N. Wolfe Road">
+                <input type="text" class="form-control" ng-model="formData.street_address" name="Address" placeholder="440 N. Wolfe Road">
               </div>
                 <div class="form-group col-sm-3">
                 <label for="City">City</label>
-                <input type="text" class="form-control" ng-model="forsmata.city"  name="City" placeholder="Sunnyvale">
+                <input type="text" class="form-control" ng-model="formData.city"  name="City" placeholder="Sunnyvale">
               </div>
             <div class="form-group col-sm-3">
                 <label for="State">State/Province</label>
-                <input type="text" class="form-control" ng-model="forsmata.state" name="State" placeholder="California">
+                <input type="text" class="form-control" ng-model="formData.state" name="State" placeholder="California">
               </div>
             <div class="form-group col-sm-3">
                 <label for="Country">Country</label>
-                <input type="text" class="form-control" ng-model="forsmata.country" name="Country" placeholder="USA">
+                <input type="text" class="form-control" ng-model="formData.country" name="Country" placeholder="USA">
             </div>
             <div class="form-group col-sm-3">
                 <label for="Country">Zip/Postal Code</label>
-                <input type="text" class="form-control" ng-model="forsmata.zip_code" name="zip" placeholder="95112">
+                <input type="text" class="form-control" ng-model="formData.zip_code" name="zip" placeholder="95112">
             </div>
             <div class="form-group col-sm-3">
                 <label for="Country">Contact Number</label>
-                <input type="text" class="form-control" ng-model="forsmata.phone_number" name="phone" placeholder="Country/Area Code and Phone Number">
+                <input type="text" class="form-control" ng-model="formData.phone_number" name="phone" placeholder="Country/Area Code and Phone Number">
             </div> -->
             
     <br></br>
     <br></br>
         <pre>
-    {{ forsmata }} <br>
+    {{ formData }} <br>
     {{ geoip }}
   </pre>    
