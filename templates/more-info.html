@@ -5,6 +5,7 @@
   top:0;
   right: 10px;
   width: 50%;
+  float: right;
 }
 </style>
 <a class="back" href="#/form/profile">
@@ -31,8 +32,8 @@
         </div>
       </nav>
     </div>
-       
-          <h2 class="topRight">${{currentImage.price}}</h2> 
+       <div class="topRight">
+          <h2 >${{currentImage.price}}</h2> 
           <h4 >${{currentImage.duration}} Hours</h2> 
           <h3> Overview: </h3> 
 
@@ -41,6 +42,7 @@
           <p> {{currentImage.mainDescription}}</p>
      <!-- <div class="container" style="max-width:100%;"> </div> -->
         <!-- <div class="col-md-6"> </div> -->
+    </div>
     </div>
   </div>
   </tab>
