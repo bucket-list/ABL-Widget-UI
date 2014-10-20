@@ -24,8 +24,9 @@ console.log('hello from server');
         var id = ablWidget.getAttribute('data-abl-id');
         //console.log(ablWidget);
         var key = ablWidget.getAttribute('data-api-key');
-        console.log(key);
+        // console.log(key);
         var processed = ablWidget.getAttribute('data-abl-processed');
+
         if (!id || processed === 'done' || !key) {
             //skip this one as it has either already been processed, or lacks an ID
             //This is done to ensure logic is not executed twice in the event that the
@@ -43,7 +44,6 @@ console.log('hello from server');
             iframe.setAttribute('class', 'abl-widget');
             iframe.setAttribute('data-abl-id', id);
             iframe.setAttribute('data-api-key', key);
-            //iframe.setAttribute('width', '600px');
             iframe.setAttribute('frameborder', '0');
             iframe.setAttribute('scrolling', 'no');
             iframe.style.border = 'none';
@@ -53,7 +53,6 @@ console.log('hello from server');
             iframe.style.overflow = 'hidden';
             ablWidget.appendChild(iframe);
             ablWidget.setAttribute('data-abl-processed', 'done');
-            ablWidget.setAttribute('data-test', key);
         <% } else { %>
             var xhr = new XMLHttpRequest();
             xhr.onload = function() {

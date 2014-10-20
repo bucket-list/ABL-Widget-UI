@@ -20,25 +20,30 @@ app.service('productService', function ($window) {
         getCurrentProduct: getCurrentProduct
     };
 });
-
 app.controller('TermsCtrl', function ($scope, productService) {
     $scope.currentImage = productService.getCurrentProduct();
 })
 
 app.controller('PaymentCtrl', function ($scope, $http, productService, $state) { 
     $scope.currentImage = productService.getCurrentProduct();
+    $scope.formData = {};
     //total price is calculated here and accessed here
     // $scope.paymentPrice = function() {
     //         $scope.masterPrice = $scope.numberOf * $scope.currentImage.totalPrice;
     //         return $scope.masterPrice;
     // }
+    // $scope.getApiKey = function() {
+    //       var api_key = $document.getElementById('abl').src;
+    //       console.log("test Doc "+ $scope.formData.api_key)
+    //     };
+    // $scope.getApiKey();
     $scope.today = function() {
-        $scope.dt = new Date($scope.currentImage.startdate);
+        $scope.formData.date = new Date($scope.currentImage.startdate);
     };
     $scope.today();
 
   $scope.clear = function () {
-    $scope.dt = null;
+    $scope.formData.date = null;
   };
 
   // // Disable weekend selection
@@ -71,9 +76,11 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state) {
 
   $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $scope.format = $scope.formats[0];
-  $scope.checkDate = function(dt) {
+  $scope.checkDate = function(dt) 
+  {
+    console.log(dt, $scope.minDate);
     if($scope.dt < $scope.minDate){
-        $scope.dt = $scope.minDate;
+        $scope.formData.date = $scope.minDate;
     }    //$scope.maxDate = $scope.maxDate ? null : new Date($scope.currentImage.enddate);
   };
         $scope.calculatePrice = function () {
@@ -112,11 +119,13 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state) {
 
     });    
     $scope.geoip = {};
-
+        $.getJSON("http://jsonip.com?callback=?", function (data) {
+                $.getJSON("http://www.telize.com/geoip/"+data.ip, function (geodata) {
+                     $scope.formData.geoip = geodata;
+                });
+                });
             // create a blank object to hold our form information
             // $scope will allow this to pass between controller and view
-           $scope.formData = {};
-
             // process the form
              $scope.processPaymentForm = function(expr) {
                 var form = this;
@@ -125,12 +134,15 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state) {
                     
                 //console.log("Fuck "+$scope.formData);
                //$scope.message = formdata;
-               //alert("Form Data: "+form.formData.fullName);
-            $.getJSON("http://jsonip.com?callback=?", function (data) {
-                $.getJSON("http://www.telize.com/geoip/"+data.ip, function (geodata) {
-                     form.formData.geoip = geodata;
-                });
-                });
+              // alert("Form Data: "+form.formData);
+                form.formData.price_paid = $scope.paymentPrice;
+                form.formData.product_id = $scope.currentImage._id;
+                form.formData.number_of_adults = $scope.numberOfAdults;
+                form.formData.number_of_youth = $scope.numberOfYouth;
+                form.formData.number_of_children = $scope.numberOfChildren;
+                form.formData.date = new Date(form.formData.date);
+                form.formData.api_key = location.search.split("api_key=")[1];
+
                 console.log(form.formData);
                 $http({
                     method  : 'POST',
@@ -139,6 +151,7 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state) {
                     headers : { 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic YWdyaWdnczpGdWNreW91MjAxNA==' }  // set the headers so angular passing info as form data (not request payload)
                 })
                     .success(function(data) {
+                        $state.go('complete');
                         console.log(data);
 
                         if (!data.success) {
@@ -148,7 +161,7 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state) {
                         } else {
                             // if successful, bind success message to message
                             $scope.message = data.message;
-                            $state.go('complete');
+
                         }
                     }).error(function(data) {
                         console.log(data);
@@ -176,7 +189,7 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state) {
           }
         });
         return read = function() {
-          console.log("read()");
+          //console.log("read()");
           return ngModel.$setViewValue($.trim(element.html()));
         };
       }

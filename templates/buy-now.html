@@ -71,15 +71,16 @@
 </div>
       <hr style="height: 2px;  color:#4C4C4C;">     
         <ng-form validate>
-              <pre>
+<!--               <pre>
     {{ formData }} <br>
     {{ geoip }}
-  </pre>    
+   {{ api_key }}
+  </pre>     -->
   <div class="tables">
             <div class="theGrid">Select a Date:</div><div style="float: left; width: 34%;">Full Name:</div>
             <div style="float: left; width: 33%;">Email:</div>
             <br style="clear: left;" />
-            <div contentEditable="true" title="Click to edit" ng-change="checkDate(dt)" ng-click="open($event)" class="form-control smaller" datepicker-popup="{{format}}" ng-model="formData.date" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close">{{dt | amDateFormat:'dddd, MMMM Do YYYY'}}</div>
+            <div contentEditable="true" title="Click to edit" ng-change="checkDate(formData.date)" ng-click="open($event)" class="form-control smaller" datepicker-popup="{{format}}" ng-model="formData.date" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close">{{formData.date | amDateFormat:'dddd, MMMM Do YYYY'}}</div>
             
             <div contentEditable="true" class="form-control" ng-model="formData.fullName" required></div>
             <div contentEditable="true" type="email" class="form-control" ng-model="formData.email" required></div>
@@ -96,9 +97,12 @@
             <div contentEditable="true" class="form-control" ng-model="formData.zip_code" name="zip_code"></div>
             <div contentEditable="true" class="form-control" ng-model="formData.phone" name="phone"></div>
             <div class="tos"><input type="checkbox" name="agreement" ng-model = "formData.agreement" value="yes" >&nbsp; <p style="font-size: 18px; display:inline;">I agree to the <a href="#/terms"> Terms of Service</a></p></div>
-              <input type="hidden" class="form-control" id="formData.geoip" value="{{geoip}}" />
-              <input type="hidden" class="form-control" id="formData.price_paid" value="{{currentProduct.totalPrice}}" />
-<!-- 
+           <!-- <input type="hidden" ng-model="formData.product_id" value="{{currentImage._id}}" />
+               <input type="hidden" class="form-control" ng-model="formData.geoip" value="{{geoip}}" />
+              <input type="hidden" ng-model="formData.price_paid" value="{{paymentPrice}}" /> -->
+              
+             
+<!--  
             <div class="payment col-sm-12"> <h3>Payment Method</h3> </div>
 
             <div class="braintree"></div>
