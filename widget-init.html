@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/bootstrap/css/bootstrap.min.css">
+    <!-- Latest compiled and minified CSS -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
+
+<!-- Optional theme -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"> -->
+
+    <!-- <link rel="stylesheet" href="css/daterangepicker.css" /> -->
+    <link rel="stylesheet" type="text/css" media="screen" href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="/bower_components/slick-carousel/slick/slick.css">
+    <link rel="stylesheet" href="/css/main_desktop.css" />
+    <link rel="stylesheet" href="/css/album.css">
+    <link rel="stylesheet" href="/css/jquery-ui.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/carousel.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link src="/bower_components/dalelotts-datetimepicker/src/css/datetimepicker.css"></link>
+
+    <!-- JS -->
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
+    <script type="text/javascript" src="/js/album.js"></script>
+    <script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
+    <!-- <script type="text/javascript" src="/js/angular.country-select.min.js"></script> -->
+    <script type="text/javascript" src="/bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/js/jquery-ui.js"></script>
+    <script src="/bower_components/moment/moment.js"></script>
+    <script src="/bower_components/angular-moment/angular-moment.js"></script>
+    <script src="/bower_components/dalelotts-datetimepicker/src/js/datetimepicker.js"></script>
+    <script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+    </script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+   <!--  // <script src="bower_components/slick-carousel/slick/slick.js"></script>
+    // <script src="bower_components/angular-slick/dist/slick.js"></script> -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.10.3/TweenMax.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular-touch.min.js"></script>
+    <!-- // <script src="bower_components/angulartics/src/angulartics.js"></script> -->
+    <!-- // <script src="bower_components/angulartics/dist/angulartics-ga.min.js"></script> -->
+    
+    <!-- load angular, nganimate, and ui-router -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-animate.min.js"></script>
+    <script src="/js/app.js"></script>
+    <!-- <script>
+    //   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    //   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    //   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    //   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    //   ga('create', 'UA-55872447-1', 'auto');
+    </script> -->
+
+</head>
+<body ng-app="formApp">
+
+<!-- views will be injected here -->
+<div class="container">
+    <div ui-view></div>
+</div>
+
+<!-- <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+    <div class="jumbotron text-muted text-center" >
+        <p>a demo by <a href="http://ablsolution.com" target="_blank">ABL Solutions</a></p>
+    </div>
+    </div>
+</div> -->
+
+<!-- <script src="https://js.braintreegateway.com/v2/braintree.js"></script> -->
+<script>
+ $(function() {
+
+  $('#buyNow').click(function(e) {
+     $('#dropin').appendTo('.braintree');
+     e.preventDefault();
+     braintree.setup("eyJ2ZXJzaW9uIjoxLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiJjNmMwNDkzZmM3YTM1ODA1ODEyOTk5MTQ4NGZkMjgxNmU1Y2YzYTEwMzJhNzBjZTdkODJkODc5NDAyNDJlNGRhfGNyZWF0ZWRfYXQ9MjAxNC0wOC0yNlQyMzo0NjozOC4zMDE0NDk3MjIrMDAwMFx1MDAyNm1lcmNoYW50X2lkPWRjcHNweTJicndkanIzcW5cdTAwMjZwdWJsaWNfa2V5PTl3d3J6cWszdnIzdDRuYzgiLCJjaGFsbGVuZ2VzIjpbImN2diJdLCJjbGllbnRBcGlVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZGNwc3B5MmJyd2RqcjNxbi9jbGllbnRfYXBpIiwiYXNzZXRzVXJsIjoiaHR0cHM6Ly9hc3NldHMuYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJhdXRoVXJsIjoiaHR0cHM6Ly9hdXRoLnZlbm1vLnNhbmRib3guYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJwYXltZW50QXBwcyI6W10sIm1lcmNoYW50SWQiOiJkY3BzcHkyYnJ3ZGpyM3FuIiwidGhyZWVEU2VjdXJlRW5hYmxlZCI6ZmFsc2UsInBheXBhbEVuYWJsZWQiOnRydWUsInBheXBhbCI6eyJkaXNwbGF5TmFtZSI6IkFjbWUgV2lkZ2V0cywgTHRkLiAoU2FuZGJveCkiLCJjbGllbnRJZCI6bnVsbCwicHJpdmFjeVVybCI6Imh0dHA6Ly9leGFtcGxlLmNvbS9wcCIsInVzZXJBZ3JlZW1lbnRVcmwiOiJodHRwOi8vZXhhbXBsZS5jb20vdG9zIiwiYmFzZVVybCI6Imh0dHBzOi8vYXNzZXRzLmJyYWludHJlZWdhdGV3YXkuY29tIiwiYXNzZXRzVXJsIjoiaHR0cHM6Ly9jaGVja291dC5wYXlwYWwuY29tIiwiZGlyZWN0QmFzZVVybCI6bnVsbCwiYWxsb3dIdHRwIjp0cnVlLCJlbnZpcm9ubWVudE5vTmV0d29yayI6dHJ1ZSwiZW52aXJvbm1lbnQiOiJvZmZsaW5lIiwibWVyY2hhbnRBY2NvdW50SWQiOiI1enc1bW0iLCJjdXJyZW5jeUlzb0NvZGUiOiJVU0QifSwiYW5hbHl0aWNzIjp7InVybCI6Imh0dHBzOi8vYXBpLnNhbmRib3guYnJhaW50cmVlZ2F0ZXdheS5jb206NDQzL21lcmNoYW50cy9kY3BzcHkyYnJ3ZGpyM3FuL2NsaWVudF9hcGkvYW5hbHl0aWNzIn19", 'dropin', { container: 'dropin' });
+  });
+  //toggling the short description
+  $('.description').on('hover', function() {
+  $(this).toggleClass('show-description');
+  });
+  
+
+ //CLIENT-TOKEN-FROM-SERVER
+
+    $("#submit_checkout").click(function(e) {
+      form = $('#checkout');
+      console.log(form.serialize());
+      e.preventDefault();
+      $("#submit_checkout").attr("disabled", "disabled");
+      $.post("http://dev.ablsolution.com/api/checkout", form.serialize(), function (data) {
+        form.parent().replaceWith(data);
+      });
+    });
+
+});
+
+
+// $('#purchase').click(function(e) {
+//   e.preventDefault();
+//   $("#purchase_window").innerHTML = "";
+//   document.getElementById('purchase_window').innerHTML = '';
+// $("#purchase_window").append('<div class="modal-body" id="purchase_window">'+'<h3>Completing Purchase</h3><div class="progress"><div class="progress-bar progress-bar-striped active"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">Completing Purchase</span></div></div></div>');
+
+
+// // $("#purchase_window").show();
+
+// });
+
+// var myApp;
+// myApp = myApp || (function () {
+//     var pleaseWaitDiv = $('<div class="modal hide" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false"><div class="modal-header"><h1>Processing...</h1></div><div class="modal-body"><div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div></div></div>');
+//     return {
+//         showPleaseWait: function() {
+//             pleaseWaitDiv.modal();
+//         },
+//         hidePleaseWait: function () {
+//             pleaseWaitDiv.modal('hide');
+//         },
+
+//     };
+// })();
+</script>
+</body>
+</html>

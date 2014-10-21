@@ -1,0 +1,192 @@
+  <style type="text/css">
+    .tables {
+      width: 100%;
+      height: 400px;
+    }
+    div div[contentEditable] {
+      cursor: pointer;
+      background-color: #D0D0D0;
+      width: 31%;
+      font-size: 10px;
+      margin: 5px;
+      float: left;
+    }
+    .theGrid {
+      float: left; 
+      width: 30%;
+      margin:4px 8px;
+    }
+    .tos {
+      float: left; 
+      width: 50%;
+      margin-top:15px;
+      margin-left: 8px;
+    }
+    .tos p {
+      font-size: 16px; 
+      display:inline;
+    }
+    .buttonPosition {
+      margin-top: 15px;
+    }
+
+    .divider {
+      margin-top:10px;
+      margin-bottom:10px;
+    }
+  </style>
+<a class="back" href="#/form/interests">
+  <span style="text-decoration: none; color:black;" class="fa fa-chevron-left fa-2x"></span>
+</a>
+<div class="text-center">
+  <h2 class="moreInfoTitle">{{currentImage.title}}</h2>
+  <h3 class="moreInfoLocation" id="price">Price: ${{currentImage.price}}</h3>
+</div>
+<div id="purchase_window" class="row col-sm-12">
+  
+    <div style="margin-top: 28px;">
+      <div class="col-sm-8" style="margin-bottom:10px;" >
+        <div class= "inline pricepadding" ng-init="numberOfAdults=1;" style="display=inline;">
+          <h4>Adult:</h4><br>
+          <div class="selectNumber">
+          <input type="number" min="0" max= "{{currentImage.maxOcc}}" ng-model="numberOfAdults">
+          <p style="font-size: 16px;"> <strong>from ${{currentImage.price}} each</strong></p>
+        </div>
+      </div>
+        <div class= "inline pricepadding" ng-init="numberOfYouth=0;"style="display=inline;">
+          <h4>Youth </h4><p>(12-18)</p>
+        <div class="selectNumber">
+          <input type="number" min="0" max= "{{currentImage.maxOcc}}" ng-model="numberOfYouth">
+          <p style="font-size: 16px"> <strong>from ${{currentImage.youthPrice}} each</strong></p>
+        </div>
+        </div >
+        <div class= "inline pricepadding" ng-init="numberOfChildren=0;">
+          <h4>Children </h4><p>(12 and under)</p>
+        <div class="selectNumber">
+            <input type="number" min="0" max= "{{currentImage.maxOcc}}" ng-model="numberOfChildren">
+            <p style="font-size: 16px"> <strong>from ${{currentImage.childPrice}} each</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart col-sm-4 pull-right" style=" margin-top: 40px;">
+      <div ng-if="numberOfAdults!=0;" class="animate-if inline"><h4>Adult:</h4><span class="pull-right">{{numberOfAdults}}X{{adultSubtotal | currency}}</span><br></div>
+      <div ng-if="numberOfYouth!=0;" class="animate-if inline"><h4>Youth:</h4><span class="pull-right">{{numberOfYouth}}X{{youthSubtotal | currency}}</span><br></div>
+      <div ng-if="numberOfChildren!=0;" class="animate-if inline"><h4>Children:</h4><span class="pull-right">{{numberOfChildren}}X{{childSubtotal | currency}}</span><br></div>
+      <br>
+      <div class="inline"><h4>Subtotal:</h4><span class="pull-right">{{paymentSubtotal | currency}}</span><br></div>
+      <div class="inline"><h4>Processing Fee:</h4><span class="pull-right">{{paymentHosting | currency}}</span><br></div>
+      <div class="inline"><h4>Tax:</h4><span class="pull-right">{{paymentTax | currency}}</span><br></div>
+      <div class="inline"><h4>Total:</h4><span class="pull-right">
+            {{paymentPrice | currency}}
+      </span>
+      </div>
+    </div>
+  </div>
+</div>
+      <hr class="divider" style="height: 1px;  color:#4C4C4C;">     
+        <ng-form name="userForm" novalidate>
+<!--               <pre>
+    {{ formData }} <br>
+    {{ geoip }}
+   {{ api_key }}
+  </pre>     -->
+  <div class="tables">
+            <div class="theGrid">Select a Date:</div><div class="theGrid">Full Name:</div>
+            <div class="theGrid">Email:</div>
+            <input title="Click to edit" ng-change="checkDate(formData.date)" ng-click="open($event)" class="theGrid form-control" datepicker-popup="{{format}}" ng-model="formData.date" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+            <div class="form-group" ng-class="{ 'has-error': userForm.name.$invalid && !userForm.name.$pristine }">
+            <input type="text" class="theGrid form-control" name="name" ng-model="formData.fullName" required>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': userForm.email.$invalid && !userForm.email.$pristine }">
+            <input name="email" type="email" class="theGrid form-control" ng-model="formData.email" required></input>
+          </div>
+            <br class="clearfix" />
+            <div class="theGrid">Street:</div><div class="theGrid">City:</div><div class="theGrid">State:</div>
+            <br class="clearfix" />
+            <div class="form-group" ng-class="{ 'has-error': userForm.address.$invalid && !userForm.address.$pristine }">
+            <input name="address" type="text" class="theGrid form-control" ng-model="formData.street_address" required></input>
+          </div>
+            <div class="form-group" ng-class="{ 'has-error': userForm.city.$invalid && !userForm.city.$pristine }">
+            <input name="city" type="text" class="theGrid form-control" ng-model="formData.city" required></input>
+          </div>
+            <div class="form-group" ng-class="{ 'has-error': userForm.state.$invalid && !userForm.state.$pristine }">
+            <input name="state" type="text" maxlength="2" class="theGrid form-control" ng-model="formData.state" ng-max-length="2"required></input>
+          </div>
+            <br class="clearfix" />
+            <div class="theGrid">Country:</div><div class="theGrid">Zip/Postal Code:</div><div class="theGrid">Phone:</div>
+            <br class="clearfix" />
+            <div class="form-group" ng-class="{ 'has-error': userForm.country.$invalid && !userForm.country.$pristine }">
+            <input name="country" type="text" class="theGrid form-control" ng-model="formData.country" required></input>
+          </div>
+            <div class="form-group" ng-class="{ 'has-error': userForm.zip_code.$invalid && !userForm.zip_code.$pristine}">
+            <input name="zip_code" type="text" ng-pattern="onlyNumbers" class="theGrid form-control" ng-model="formData.zip_code" maxlength="5" required></input>
+          </div>
+            <div class="form-group" ng-class="{ 'has-error': userForm.phone.$invalid && !userForm.phone.$pristine }">
+            <input name="phone" ng-pattern="onlyNumbers" type="text" class="theGrid form-control" ng-model="formData.phone" required></input>
+          </div>
+          <br/>
+            <div class="tos"><input type="checkbox" name="agreement" ng-model = "formData.agreement" value="yes" required>&nbsp; <p>I agree to the <a href="#/terms"> Terms of Service</a></p></div>
+           <!-- <input type="hidden" ng-model="formData.product_id" value="{{currentImage._id}}" />
+               <input type="hidden" class="form-control" ng-model="formData.geoip" value="{{geoip}}" />
+              <input type="hidden" ng-model="formData.price_paid" value="{{paymentPrice}}" /> -->
+              
+             
+<!--  
+            <div class="payment col-sm-12"> <h3>Payment Method</h3> </div>
+
+            <div class="braintree"></div>
+            <div class="clearfix"></div>   -->      
+      <button analytics-on="click" analytics-event="Check out - {{currentImage._id}}" analytics-category="Commands" type="button" class="btn btn-warning pull-right btn-xlarge buttonPosition" ng-click="processPaymentForm()"  ng-disabled="userForm.$invalid" >Checkout</button>
+    </div>
+</ng-form>
+  <!-- </div> -->
+           <!--  <div id="messages" class="well" ng-show="message">{{ message }}{{form.content}}</div>
+            <span class="help-block" ng-show="errorName">{{ errorName }}</span>
+            <div class="billing col-sm-12" style="margin-bottom: 20px;"> 
+            <h3 class="col-sm-12">Select Dates </h3>
+            
+            <div class="form-group col-sm-6">
+<!--               <div class="input-group" >
+                <input ng-change="checkDate(dt)" ng-click="open($event)" type="text" class="form-control smaller" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                <span class="input-group-addon">
+                  <i ng-click="open($event)" class="glyphicon glyphicon-calendar"></i>
+                </span>
+              </div> 
+            </div>
+            <div class="col-sm-6"></div>
+            <h3 class="col-sm-12">Billing Information</h3>
+            <div class="form-group col-sm-6">
+                <label for="fullName">Full Name</label>
+                <input type="text" class="form-control" name="name" ng-model="formData.fullName" placeholder="Please enter your full name" required>
+<!--                 <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">Your name is required.</p> 
+              </div>
+
+            <div class="form-group col-sm-6">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" name="email"  ng-model="formData.email" placeholder="John@example.com">
+              </div>
+            <div class="form-group col-sm-6">
+                <label for="Address">Street Address</label>
+                <input type="text" class="form-control" ng-model="formData.street_address" name="Address" placeholder="440 N. Wolfe Road">
+              </div>
+                <div class="form-group col-sm-3">
+                <label for="City">City</label>
+                <input type="text" class="form-control" ng-model="formData.city"  name="City" placeholder="Sunnyvale">
+              </div>
+            <div class="form-group col-sm-3">
+                <label for="State">State/Province</label>
+                <input type="text" class="form-control" ng-model="formData.state" name="State" placeholder="California">
+              </div>
+            <div class="form-group col-sm-3">
+                <label for="Country">Country</label>
+                <input type="text" class="form-control" ng-model="formData.country" name="Country" placeholder="USA">
+            </div>
+            <div class="form-group col-sm-3">
+                <label for="Country">Zip/Postal Code</label>
+                <input type="text" class="form-control" ng-model="formData.zip_code" name="zip" placeholder="95112">
+            </div>
+            <div class="form-group col-sm-3">
+                <label for="Country">Contact Number</label>
+                <input type="text" class="form-control" ng-model="formData.phone_number" name="phone" placeholder="Country/Area Code and Phone Number">
+            </div> -->

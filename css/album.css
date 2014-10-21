@@ -1,0 +1,264 @@
+html, body {
+    height: 650px;
+}
+
+html {
+    display: table;
+   
+}
+
+img {
+    border-radius:10px;
+}
+
+h3 {
+    margin-top:8px;
+}
+
+.inline h3 {
+    display:inline;
+}
+
+.inline h4 {
+       display:inline;
+}
+
+.inline p {
+       display:inline;
+}
+    .tables {
+      width: 100%;
+      height: 400px;
+    }
+    div div[contentEditable] {
+      cursor: pointer;
+      background-color: #D0D0D0;
+      width: 31%;
+      font-size: 10px;
+      margin: 5px;
+      float: left;
+    }
+    .theGrid {
+      float: left; 
+      width: 33%;
+    }
+    .duration {
+      float: left; 
+      width: 62%%;
+    }
+    .tos {
+      float: left; 
+      width: 50%;
+    }
+.pricepadding {
+    padding:10px;
+}
+.updescription span {
+    margin: 0 auto;
+    text-align: center;    
+}
+.updescription{
+ color: rgba(255,255,255,1);
+  background: black;
+  background: linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+  background: -webkit-linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+  background: -moz-linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+  padding: 10px;
+  line-height: 25px;
+  text-align: justify;
+  position: absolute;
+  bottom: 0;
+  margin: 0 auto;
+  width: 100%;
+  height: 120px;
+  font-size: 25px;
+  transition: height .5s;
+  -webkit-transition: height .5s;
+  -moz-transition: height .5s;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.highlighted small {
+  opacity: 0;
+  font-size:12px;
+}
+.show-description p {
+  height: 200px;
+}
+.show-description small {
+  opacity: 1;
+}
+
+#header {
+    width: 620px;
+    height: 100%;
+    padding: 10px;
+    position: relative;
+
+}
+
+.btn-xlarge {
+    padding: 18px 28px;
+    font-size: 22px; 
+    line-height: normal;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+            }
+
+#header h2 {
+    display: inline;
+}
+
+#header select {
+    position: absolute;
+    right: 0;
+}
+
+#albumImage {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+}
+
+#albumImage img {
+    display: block;
+    margin: auto;
+    width:100%;
+    border-radius: 10px;
+}
+
+#thumbWrapper {
+    width: 100%;
+    overflow: auto;
+    border-radius: 10px;
+
+}
+
+#thumbList {
+    white-space: nowrap;
+    margin: 0px;
+}
+
+#thumbList li {
+    display: inline;
+    list-style-type: none;
+    padding-left: 2px;
+    padding-right: 2px;
+    cursor: pointer;
+
+}
+
+#thumbList li:hover {
+    opacity: 0.5;
+}
+
+.img-title {
+    padding: 5px 5px;
+  font-size: 18px;
+    color: #000;
+    background-color:#FFF;
+    border-bottom: 1px solid #FFF;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    vertical-align: middle;
+    border-radius: 4px 4px 0 0;
+}
+
+.overimg-left {
+position: absolute;
+display: block;
+bottom: 1pc;
+left: 1pc;
+margin: 0 auto;
+height: 50px;
+}
+
+.overimg-right {
+position: absolute;
+right: 60pc;
+bottom: 301px;
+margin: 0 auto;
+height: 50px;
+}
+
+.pricetag:after{
+    position:absolute;
+    right:0;
+    margin:1px 7px;
+    font-weight:bold;
+    font-size:25px;
+}
+.pricetag:before{
+    position: absolute;
+    background: #339933;
+    content: "\25CF";
+    color: #339933 ;
+    text-shadow: 0 0 0px #339933;
+    font-size: 25px;
+    line-height: 13px;
+    top: 6px;
+    left: -15px;
+    width: 30px;
+    height: 28px;
+    transform: rotate(46deg);
+    
+    border-radius: 2px;
+    z-index: -1;
+}
+
+.pricetag {
+    white-space:nowrap;
+    margin:0 5px 0 10px;
+    height:40px;
+    border-radius: 0 5px 5px 0;
+    padding: 0 15px 0 8px;
+    background:#339933;
+    color:#999;
+    line-height:23px;
+    display: block;
+    position: absolute;
+    top: 3pc;
+    right: 3pc;
+    z-index: 3;
+}
+
+.price {
+bottom: 1pc;
+position: absolute;
+right: 1pc;
+color: white;
+font-size: 50px;
+}
+
+.alignleft {
+    float: left;
+}
+.alignright {
+    float: right;
+}
+
+.selectNumber input {
+    padding:3px;
+    margin: 0;
+    width: 40px;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 1px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 1px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 1px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:black;
+    border: 1px #484848 solid;
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+}
+
+ /*Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    select {padding-right:18px}
+}

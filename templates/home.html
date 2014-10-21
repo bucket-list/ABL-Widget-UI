@@ -1,0 +1,45 @@
+<!--     <div class ="text-center">
+        <h1 style="color:white">ABL API Demo</h1>
+    </div> -->
+<div id="albumWrapper">
+<!--     <div id="header" class="img-title">
+        <h2>{{currentImage.title}}</h2>
+
+        <select ng-model="categories"
+                ng-options="category for category in imageCategories">
+            <option value="">all</option>
+        </select>
+    </div> -->
+    
+    <div id="albumImage" style="position:relative">
+        <img width="250px" height="450px" ng-src="{{currentImage.image_lg}}" alt="{{currentImage.title}}">
+        <span class="pricetag">
+            <h3 style="color:white">${{currentImage.price}}</h3>
+        </span>
+        <div class="description highlighted">
+            <p class="updescription">
+                <span class="productTitle ">{{currentImage.title}}</span><br />
+                <small>{{currentImage.highLight}} </small>
+            </p>
+            <span class="price">${{currentImage.price}}</span>
+                <button onclick="location.href='#/form/interests'" ng-click="setData(currentImage)" class="btn btn-warning btn-lg overimg-left" ><strong>Book Now</strong>
+            </button>
+        </div>
+    </div>
+<!-- =======
+        <span class="pricetag"><h3 style="color:white">${{currentImage.price}}</h3></span>
+        <div class="description highlighted"><p class="updescription">{{currentImage.title}}<br />
+        <small>{{currentImage.highLight}} </small></p>
+        <span class="price">${{currentImage.price}}</span>
+        <button onclick="location.href='#/form/interests'" analytics-on="click" analytics-event="More Info - {{currentImage._id}}" analytics-category="Commands" ng-click="setData(currentImage)" class="btn btn-primary btn-lg overimg-left" ><strong>Book Now</strong></button>
+        
+    </div></div>
+>>>>>>> f66c3118b0688414ce6eacfcda3139d4d393fd07 -->
+    <div id="thumbWrapper">
+        <ul id="thumbList" style="padding: 0px">
+            <li ng-repeat="image in images | filter:categories" ng-click="setCurrentImage(image)">
+                <img width="150px" height="150px" ng-src="{{image.image_lg}}" alt="{{image.title}}">
+            </li>
+        </ul>
+    </div>
+</div>
