@@ -27,6 +27,7 @@ app.controller('TermsCtrl', function ($scope, productService) {
 app.controller('PaymentCtrl', function ($scope, $http, productService, $state) { 
     $scope.currentImage = productService.getCurrentProduct();
     $scope.formData = {};
+    $scope.onlyNumbers = /^\d+$/;
     //total price is calculated here and accessed here
     // $scope.paymentPrice = function() {
     //         $scope.masterPrice = $scope.numberOf * $scope.currentImage.totalPrice;

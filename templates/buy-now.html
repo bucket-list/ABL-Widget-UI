@@ -13,11 +13,26 @@
     }
     .theGrid {
       float: left; 
-      width: 33%;
+      width: 30%;
+      margin:4px 8px;
     }
     .tos {
       float: left; 
       width: 50%;
+      margin-top:15px;
+      margin-left: 8px;
+    }
+    .tos p {
+      font-size: 16px; 
+      display:inline;
+    }
+    .buttonPosition {
+      margin-top: 15px;
+    }
+
+    .divider {
+      margin-top:10px;
+      margin-bottom:10px;
     }
   </style>
 <a class="back" href="#/form/interests">
@@ -54,7 +69,7 @@
       </div>
     </div>
 
-    <div class="cart col-sm-4 pull-right" style=" margin-top: 28px;">
+    <div class="cart col-sm-4 pull-right" style=" margin-top: 40px;">
       <div ng-if="numberOfAdults!=0;" class="animate-if inline"><h4>Adult:</h4><span class="pull-right">{{numberOfAdults}}X{{adultSubtotal | currency}}</span><br></div>
       <div ng-if="numberOfYouth!=0;" class="animate-if inline"><h4>Youth:</h4><span class="pull-right">{{numberOfYouth}}X{{youthSubtotal | currency}}</span><br></div>
       <div ng-if="numberOfChildren!=0;" class="animate-if inline"><h4>Children:</h4><span class="pull-right">{{numberOfChildren}}X{{childSubtotal | currency}}</span><br></div>
@@ -69,34 +84,49 @@
     </div>
   </div>
 </div>
-      <hr style="height: 2px;  color:#4C4C4C;">     
-        <ng-form validate>
+      <hr class="divider" style="height: 1px;  color:#4C4C4C;">     
+        <ng-form name="userForm" novalidate>
 <!--               <pre>
     {{ formData }} <br>
     {{ geoip }}
    {{ api_key }}
   </pre>     -->
   <div class="tables">
-            <div class="theGrid">Select a Date:</div><div style="float: left; width: 34%;">Full Name:</div>
-            <div style="float: left; width: 33%;">Email:</div>
-            <br style="clear: left;" />
-            <div contentEditable="true" title="Click to edit" ng-change="checkDate(formData.date)" ng-click="open($event)" class="form-control smaller" datepicker-popup="{{format}}" ng-model="formData.date" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close">{{formData.date | amDateFormat:'dddd, MMMM Do YYYY'}}</div>
-            
-            <div contentEditable="true" class="form-control" ng-model="formData.fullName" required></div>
-            <div contentEditable="true" type="email" class="form-control" ng-model="formData.email" required></div>
+            <div class="theGrid">Select a Date:</div><div class="theGrid">Full Name:</div>
+            <div class="theGrid">Email:</div>
+            <input title="Click to edit" ng-change="checkDate(formData.date)" ng-click="open($event)" class="theGrid form-control" datepicker-popup="{{format}}" ng-model="formData.date" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+            <div class="form-group" ng-class="{ 'has-error': userForm.name.$invalid && !userForm.name.$pristine }">
+            <input type="text" class="theGrid form-control" name="name" ng-model="formData.fullName" required>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': userForm.email.$invalid && !userForm.email.$pristine }">
+            <input name="email" type="email" class="theGrid form-control" ng-model="formData.email" required></input>
+          </div>
             <br class="clearfix" />
             <div class="theGrid">Street:</div><div class="theGrid">City:</div><div class="theGrid">State:</div>
             <br class="clearfix" />
-            <div contentEditable="true" class="form-control" ng-model="formData.street_address" name="Address"></div>
-            <div contentEditable="true" class="form-control" ng-model="formData.city"  name="City">{{form.city}}</div> 
-            <div contentEditable="true" class="form-control" ng-model="formData.state" name="State">{{form.state}}</div>
+            <div class="form-group" ng-class="{ 'has-error': userForm.address.$invalid && !userForm.address.$pristine }">
+            <input name="address" type="text" class="theGrid form-control" ng-model="formData.street_address" required></input>
+          </div>
+            <div class="form-group" ng-class="{ 'has-error': userForm.city.$invalid && !userForm.city.$pristine }">
+            <input name="city" type="text" class="theGrid form-control" ng-model="formData.city" required></input>
+          </div>
+            <div class="form-group" ng-class="{ 'has-error': userForm.state.$invalid && !userForm.state.$pristine }">
+            <input name="state" type="text" maxlength="2" class="theGrid form-control" ng-model="formData.state" ng-max-length="2"required></input>
+          </div>
             <br class="clearfix" />
             <div class="theGrid">Country:</div><div class="theGrid">Zip/Postal Code:</div><div class="theGrid">Phone:</div>
             <br class="clearfix" />
-            <div contentEditable="true" class="form-control" ng-model="formData.country" name="Country">{{form.state}}</div>
-            <div contentEditable="true" class="form-control" ng-model="formData.zip_code" name="zip_code"></div>
-            <div contentEditable="true" class="form-control" ng-model="formData.phone" name="phone"></div>
-            <div class="tos"><input type="checkbox" name="agreement" ng-model = "formData.agreement" value="yes" >&nbsp; <p style="font-size: 18px; display:inline;">I agree to the <a href="#/terms"> Terms of Service</a></p></div>
+            <div class="form-group" ng-class="{ 'has-error': userForm.country.$invalid && !userForm.country.$pristine }">
+            <input name="country" type="text" class="theGrid form-control" ng-model="formData.country" required></input>
+          </div>
+            <div class="form-group" ng-class="{ 'has-error': userForm.zip_code.$invalid && !userForm.zip_code.$pristine}">
+            <input name="zip_code" type="text" ng-pattern="onlyNumbers" class="theGrid form-control" ng-model="formData.zip_code" maxlength="5" required></input>
+          </div>
+            <div class="form-group" ng-class="{ 'has-error': userForm.phone.$invalid && !userForm.phone.$pristine }">
+            <input name="phone" ng-pattern="onlyNumbers" type="text" class="theGrid form-control" ng-model="formData.phone" required></input>
+          </div>
+          <br/>
+            <div class="tos"><input type="checkbox" name="agreement" ng-model = "formData.agreement" value="yes" required>&nbsp; <p>I agree to the <a href="#/terms"> Terms of Service</a></p></div>
            <!-- <input type="hidden" ng-model="formData.product_id" value="{{currentImage._id}}" />
                <input type="hidden" class="form-control" ng-model="formData.geoip" value="{{geoip}}" />
               <input type="hidden" ng-model="formData.price_paid" value="{{paymentPrice}}" /> -->
@@ -107,7 +137,7 @@
 
             <div class="braintree"></div>
             <div class="clearfix"></div>   -->      
-      <button analytics-on="click" analytics-event="Check out - {{currentImage._id}}" analytics-category="Commands" type="button" class="btn btn-warning pull-right btn-xlarge" ng-click="processPaymentForm()">Checkout</button>
+      <button analytics-on="click" analytics-event="Check out - {{currentImage._id}}" analytics-category="Commands" type="button" class="btn btn-warning pull-right btn-xlarge buttonPosition" ng-click="processPaymentForm()"  ng-disabled="userForm.$invalid" >Checkout</button>
     </div>
 </ng-form>
   <!-- </div> -->
