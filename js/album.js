@@ -20,11 +20,25 @@ app.service('productService', function ($window) {
         getCurrentProduct: getCurrentProduct
     };
 });
+
+app.factory("serverService", function() {
+    return {
+        //dev
+        serverHost: '162.242.170.162',
+        serverPort: '8081',
+        serverAuth: 'Basic dGVzdDp0ZXN0Mg=='
+        //production
+        // serverHost: 'localhost',
+        // serverPort: '8081'    
+    };
+
+});
+
 app.controller('TermsCtrl', function ($scope, productService) {
     $scope.currentImage = productService.getCurrentProduct();
 })
 
-app.controller('PaymentCtrl', function ($scope, $http, productService, $state) { 
+app.controller('PaymentCtrl', function ($scope, $http, productService, $state, serverService) { 
     $scope.currentImage = productService.getCurrentProduct();
     $scope.formData = {};
     $scope.onlyNumbers = /^\d+$/;
@@ -130,12 +144,6 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state) {
             // process the form
              $scope.processPaymentForm = function(expr) {
                 var form = this;
-                    
-            
-                    
-                //console.log("Fuck "+$scope.formData);
-               //$scope.message = formdata;
-              // alert("Form Data: "+form.formData);
                 form.formData.price_paid = $scope.paymentPrice;
                 form.formData.product_id = $scope.currentImage._id;
                 form.formData.number_of_adults = $scope.numberOfAdults;
@@ -143,17 +151,21 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state) {
                 form.formData.number_of_children = $scope.numberOfChildren;
                 form.formData.date = new Date(form.formData.date);
                 form.formData.api_key = location.search.split("api_key=")[1];
-
-                console.log(form.formData);
+                //server host name and port!
+                $scope.serverHost = serverService.serverHost;
+                $scope.serverPort = serverService.serverPort;
+                $scope.serverAuth = serverService.serverAuth;
+    
+                //console.log(form.formData);
                 $http({
                     method  : 'POST',
-                    url     : 'http://162.242.170.162:8081/api/checkout',
+                    url     : "http://"+$scope.serverHost+":"+$scope.serverPort+"/api/checkout",
                     data    : $.param(form.formData),  // pass in data as strings
-                    headers : { 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic YWdyaWdnczpGdWNreW91MjAxNA==' }  // set the headers so angular passing info as form data (not request payload)
+                    headers : { 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': $scope.serverAuth }  // set the headers so angular passing info as form data (not request payload)
                 })
                     .success(function(data) {
                         $state.go('complete');
-                        console.log(data);
+                        // console.log(data);
 
                         if (!data.success) {
                             // if not successful, bind errors to error variables
@@ -263,7 +275,7 @@ app.controller('MainCtrl', function ($scope, productService) {
     //     };
     // });
 
-app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, productService) {
+app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, productService, serverService) {
     $scope.url = 'images.json';
     $scope.images = [];
     $scope.imageCategories = [];
@@ -294,9 +306,13 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
     }
 
     $scope.fetch = function () {
-        $http.defaults.headers.get = { 'Basic' : 'YWdyaWdnczpGdWNreW91MjAxNA' };
+        $scope.serverHost = serverService.serverHost;
+        $scope.serverPort = serverService.serverPort;
+        $scope.serverAuth = serverService.serverAuth;
+    console.log(serverService.serverHost+" "+serverService.serverPort+" "+serverService.serverAuth+" "+$scope.serverHost+" "+$scope.serverPort+" "+$scope.serverAuth+" ");
+        // $http.defaults.headers.get = { 'Basic' : 'YWdyaWdnczpGdWNreW91MjAxNA' };
         //$http.defaults.headers.common.Authorization = 'Basic YWdyaWdnczpGdWNreW91MjAxNA==';
-        $http.get("http://162.242.170.162:8081/api/product?city=whistler", {headers: {'Authorization': 'Basic YWdyaWdnczpGdWNreW91MjAxNA=='}}).success($scope.handleImagesLoaded);
+        $http.get("http://"+$scope.serverHost+":"+$scope.serverPort+"/api/product?city=whistler", {headers: {'Authorization': $scope.serverAuth}}).success($scope.handleImagesLoaded);
     };
 
     $scope.setCurrentImage = function (image) {
