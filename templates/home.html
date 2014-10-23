@@ -39,6 +39,7 @@
         <ul id="thumbList" style="padding: 0px">
             <li ng-repeat="image in images | filter:categories" ng-click="setCurrentImage(image)">
                 <img width="150px" height="150px" ng-src="{{image.image_lg}}" alt="{{image.title}}">
+                {{image.price}}
             </li>
         </ul>
     </div>
