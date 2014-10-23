@@ -75,8 +75,8 @@
       <div ng-if="numberOfChildren!=0;" class="animate-if inline"><h4>Children:</h4><span class="pull-right">{{numberOfChildren}}X{{childSubtotal | currency}}</span><br></div>
       <br>
       <div class="inline"><h4>Subtotal:</h4><span class="pull-right">{{paymentSubtotal | currency}}</span><br></div>
-      <div class="inline"><h4>Processing Fee:</h4><span class="pull-right">{{paymentHosting | currency}}</span><br></div>
-      <div class="inline"><h4>Tax:</h4><span class="pull-right">{{paymentTax | currency}}</span><br></div>
+      <!-- <div class="inline"><h4>Processing Fee:</h4><span class="pull-right">{{paymentHosting | currency}}</span><br></div> -->
+      <div class="inline"><h4>Tax & Fees:</h4><span class="pull-right">{{tax_and_fee | currency}}</span><br></div>
       <div class="inline"><h4>Total:</h4><span class="pull-right">
             {{paymentPrice | currency}}
       </span>
