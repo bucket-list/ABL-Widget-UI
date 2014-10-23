@@ -24,11 +24,11 @@ app.service('productService', function ($window) {
 app.factory("serverService", function() {
     return {
         //dev
-        //serverHost: '162.242.170.162',
+        serverHost: '162.242.170.162',
         serverPort: '8081',
         serverAuth: 'Basic YWdyaWdnczplcGljaG91c2U=',
         //production
-        serverHost: '127.0.0.1',
+        //serverHost: '127.0.0.1',
         // serverPort: '8081'    
     };
 
