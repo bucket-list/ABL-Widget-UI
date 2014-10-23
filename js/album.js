@@ -104,6 +104,14 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state, s
                                     // $scope.numberOfAdults * $scope.currentImage.price 
                                     // + $scope.numberOfYouth * $scope.currentImage.youthTotalPrice
                                     // + $scope.numberOfChildren * $scope.currentImage.youthTotalPrice;
+            if($scope.currentImage.childPrice !=0) {
+
+
+            }
+            else if ($scope.currentImage.youthPrice !=0) 
+            {
+
+            }
             $scope.adultSubtotal = $scope.numberOfAdults * $scope.currentImage.price;
             $scope.youthSubtotal = $scope.numberOfYouth * $scope.currentImage.youthPrice;
             $scope.childSubtotal = $scope.numberOfChildren * $scope.currentImage.childPrice;
