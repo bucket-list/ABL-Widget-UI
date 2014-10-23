@@ -104,33 +104,41 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state, s
                                     // $scope.numberOfAdults * $scope.currentImage.price 
                                     // + $scope.numberOfYouth * $scope.currentImage.youthTotalPrice
                                     // + $scope.numberOfChildren * $scope.currentImage.youthTotalPrice;
-            if($scope.currentImage.childPrice !=0) {
+            // if($scope.currentImage.childPrice !=0) {
 
 
-            }
-            else if ($scope.currentImage.youthPrice !=0) 
-            {
+            // }
+            // else if ($scope.currentImage.youthPrice !=0) 
+            // {
 
-            }
+            // }
+
             $scope.adultSubtotal = $scope.numberOfAdults * $scope.currentImage.price;
-            $scope.youthSubtotal = $scope.numberOfYouth * $scope.currentImage.youthPrice;
-            $scope.childSubtotal = $scope.numberOfChildren * $scope.currentImage.childPrice;
+            $scope.paymentSubtotal = $scope.adultSubtotal;
+            $scope.paymentHosting = $scope.numberOfAdults * $scope.currentImage.host_fee_value;
+            $scope.paymentTax = $scope.numberOfAdults * $scope.currentImage.tax_fee_value;
+            $scope.paymentPrice = $scope.numberOfAdults * $scope.currentImage.totalPrice;
 
-            $scope.paymentSubtotal = $scope.adultSubtotal + $scope.youthSubtotal + $scope.childSubtotal;
-
-            $scope.paymentHosting = $scope.numberOfAdults * $scope.currentImage.host_fee_value 
-                                    + $scope.numberOfYouth * $scope.currentImage.youth_host_fee_value
-                                    + $scope.numberOfChildren * $scope.currentImage.child_host_fee_value;
-
-            $scope.paymentTax = $scope.numberOfAdults * $scope.currentImage.tax_fee_value 
-                                + $scope.numberOfYouth * $scope.currentImage.youth_tax_fee_value 
-                                + $scope.numberOfChildren * $scope.currentImage.child_tax_fee_value;
-            
+            if($scope.currentImage.youthPrice!=0){
+                $scope.youthSubtotal = $scope.numberOfYouth * $scope.currentImage.youthPrice;    
+                $scope.paymentSubtotal += $scope.youthSubtotal;
+                $scope.paymentHosting += $scope.numberOfYouth * $scope.currentImage.youth_host_fee_value;
+                $scope.paymentTax += $scope.numberOfYouth * $scope.currentImage.youth_tax_fee_value;
+                $scope.paymentPrice += $scope.numberOfYouth * $scope.currentImage.youthTotalPrice;
+            }
+            if($scope.currentImage.childPrice!=0){
+                $scope.childSubtotal = $scope.numberOfChildren * $scope.currentImage.childPrice;    
+                $scope.paymentSubtotal += $scope.childSubtotal;
+                $scope.paymentHosting += $scope.numberOfChildren * $scope.currentImage.child_host_fee_value;
+                $scope.paymentTax = $scope.numberOfChildren * $scope.currentImage.child_tax_fee_value;
+                 $scope.paymentPrice += $scope.numberOfChildren * $scope.currentImage.childTotalPrice;
+            }
+            //$scope.paymentSubtotal = $scope.adultSubtotal + $scope.youthSubtotal + $scope.childSubtotal; 
             $scope.tax_and_fee = $scope.paymentTax + $scope.paymentHosting;
 
-            $scope.paymentPrice = $scope.numberOfAdults * $scope.currentImage.totalPrice 
-                                    + $scope.numberOfYouth * $scope.currentImage.youthTotalPrice 
-                                    + $scope.numberOfChildren * $scope.currentImage.childTotalPrice;
+            //$scope.paymentPrice = $scope.numberOfAdults * $scope.currentImage.totalPrice 
+              //                      + $scope.numberOfYouth * $scope.currentImage.youthTotalPrice 
+                //                    + $scope.numberOfChildren * $scope.currentImage.childTotalPrice;
         }
     //this watches the ng-model input for changes and changes the payment price according to that and stores it
     $scope.$watch('numberOfAdults', function() {
@@ -310,6 +318,9 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
 
     $scope.handleImagesLoaded = function (data, status) {
         $scope.images = data;
+        // if(productService.getCurrentProduct()!=null){
+        //     productService.getCurrentProduct()
+        // }
         // Set the current image to the first image in images
         $scope.currentImage = _.first($scope.images);
         // Create a unique array based on the category property in the images objects
