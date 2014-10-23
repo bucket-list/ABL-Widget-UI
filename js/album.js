@@ -28,7 +28,7 @@ app.factory("serverService", function() {
         serverPort: '8081',
         serverAuth: 'Basic YWdyaWdnczplcGljaG91c2U=',
         //production
-        serverHost: 'localhost',
+        serverHost: '127.0.0.1',
         // serverPort: '8081'    
     };
 
@@ -309,7 +309,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
         $scope.serverHost = serverService.serverHost;
         $scope.serverPort = serverService.serverPort;
         $scope.serverAuth = serverService.serverAuth;
-    console.log(serverService.serverHost+" "+serverService.serverPort+" "+serverService.serverAuth+" "+$scope.serverHost+" "+$scope.serverPort+" "+$scope.serverAuth+" ");
+    //console.log(serverService.serverHost+" "+serverService.serverPort+" "+serverService.serverAuth+" "+$scope.serverHost+" "+$scope.serverPort+" "+$scope.serverAuth+" ");
         // $http.defaults.headers.get = { 'Basic' : 'YWdyaWdnczpGdWNreW91MjAxNA' };
         //$http.defaults.headers.common.Authorization = 'Basic YWdyaWdnczpGdWNreW91MjAxNA==';
         $http.get("http://"+$scope.serverHost+":"+$scope.serverPort+"/api/product?city=whistler", {headers: {'Authorization': $scope.serverAuth}}).success($scope.handleImagesLoaded);
