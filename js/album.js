@@ -72,7 +72,7 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state, s
   $scope.toggleMin();
 
   $scope.toggleMax = function() {
-    console.log( new Date($scope.currentImage.enddate).format("dd-mm-yy"));
+    // console.log( new Date($scope.currentImage.enddate).format("dd-mm-yy"));
     $scope.maxDate = $scope.maxDate ? null : new Date($scope.currentImage.enddate);
   };
   $scope.toggleMax();
