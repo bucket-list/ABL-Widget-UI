@@ -8,7 +8,7 @@ app.service('productService', function ($window) {
     var setData = function(dataFromView) {
         currentProduct = dataFromView;
         $window.sessionStorage["currentProductData"] = JSON.stringify(currentProduct);
-        console.log(dataFromView);
+        console.log("Data"+dataFromView);
     };
     var getCurrentProduct = function(){
         sessionCurrentProduct= $window.sessionStorage["currentProductData"];
@@ -320,6 +320,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
 
     $scope.setCurrentImage = function (image) {
         $scope.currentImage = image;
+        productService.setData(image);
         _.$inject = ["$scope", "image"]
     };
     $scope.clickFunction = function() {
