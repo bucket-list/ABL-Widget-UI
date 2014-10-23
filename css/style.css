@@ -1,10 +1,11 @@
 /* BASIC STYLINGS
 ============================================================================= */
-body                            { padding-top:20px; color:black; }
+body                            { color:black; font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif; font-size: 12px;}
 pre                             { margin-bottom:20px; }
 
+
 /* form styling */
-#form-container                { background:#f5f5f5; margin-bottom:20px;
+#form-container                {height: 100%; width: 750px; background:#f5f5f5; margin-bottom:20px;
     border-radius:5px; }
 #form-container .page-header   { background:#FFF; margin:0; padding:30px; 
     border-top-left-radius:5px; border-top-right-radius:5px; }
@@ -21,7 +22,8 @@ pre                             { margin-bottom:20px; }
 
 /* ANIMATION STYLINGS
 ============================================================================= */
-#signup-form            { position:relative; height: 100%; padding:30px; border-radius:10px; }
+
+#signup-form            { position:relative; height: 650px; width: 750px; padding:30px; border-radius:10px; }
 
 /* basic styling for entering and leaving */
 /* left and right added to ensure full width */

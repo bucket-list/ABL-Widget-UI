@@ -21,24 +21,44 @@ app.service('productService', function ($window) {
     };
 });
 
+app.factory("serverService", function() {
+    return {
+        //dev
+        serverHost: '162.242.170.162',
+        serverPort: '8081',
+        serverAuth: 'Basic YWdyaWdnczplcGljaG91c2U=',
+        //production
+        //serverHost: '127.0.0.1',
+        // serverPort: '8081'    
+    };
+
+});
+
 app.controller('TermsCtrl', function ($scope, productService) {
     $scope.currentImage = productService.getCurrentProduct();
 })
 
-app.controller('PaymentCtrl', function ($scope, $http, productService, $state) { 
+app.controller('PaymentCtrl', function ($scope, $http, productService, $state, serverService) { 
     $scope.currentImage = productService.getCurrentProduct();
+    $scope.formData = {};
+    $scope.onlyNumbers = /^\d+$/;
     //total price is calculated here and accessed here
     // $scope.paymentPrice = function() {
     //         $scope.masterPrice = $scope.numberOf * $scope.currentImage.totalPrice;
     //         return $scope.masterPrice;
     // }
+    // $scope.getApiKey = function() {
+    //       var api_key = $document.getElementById('abl').src;
+    //       console.log("test Doc "+ $scope.formData.api_key)
+    //     };
+    // $scope.getApiKey();
     $scope.today = function() {
-        $scope.dt = new Date($scope.currentImage.startdate);
+        $scope.formData.date = new Date($scope.currentImage.startdate);
     };
     $scope.today();
 
   $scope.clear = function () {
-    $scope.dt = null;
+    $scope.formData.date = null;
   };
 
   // // Disable weekend selection
@@ -71,9 +91,11 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state) {
 
   $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $scope.format = $scope.formats[0];
-  $scope.checkDate = function(dt) {
+  $scope.checkDate = function(dt) 
+  {
+    console.log(dt, $scope.minDate);
     if($scope.dt < $scope.minDate){
-        $scope.dt = $scope.minDate;
+        $scope.formData.date = $scope.minDate;
     }    //$scope.maxDate = $scope.maxDate ? null : new Date($scope.currentImage.enddate);
   };
         $scope.calculatePrice = function () {
@@ -112,34 +134,38 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state) {
 
     });    
     $scope.geoip = {};
-
+        $.getJSON("http://jsonip.com?callback=?", function (data) {
+                $.getJSON("http://www.telize.com/geoip/"+data.ip, function (geodata) {
+                     $scope.formData.geoip = geodata;
+                });
+                });
             // create a blank object to hold our form information
             // $scope will allow this to pass between controller and view
-           $scope.formData = {};
-
             // process the form
              $scope.processPaymentForm = function(expr) {
                 var form = this;
-                    $state.go('complete');
-            
-                    
-                //console.log("Fuck "+$scope.formData);
-               //$scope.message = formdata;
-               //alert("Form Data: "+form.formData.fullName);
-            $.getJSON("http://jsonip.com?callback=?", function (data) {
-                $.getJSON("http://www.telize.com/geoip/"+data.ip, function (geodata) {
-                     form.formData.geoip = geodata;
-                });
-                });
-
+                form.formData.price_paid = $scope.paymentPrice;
+                form.formData.product_id = $scope.currentImage._id;
+                form.formData.number_of_adults = $scope.numberOfAdults;
+                form.formData.number_of_youth = $scope.numberOfYouth;
+                form.formData.number_of_children = $scope.numberOfChildren;
+                form.formData.date = new Date(form.formData.date);
+                form.formData.api_key = location.search.split("api_key=")[1];
+                //server host name and port!
+                $scope.serverHost = serverService.serverHost;
+                $scope.serverPort = serverService.serverPort;
+                $scope.serverAuth = serverService.serverAuth;
+    
+                //console.log(form.formData);
                 $http({
                     method  : 'POST',
-                    url     : 'http://162.242.170.162:8081/api/checkout',
+                    url     : "http://"+$scope.serverHost+":"+$scope.serverPort+"/api/checkout",
                     data    : $.param(form.formData),  // pass in data as strings
-                    headers : { 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic YWdyaWdnczpGdWNreW91MjAxNA==' }  // set the headers so angular passing info as form data (not request payload)
+                    headers : { 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': $scope.serverAuth }  // set the headers so angular passing info as form data (not request payload)
                 })
                     .success(function(data) {
-                        console.log(data);
+                        $state.go('complete');
+                        // console.log(data);
 
                         if (!data.success) {
                             // if not successful, bind errors to error variables
@@ -148,15 +174,40 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state) {
                         } else {
                             // if successful, bind success message to message
                             $scope.message = data.message;
+
                         }
                     }).error(function(data) {
                         console.log(data);
                     });
             };
+
     // define angular module/app
         //var formApp = app.controller('formCtl', []);
      //$('#date_time').datetimepicker();
-});
+}).directive('contenteditable', function() {
+    return {
+      restrict: 'A',
+      require: '?ngModel',
+      link: function(scope, element, attr, ngModel) {
+        var read;
+        if (!ngModel) {
+          return;
+        }
+        ngModel.$render = function() {
+          return element.html(ngModel.$viewValue);
+        };
+        element.bind('blur', function() {
+          if (ngModel.$viewValue !== $.trim(element.html())) {
+            return scope.$apply(read);
+          }
+        });
+        return read = function() {
+          //console.log("read()");
+          return ngModel.$setViewValue($.trim(element.html()));
+        };
+      }
+    };
+  });
 
 // app.directive('datetimez', function() {
 //     return {
@@ -200,31 +251,31 @@ app.controller('MainCtrl', function ($scope, productService) {
         };
 });
 
-    app.animation('.slide-animation', function () {
-        return {
-            addClass: function (element, className, done) {
-                if (className == 'ng-hide') {
-                    TweenMax.to(element, 0.5, {left: -element.parent().width(), onComplete: done });
-                }
-                else {
-                    done();
-                }
-            },
-            removeClass: function (element, className, done) {
-                if (className == 'ng-hide') {
-                    element.removeClass('ng-hide');
+    // app.animation('.slide-animation', function () {
+    //     return {
+    //         addClass: function (element, className, done) {
+    //             if (className == 'ng-hide') {
+    //                 TweenMax.to(element, 0.5, {left: -element.parent().width(), onComplete: done });
+    //             }
+    //             else {
+    //                 done();
+    //             }
+    //         },
+    //         removeClass: function (element, className, done) {
+    //             if (className == 'ng-hide') {
+    //                 element.removeClass('ng-hide');
 
-                    TweenMax.set(element, { left: element.parent().width() });
-                    TweenMax.to(element, 0.5, {left: 0, onComplete: done });
-                }
-                else {
-                    done();
-                }
-            }
-        };
-    });
+    //                 TweenMax.set(element, { left: element.parent().width() });
+    //                 TweenMax.to(element, 0.5, {left: 0, onComplete: done });
+    //             }
+    //             else {
+    //                 done();
+    //             }
+    //         }
+    //     };
+    // });
 
-app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, productService) {
+app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, productService, serverService) {
     $scope.url = 'images.json';
     $scope.images = [];
     $scope.imageCategories = [];
@@ -255,9 +306,13 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
     }
 
     $scope.fetch = function () {
-        $http.defaults.headers.get = { 'Basic' : 'YWdyaWdnczpGdWNreW91MjAxNA' };
+        $scope.serverHost = serverService.serverHost;
+        $scope.serverPort = serverService.serverPort;
+        $scope.serverAuth = serverService.serverAuth;
+    //console.log(serverService.serverHost+" "+serverService.serverPort+" "+serverService.serverAuth+" "+$scope.serverHost+" "+$scope.serverPort+" "+$scope.serverAuth+" ");
+        // $http.defaults.headers.get = { 'Basic' : 'YWdyaWdnczpGdWNreW91MjAxNA' };
         //$http.defaults.headers.common.Authorization = 'Basic YWdyaWdnczpGdWNreW91MjAxNA==';
-        $http.get("http://162.242.170.162:8081/api/product?city=whistler", {headers: {'Authorization': 'Basic YWdyaWdnczpGdWNreW91MjAxNA=='}}).success($scope.handleImagesLoaded);
+        $http.get("http://"+$scope.serverHost+":"+$scope.serverPort+"/api/product?city=whistler", {headers: {'Authorization': $scope.serverAuth}}).success($scope.handleImagesLoaded);
     };
 
     $scope.setCurrentImage = function (image) {

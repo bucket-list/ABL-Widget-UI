@@ -1,57 +1,81 @@
 <!-- <div style="margin-top: 28px;"><img ng-src="{{currentImage.thumbnail}}"></div> -->
-
-<a href="#/form/profile">
+<style type="text/css">
+.topRight {
+  display: absolute;
+  top:0;
+  right: 10px;
+  width: 50%;
+  float: right;
+}
+.overview {
+  text-align: justify;
+  margin-top: 30px;
+}
+.description {
+  text-align: justify;
+  margin-top: 20px;
+  width: 100%;
+  float: left;
+}
+</style>
+<a class="back" href="#/form/profile">
   <span style="text-decoration: none; color:black;" class="fa fa-chevron-left fa-2x"></span>
 </a>
-
-        <h2 class="text-center">{{currentImage.title | capitalize}}</h2>
-        <h3 class="text-center">{{currentImage.city | capitalize}}, {{currentImage.state | uppercase}}</h3>
-      
-<div class="container slider">
-    <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage"
-         ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
-         ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide}}" width="100%" height="100%">
-
-    <a class="arrow prev" ng-click="nextSlide()"></a>
-    <a class="arrow next" ng-click="prevSlide()"></a>
-    <nav class="navslider">
+  <h2 class="moreInfoTitle">{{currentImage.title | capitalize}}</h2>
+  <h3 class="moreInfoLocation text-center">{{currentImage.city | capitalize}}, {{currentImage.state | capitalize}}</h3>
+<tabset>
+  <tab heading="Overview">      
+    <div class="container" style="max-width:100%;display: relative;">
+   
+    <div class="slider">
+      <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage"
+           ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
+           ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide}}" width="300px" height="250px">
+      <a class="arrow prev" ng-click="nextSlide()"></a>
+      <a class="arrow next" ng-click="prevSlide()"></a>
+      <nav class="navslider">
         <div class="wrapper">
-            <ul class="dots">
-                <li class="dot" ng-repeat="slide in slides">
-                    <span ng-class="{'active':isCurrentSlideIndex($index)}"
-                       ng-click="setCurrentSlideIndex($index);">{{slide.description}}</span></li>
-            </ul>
+          <ul class="dots">
+            <li class="dot" ng-repeat="slide in slides">
+            <span ng-class="{'active':isCurrentSlideIndex($index)}" ng-click="setCurrentSlideIndex($index);">{{slide.description}}</span></li>
+          </ul>
         </div>
-    </nav>
-</div>
-        <!-- <h3 id="date">Date:</h3> -->
-        <tabset>
-          <tab heading="Overview">
-            <div class="container" style="max-width:100%;">
-           <h2 >Price: ${{currentImage.price}}</h2> 
-           <h3> Overview: </h3> 
+      </nav>
+    </div>
+       <div class="topRight">
+        <h2 class="duration" >{{currentImage.duration}} Hours for</h2> 
+        <h2>${{currentImage.price}}</h2> 
+          <div class="overview">
+          <h3> Overview: </h3> 
+          <p> {{currentImage.highLight}}</p>
+        </div>
+          <br class="clearfix"/>
+          </div>
+          <div class ="description">
+          <h3> Descriptions: </h3> 
+          <p> {{currentImage.mainDescription}}</p>
+        </div>
+     <!-- <div class="container" style="max-width:100%;"> </div> -->
+        <!-- <div class="col-md-6"> </div> -->
 
-        <p> {{currentImage.highLight}}</p>
-        <h3> Descriptions: </h3> 
-        <p> {{currentImage.mainDescription}}</p>
-      </div>
-          </tab>
+    </div>
+  </div>
+  </tab>
           <tab heading="More Information">
             <div class="container row" style="max-width:100%;">
-              <br>
-        <div class="col-md-4"> <div class="text-center"><h4>Requirements:</h4></div>
+        <div class="col-md-4"> <h4>Requirements:</h4>
         <ul> 
             <li ng-repeat="item in currentImage.requirements track by $index">{{item}}</li>
         </ul>
 
        </div>
-        <div class="col-md-4"> <div class="text-center"><h4>Included:</h4></div>
+        <div class="col-md-4"> <h4>Included:</h4>
         <ul> 
             <li ng-repeat="item in currentImage.whatIncluded track by $index">{{item}}</li>
         </ul>
 
        </div>
-       <div class="col-md-4"> <div class="text-center"><h4>What to Bring:</h4></div>
+       <div class="col-md-4"><h4>What to Bring:</h4>
         <ul> 
             <li ng-repeat="item in currentImage.whatToBring track by $index">{{item}}</li>
         </ul>
@@ -59,6 +83,6 @@
      </div>
           </tab>
     </tabset>
-
         <button analytics-on="click" analytics-event="Book Now - {{currentImage._id}}" analytics-category="Commands" onclick="location.href='#/form/payment'" class="btn btn-warning btn-xlarge pull-right" ><strong>Book Now</strong></button>      
+<!--  -->
 

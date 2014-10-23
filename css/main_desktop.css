@@ -9,16 +9,21 @@ h1 {
 	position: absolute;
 	top:10%;
 	left: 10%;
-
 }
-.price {
+.cart {
+  position: absolute;
+  top:0px;
+  right:0px;
+}
+#purchase_window {
+  width: 70%;
+}
+/*.price {
     font-color: black;
-
-
-}
+}*/
 .pricetag:after{
     position:absolute;
-    right:0;
+    right:0;  
     margin:1px 7px;
     font-weight:bold;
     font-size:25px;
