@@ -71,9 +71,9 @@
 
     <div class="cart col-sm-4 pull-right" style=" margin-top: 40px;">
       <div ng-if="numberOfAdults!=0;" class="animate-if inline"><h4>Adult:</h4><span class="pull-right">{{numberOfAdults}}X{{adultSubtotal | currency}}</span><br></div>
-      <div ng-show="currentImage.youthPrice!=0;">
+      <div ng-if="currentImage.youthPrice!=0;">
       <div ng-if="numberOfYouth!=0;" class="animate-if inline"><h4>Youth:</h4><span class="pull-right">{{numberOfYouth}}X{{youthSubtotal | currency}}</span><br></div></div>
-      <div ng-show="currentImage.childPrice!=0;"><div ng-if="numberOfChildren!=0;" class="animate-if inline"><h4>Children:</h4><span class="pull-right">{{numberOfChildren}}X{{childSubtotal | currency}}</span><br></div></div>
+      <div ng-if="currentImage.childPrice!=0;"><div ng-if="numberOfChildren!=0;" class="animate-if inline"><h4>Children:</h4><span class="pull-right">{{numberOfChildren}}X{{childSubtotal | currency}}</span><br></div></div>
       <br>
       <div class="inline"><h4>Subtotal:</h4><span class="pull-right">{{paymentSubtotal | currency}}</span><br></div>
       <!-- <div class="inline"><h4>Processing Fee:</h4><span class="pull-right">{{paymentHosting | currency}}</span><br></div> -->
