@@ -112,13 +112,13 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state, s
             // {
 
             // }
-
-            $scope.adultSubtotal = $scope.numberOfAdults * $scope.currentImage.price;
-            $scope.paymentSubtotal = $scope.adultSubtotal;
-            $scope.paymentHosting = $scope.numberOfAdults * $scope.currentImage.host_fee_value;
-            $scope.paymentTax = $scope.numberOfAdults * $scope.currentImage.tax_fee_value;
-            $scope.paymentPrice = $scope.numberOfAdults * $scope.currentImage.totalPrice;
-
+            if($scope.currentImage.price!=0){
+                $scope.adultSubtotal = $scope.numberOfAdults * $scope.currentImage.price;
+                $scope.paymentSubtotal = $scope.adultSubtotal;
+                $scope.paymentHosting = $scope.numberOfAdults * $scope.currentImage.host_fee_value;
+                $scope.paymentTax = $scope.numberOfAdults * $scope.currentImage.tax_fee_value;
+                $scope.paymentPrice = $scope.numberOfAdults * $scope.currentImage.totalPrice;
+            }
             if($scope.currentImage.youthPrice!=0){
                 $scope.youthSubtotal = $scope.numberOfYouth * $scope.currentImage.youthPrice;    
                 $scope.paymentSubtotal += $scope.youthSubtotal;
