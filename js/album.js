@@ -111,7 +111,7 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state, s
 
             $scope.paymentHosting = $scope.numberOfAdults * $scope.currentImage.host_fee_value 
                                     + $scope.numberOfYouth * $scope.currentImage.youth_host_fee_value
-                                    + $scope.numberOfChildren * $scope.currentImage.host_fee_value;
+                                    + $scope.numberOfChildren * $scope.currentImage.child_host_fee_value;
 
             $scope.paymentTax = $scope.numberOfAdults * $scope.currentImage.tax_fee_value 
                                 + $scope.numberOfYouth * $scope.currentImage.youth_tax_fee_value 
