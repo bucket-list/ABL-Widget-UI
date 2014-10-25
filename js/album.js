@@ -8,7 +8,11 @@ app.service('productService', function ($window) {
     var setData = function(dataFromView) {
         currentProduct = dataFromView;
         $window.sessionStorage["currentProductData"] = JSON.stringify(currentProduct);
+<<<<<<< HEAD
         console.log(dataFromView);
+=======
+        console.log("Data"+dataFromView);
+>>>>>>> fcbd65f845657075574db755477b6c002e473fdf
     };
     var getCurrentProduct = function(){
         sessionCurrentProduct= $window.sessionStorage["currentProductData"];
@@ -20,11 +24,32 @@ app.service('productService', function ($window) {
         getCurrentProduct: getCurrentProduct
     };
 });
+<<<<<<< HEAD
+=======
+
+app.factory("serverService", function() {
+    return {
+        //dev
+        serverHost: '162.242.170.162',
+        serverPort: '8081',
+        serverAuth: 'Basic YWdyaWdnczplcGljaG91c2U=',
+        //production
+        //serverHost: '127.0.0.1',
+        // serverPort: '8081'    
+    };
+
+});
+
+>>>>>>> fcbd65f845657075574db755477b6c002e473fdf
 app.controller('TermsCtrl', function ($scope, productService) {
     $scope.currentImage = productService.getCurrentProduct();
 })
 
+<<<<<<< HEAD
 app.controller('PaymentCtrl', function ($scope, $http, productService, $state) { 
+=======
+app.controller('PaymentCtrl', function ($scope, $http, productService, $state, serverService) { 
+>>>>>>> fcbd65f845657075574db755477b6c002e473fdf
     $scope.currentImage = productService.getCurrentProduct();
     $scope.formData = {};
     $scope.onlyNumbers = /^\d+$/;
@@ -58,6 +83,10 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state) {
   $scope.toggleMin();
 
   $scope.toggleMax = function() {
+<<<<<<< HEAD
+=======
+    // console.log( new Date($scope.currentImage.enddate).format("dd-mm-yy"));
+>>>>>>> fcbd65f845657075574db755477b6c002e473fdf
     $scope.maxDate = $scope.maxDate ? null : new Date($scope.currentImage.enddate);
   };
   $scope.toggleMax();
@@ -89,6 +118,7 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state) {
                                     // $scope.numberOfAdults * $scope.currentImage.price 
                                     // + $scope.numberOfYouth * $scope.currentImage.youthTotalPrice
                                     // + $scope.numberOfChildren * $scope.currentImage.youthTotalPrice;
+<<<<<<< HEAD
             $scope.adultSubtotal = $scope.numberOfAdults * $scope.currentImage.price;
             $scope.youthSubtotal = $scope.numberOfYouth * $scope.currentImage.youthPrice;
             $scope.childSubtotal = $scope.numberOfChildren * $scope.currentImage.childPrice;
@@ -106,6 +136,43 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state) {
             $scope.paymentPrice = $scope.numberOfAdults * $scope.currentImage.totalPrice 
                                     + $scope.numberOfYouth * $scope.currentImage.youthTotalPrice 
                                     + $scope.numberOfChildren * $scope.currentImage.childTotalPrice;
+=======
+            // if($scope.currentImage.childPrice !=0) {
+
+
+            // }
+            // else if ($scope.currentImage.youthPrice !=0) 
+            // {
+
+            // }
+            if($scope.currentImage.price!=0){
+                $scope.adultSubtotal = $scope.numberOfAdults * $scope.currentImage.price;
+                $scope.paymentSubtotal = $scope.adultSubtotal;
+                $scope.paymentHosting = $scope.numberOfAdults * $scope.currentImage.host_fee_value;
+                $scope.paymentTax = $scope.numberOfAdults * $scope.currentImage.tax_fee_value;
+                $scope.paymentPrice = $scope.numberOfAdults * $scope.currentImage.totalPrice;
+            }
+            if($scope.currentImage.youthPrice!=0){
+                $scope.youthSubtotal = $scope.numberOfYouth * $scope.currentImage.youthPrice;    
+                $scope.paymentSubtotal += $scope.youthSubtotal;
+                $scope.paymentHosting += $scope.numberOfYouth * $scope.currentImage.youth_host_fee_value;
+                $scope.paymentTax += $scope.numberOfYouth * $scope.currentImage.youth_tax_fee_value;
+                $scope.paymentPrice += $scope.numberOfYouth * $scope.currentImage.youthTotalPrice;
+            }
+            if($scope.currentImage.childPrice!=0){
+                $scope.childSubtotal = $scope.numberOfChildren * $scope.currentImage.childPrice;    
+                $scope.paymentSubtotal += $scope.childSubtotal;
+                $scope.paymentHosting += $scope.numberOfChildren * $scope.currentImage.child_host_fee_value;
+                $scope.paymentTax = $scope.numberOfChildren * $scope.currentImage.child_tax_fee_value;
+                 $scope.paymentPrice += $scope.numberOfChildren * $scope.currentImage.childTotalPrice;
+            }
+            //$scope.paymentSubtotal = $scope.adultSubtotal + $scope.youthSubtotal + $scope.childSubtotal; 
+            $scope.tax_and_fee = $scope.paymentTax + $scope.paymentHosting;
+
+            //$scope.paymentPrice = $scope.numberOfAdults * $scope.currentImage.totalPrice 
+              //                      + $scope.numberOfYouth * $scope.currentImage.youthTotalPrice 
+                //                    + $scope.numberOfChildren * $scope.currentImage.childTotalPrice;
+>>>>>>> fcbd65f845657075574db755477b6c002e473fdf
         }
     //this watches the ng-model input for changes and changes the payment price according to that and stores it
     $scope.$watch('numberOfAdults', function() {
@@ -130,12 +197,15 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state) {
             // process the form
              $scope.processPaymentForm = function(expr) {
                 var form = this;
+<<<<<<< HEAD
                     
             
                     
                 //console.log("Fuck "+$scope.formData);
                //$scope.message = formdata;
               // alert("Form Data: "+form.formData);
+=======
+>>>>>>> fcbd65f845657075574db755477b6c002e473fdf
                 form.formData.price_paid = $scope.paymentPrice;
                 form.formData.product_id = $scope.currentImage._id;
                 form.formData.number_of_adults = $scope.numberOfAdults;
@@ -143,6 +213,7 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state) {
                 form.formData.number_of_children = $scope.numberOfChildren;
                 form.formData.date = new Date(form.formData.date);
                 form.formData.api_key = location.search.split("api_key=")[1];
+<<<<<<< HEAD
 
                 console.log(form.formData);
                 $http({
@@ -154,6 +225,23 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state) {
                     .success(function(data) {
                         $state.go('complete');
                         console.log(data);
+=======
+                //server host name and port!
+                $scope.serverHost = serverService.serverHost;
+                $scope.serverPort = serverService.serverPort;
+                $scope.serverAuth = serverService.serverAuth;
+    
+                //console.log(form.formData);
+                $http({
+                    method  : 'POST',
+                    url     : "http://"+$scope.serverHost+":"+$scope.serverPort+"/api/checkout",
+                    data    : $.param(form.formData),  // pass in data as strings
+                    headers : { 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': $scope.serverAuth }  // set the headers so angular passing info as form data (not request payload)
+                })
+                    .success(function(data) {
+                        $state.go('complete');
+                        // console.log(data);
+>>>>>>> fcbd65f845657075574db755477b6c002e473fdf
 
                         if (!data.success) {
                             // if not successful, bind errors to error variables
@@ -263,7 +351,11 @@ app.controller('MainCtrl', function ($scope, productService) {
     //     };
     // });
 
+<<<<<<< HEAD
 app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, productService) {
+=======
+app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, productService, serverService) {
+>>>>>>> fcbd65f845657075574db755477b6c002e473fdf
     $scope.url = 'images.json';
     $scope.images = [];
     $scope.imageCategories = [];
@@ -287,6 +379,12 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
 
     $scope.handleImagesLoaded = function (data, status) {
         $scope.images = data;
+<<<<<<< HEAD
+=======
+        // if(productService.getCurrentProduct()!=null){
+        //     productService.getCurrentProduct()
+        // }
+>>>>>>> fcbd65f845657075574db755477b6c002e473fdf
         // Set the current image to the first image in images
         $scope.currentImage = _.first($scope.images);
         // Create a unique array based on the category property in the images objects
@@ -294,13 +392,27 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
     }
 
     $scope.fetch = function () {
+<<<<<<< HEAD
         $http.defaults.headers.get = { 'Basic' : 'YWdyaWdnczpGdWNreW91MjAxNA' };
         //$http.defaults.headers.common.Authorization = 'Basic YWdyaWdnczpGdWNreW91MjAxNA==';
         $http.get("http://162.242.170.162:8081/api/product?city=whistler", {headers: {'Authorization': 'Basic YWdyaWdnczpGdWNreW91MjAxNA=='}}).success($scope.handleImagesLoaded);
+=======
+        $scope.serverHost = serverService.serverHost;
+        $scope.serverPort = serverService.serverPort;
+        $scope.serverAuth = serverService.serverAuth;
+    //console.log(serverService.serverHost+" "+serverService.serverPort+" "+serverService.serverAuth+" "+$scope.serverHost+" "+$scope.serverPort+" "+$scope.serverAuth+" ");
+        // $http.defaults.headers.get = { 'Basic' : 'YWdyaWdnczpGdWNreW91MjAxNA' };
+        //$http.defaults.headers.common.Authorization = 'Basic YWdyaWdnczpGdWNreW91MjAxNA==';
+        $http.get("http://"+$scope.serverHost+":"+$scope.serverPort+"/api/product?city=whistler", {headers: {'Authorization': $scope.serverAuth}}).success($scope.handleImagesLoaded);
+>>>>>>> fcbd65f845657075574db755477b6c002e473fdf
     };
 
     $scope.setCurrentImage = function (image) {
         $scope.currentImage = image;
+<<<<<<< HEAD
+=======
+        productService.setData(image);
+>>>>>>> fcbd65f845657075574db755477b6c002e473fdf
         _.$inject = ["$scope", "image"]
     };
     $scope.clickFunction = function() {
