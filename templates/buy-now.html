@@ -53,22 +53,16 @@
           <p style="font-size: 16px;"> <strong>from ${{currentImage.price}} each</strong></p>
         </div>
       </div>
-<<<<<<< HEAD
-=======
         <div ng-if="currentImage.youthPrice!=0;">
->>>>>>> fcbd65f845657075574db755477b6c002e473fdf
         <div class= "inline pricepadding" ng-init="numberOfYouth=0;"style="display=inline;">
           <h4>Youth </h4><p>(12-18)</p>
         <div class="selectNumber">
           <input type="number" min="0" max= "{{currentImage.maxOcc}}" ng-model="numberOfYouth">
           <p style="font-size: 16px"> <strong>from ${{currentImage.youthPrice}} each</strong></p>
         </div>
-<<<<<<< HEAD
-        </div >
-=======
-        </div></div>
+        </div>
+      </div>
         <div ng-if="currentImage.childPrice!=0;">
->>>>>>> fcbd65f845657075574db755477b6c002e473fdf
         <div class= "inline pricepadding" ng-init="numberOfChildren=0;">
           <h4>Children </h4><p>(12 and under)</p>
         <div class="selectNumber">
@@ -77,7 +71,7 @@
         </div>
       </div>
     </div>
-<<<<<<< HEAD
+<!-- <<<<<<< HEAD
 
     <div class="cart col-sm-4 pull-right" style=" margin-top: 40px;">
       <div ng-if="numberOfAdults!=0;" class="animate-if inline"><h4>Adult:</h4><span class="pull-right">{{numberOfAdults}}X{{adultSubtotal | currency}}</span><br></div>
@@ -87,23 +81,23 @@
       <div class="inline"><h4>Subtotal:</h4><span class="pull-right">{{paymentSubtotal | currency}}</span><br></div>
       <div class="inline"><h4>Processing Fee:</h4><span class="pull-right">{{paymentHosting | currency}}</span><br></div>
       <div class="inline"><h4>Tax:</h4><span class="pull-right">{{paymentTax | currency}}</span><br></div>
-=======
+======= -->
     <div ng-if="currentImage.youthPrice==0;"><div class="inline pricepadding"></div></div>
     <div ng-if="currentImage.childPrice==0;"><div class="inline pricepadding"></div></div>
     </div>
 
     <div class="cart col-sm-4 pull-right" style=" margin-top: 40px;">
-      <div ng-if="numberOfAdults!=0;" class="animate-if inline"><h4>Adult:</h4><span class="pull-right">{{numberOfAdults}}X{{adultSubtotal | currency}}</span><br></div>
+      <div ng-if="numberOfAdults!=0;" class="animate-if inline"><h4>Adult:</h4><span class="pull-right">{{numberOfAdults}}X{{currentImage.price | currency}}</span><br></div>
       <div ng-if="currentImage.youthPrice!=0;">
-      <div ng-if="numberOfYouth!=0;" class="animate-if inline"><h4>Youth:</h4><span class="pull-right">{{numberOfYouth}}X{{youthSubtotal | currency}}</span><br></div></div>
+      <div ng-if="numberOfYouth!=0;" class="animate-if inline"><h4>Youth:</h4><span class="pull-right">{{numberOfYouth}}X{{currentImage.youthPrice | currency}}</span><br></div></div>
       <div ng-if="currentImage.childPrice!=0;">
-        <div ng-if="numberOfChildren!=0;" class="animate-if inline"><h4>Children:</h4><span class="pull-right">{{numberOfChildren}}X{{childSubtotal | currency}}</span><br></div>
+        <div ng-if="numberOfChildren!=0;" class="animate-if inline"><h4>Children:</h4><span class="pull-right">{{numberOfChildren}}X{{currentImage.childPrice | currency}}</span><br></div>
       </div>
       <br>
       <div class="inline"><h4>Subtotal:</h4><span class="pull-right">{{paymentSubtotal | currency}}</span><br></div>
       <!-- <div class="inline"><h4>Processing Fee:</h4><span class="pull-right">{{paymentHosting | currency}}</span><br></div> -->
       <div class="inline"><h4>Tax & Fees:</h4><span class="pull-right">{{tax_and_fee | currency}}</span><br></div>
->>>>>>> fcbd65f845657075574db755477b6c002e473fdf
+<!-- >>>>>>> fcbd65f845657075574db755477b6c002e473fdf -->
       <div class="inline"><h4>Total:</h4><span class="pull-right">
             {{paymentPrice | currency}}
       </span>

@@ -26,14 +26,11 @@ h3 {
 .inline p {
        display:inline;
 }
-<<<<<<< HEAD
-=======
 .small_price {
   display:relative;
   margin: 5px;
 
 }
->>>>>>> fcbd65f845657075574db755477b6c002e473fdf
     .tables {
       width: 100%;
       height: 400px;
