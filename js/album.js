@@ -24,9 +24,10 @@ app.service('productService', function ($window) {
 app.factory("serverService", function() {
     return {
         //dev
-        serverHost: '162.242.170.162',
+        serverHost: 'localhost',//'162.242.170.162',
         serverPort: '8081',
-        serverAuth: 'Basic YWdyaWdnczplcGljaG91c2U=',
+        serverAuth: 'Basic dGVzdDphc2Rm',
+        // serverAuth: 'Basic YWdyaWdnczplcGljaG91c2U=',
         //production
         //serverHost: '127.0.0.1',
         // serverPort: '8081'    
@@ -35,8 +36,13 @@ app.factory("serverService", function() {
 });
 app.controller('TermsCtrl', function ($scope, productService) {
     $scope.currentImage = productService.getCurrentProduct();
+    $rootScope.$on("$routeChangeSuccess", function(event, current, previous) {
+    if(previous && previous.params === "example") {
+        $location.path("/defaultPage");
+    }
+});
 })
-app.controller('PaymentCtrl', function ($scope, $http, productService, $state, serverService) { 
+app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService, $state, serverService) { 
     $scope.currentImage = productService.getCurrentProduct();
     $scope.formData = {};
     $scope.onlyNumbers = /^\d+$/;
@@ -135,15 +141,40 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state, s
                 $scope.paymentHosting = $scope.numberOfAdults * $scope.currentImage.host_fee_value;
                 $scope.paymentTax = $scope.numberOfAdults * $scope.currentImage.tax_fee_value;
                 $scope.paymentPrice = $scope.numberOfAdults * $scope.currentImage.totalPrice;
+                //console.log($scope.numberOfAdults,$scope.currentImage.price,$scope.paymentSubtotal,$scope.paymentHosting,$scope.paymentTax,$scope.paymentPrice);
             }
+             else {
+                // $scope.adultSubtotal = $scope.numberOfAdults * $scope.currentImage.price;
+                $scope.paymentSubtotal = 0;
+                $scope.paymentHosting = 0;
+                $scope.paymentTax = 0;
+                $scope.paymentPrice = 0;
+            }
+            
             if($scope.currentImage.youthPrice!=0){
                 $scope.youthSubtotal = $scope.numberOfYouth * $scope.currentImage.youthPrice;    
                 $scope.paymentSubtotal += $scope.youthSubtotal;
                 $scope.paymentHosting += $scope.numberOfYouth * $scope.currentImage.youth_host_fee_value;
                 $scope.paymentTax += $scope.numberOfYouth * $scope.currentImage.youth_tax_fee_value;
                 $scope.paymentPrice += $scope.numberOfYouth * $scope.currentImage.youthTotalPrice;
-            }
-            if($scope.currentImage.childPrice!=0){
+                //console.log( $scope.numberOfYouth, $scope.currentImage.youthPrice, $scope.paymentSubtotal,$scope.paymentHosting,$scope.paymentTax,$scope.paymentPrice);
+            } 
+            // else if($scope.currentImage.youthPrice!=0){
+            //     $scope.youthSubtotal = $scope.numberOfYouth * $scope.currentImage.youthPrice;    
+            //     $scope.paymentSubtotal = $scope.youthSubtotal;
+            //     $scope.paymentHosting = $scope.numberOfYouth * $scope.currentImage.youth_host_fee_value;
+            //     $scope.paymentTax = $scope.numberOfYouth * $scope.currentImage.youth_tax_fee_value;
+            //     $scope.paymentPrice = $scope.numberOfYouth * $scope.currentImage.youthTotalPrice;
+            // }
+
+            // else {
+            //     // $scope.adultSubtotal = $scope.numberOfAdults * $scope.currentImage.price;
+            //     $scope.paymentSubtotal = 0;
+            //     $scope.paymentHosting = 0;
+            //     $scope.paymentTax = 0;
+            //     $scope.paymentPrice = 0;
+            // }
+            else if($scope.currentImage.childPrice!=0){
                 $scope.childSubtotal = $scope.numberOfChildren * $scope.currentImage.childPrice;    
                 $scope.paymentSubtotal += $scope.childSubtotal;
                 $scope.paymentHosting += $scope.numberOfChildren * $scope.currentImage.child_host_fee_value;
@@ -175,14 +206,20 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state, s
                 $.getJSON("http://www.telize.com/geoip/"+data.ip, function (geodata) {
                      $scope.formData.geoip = geodata;
                 });
-                });
+            });
+        $.getJSON("http://localhost:8081/api/clientID", function (data) {
+            braintree.setup(data.token, "dropin", { container: "dropin"});
+        });
+                // , "<integration>", options
             // create a blank object to hold our form information
             // $scope will allow this to pass between controller and view
             // process the form
-             $scope.processPaymentForm = function(expr) {
+         $scope.processPaymentForm = function(expr) {
                 var form = this;
-                form.formData.price_paid = $scope.paymentPrice;
+                console.log($scope.currentImage._id);
                 form.formData.product_id = $scope.currentImage._id;
+                form.formData.price_paid = $scope.paymentPrice;
+                
                 form.formData.number_of_adults = $scope.numberOfAdults;
                 form.formData.number_of_youth = $scope.numberOfYouth;
                 form.formData.number_of_children = $scope.numberOfChildren;
@@ -201,13 +238,25 @@ app.controller('PaymentCtrl', function ($scope, $http, productService, $state, s
                     headers : { 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': $scope.serverAuth }  // set the headers so angular passing info as form data (not request payload)
                 })
                     .success(function(data) {
-                        $state.go('complete');
-                        // console.log(data);
+                        console.log("http: "+data);
                         if (!data.success) {
-                            // if not successful, bind errors to error variables
-                            $scope.errorName = data.errors;
+                            // if not successful, bind errors to error variables       
+                            $scope.alerts = [];
+                            var alert = {
+                                msg: data.error
+                            }
+                            alert.close = function(){
+                                $scope.alerts.splice($scope.alerts.indexOf(this), 1);
+                            }
+                            $scope.alerts.push(alert);
+                            $timeout(function(){
+                                $scope.alerts.splice($scope.alerts.indexOf(alert), 1);
+                            }, 5000); // maybe '}, 3000, false);' to avoid calling apply
+
+                            $scope.errorName = data.error;
                             //$scope.errorSuperhero = data.errors.superheroAlias;
                         } else {
+                            $state.go('complete');
                             // if successful, bind success message to message
                             $scope.message = data.message;
 

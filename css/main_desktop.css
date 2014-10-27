@@ -15,9 +15,14 @@ h1 {
   top:0px;
   right:0px;
 }
-#purchase_window {
-  width: 70%;
+.cart2 {
+  position: absolute;
+  top:35%;
+  right:2%;
 }
+/*#purchase_window {
+  width: 40%;
+}*/
 /*.price {
     font-color: black;
 }*/

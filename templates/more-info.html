@@ -43,8 +43,12 @@
       </nav>
     </div>
        <div class="topRight">
-        <h2 class="duration" >{{currentImage.duration}} Hours for</h2> 
-        <h2>${{currentImage.price}}</h2> 
+        
+        <h2>{{currentImage.duration}} Hours for 
+          <span ng-show="currentImage.price!=0;" id="price">${{currentImage.price}}</span>
+          <span ng-show="currentImage.youthPrice!=0 && currentImage.youthPrice > currentImage.price" id="price">${{currentImage.youthPrice}}</span>
+          <span ng-show="currentImage.childPrice!=0 && currentImage.youthPrice < currentImage.childPrice" id="price">${{currentImage.childPrice}}</span>
+        </h2>
           <div class="overview">
           <h3> Overview: </h3> 
           <p> {{currentImage.highLight}}</p>
