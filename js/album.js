@@ -26,8 +26,8 @@ app.factory("serverService", function() {
         //dev
         serverHost: 'localhost',//'162.242.170.162',
         serverPort: '8081',
-        serverAuth: 'Basic dGVzdDphc2Rm',
-        // serverAuth: 'Basic YWdyaWdnczplcGljaG91c2U=',
+        // serverAuth: 'Basic dGVzdDphc2Rm',
+        serverAuth: 'Basic YWdyaWdnczplcGljaG91c2U=',
         //production
         //serverHost: '127.0.0.1',
         // serverPort: '8081'    
