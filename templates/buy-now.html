@@ -74,7 +74,7 @@
           <h4>Adult:</h4><br>
           <div class="selectNumber">
           <input type="number" min="0" max= "{{currentImage.maxOcc}}" ng-model="numberOfAdults">
-          <p style="font-size: 16px;"> <strong>from ${{currentImage.price}} each</strong></p>
+          <p style="font-size: 16px;"> <strong>${{currentImage.price}} each</strong></p>
         </div>
       </div>
     </div>
@@ -83,7 +83,7 @@
           <h4>Youth </h4><p>(12-18)</p>
         <div class="selectNumber">
           <input type="number" min="0" max= "{{currentImage.maxOcc}}" ng-model="numberOfYouth">
-          <p style="font-size: 16px"> <strong>from ${{currentImage.youthPrice}} each</strong></p>
+          <p style="font-size: 16px"> <strong>${{currentImage.youthPrice}} each</strong></p>
         </div>
         </div>
       </div>
@@ -92,7 +92,7 @@
           <h4>Children </h4><p>(12 and under)</p>
         <div class="selectNumber">
             <input type="number" min="0" max= "{{currentImage.maxOcc}}" ng-model="numberOfChildren">
-            <p style="font-size: 16px"><strong>from ${{currentImage.childPrice}} each</strong></p>
+            <p style="font-size: 16px"><strong>${{currentImage.childPrice}} each</strong></p>
         </div>
       </div>
     </div>
