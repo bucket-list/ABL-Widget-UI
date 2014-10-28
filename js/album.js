@@ -97,7 +97,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
   $scope.format = $scope.formats[0];
   $scope.checkDate = function(dt) 
   {
-    console.log(dt, $scope.minDate);
+    //console.log(dt, $scope.minDate);
     if($scope.dt < $scope.minDate){
         $scope.formData.date = $scope.minDate;
     }    //$scope.maxDate = $scope.maxDate ? null : new Date($scope.currentImage.enddate);
@@ -145,6 +145,10 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
         $scope.calculatePrice();
 
     });    
+    $scope.$watch('timez', function() {
+        $scope.boughtForDate = moment(new Date($scope.formData.date)).format('MM-DD-YYYY');
+        console.log($scope.boughtForDate+" "+$scope.timez);//moment($scope.boughtForDate).format('MM-DD-YYYY hh:mmA'));.setTime($scope.timez)
+    });
     $scope.geoip = {};
         $.getJSON("http://jsonip.com?callback=?", function (data) {
                 $.getJSON("http://www.telize.com/geoip/"+data.ip, function (geodata) {
@@ -160,14 +164,17 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
             // process the form
          $scope.processPaymentForm = function(expr) {
                 var form = this;
-                console.log($scope.currentImage._id);
                 form.formData.product_id = $scope.currentImage._id;
                 form.formData.price_paid = $scope.paymentPrice;
                 
                 form.formData.number_of_adults = $scope.numberOfAdults;
                 form.formData.number_of_youth = $scope.numberOfYouth;
                 form.formData.number_of_children = $scope.numberOfChildren;
-                form.formData.date = new Date(form.formData.date);
+                // var dateTime = new Date(form.formData.date+form.formData.time);
+                
+                // console.log($scope.timez, $scope.newtime);
+                form.formData.date_togo = form.formData.date; //new Date(form.formData.date+form.formData.time);
+                form.formData.time_togo = $scope.timez;//new Date(form.formData.time);
                 form.formData.api_key = location.search.split("api_key=")[1];
                 //server host name and port!
                 $scope.serverHost = serverService.serverHost;

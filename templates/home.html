@@ -24,8 +24,8 @@
 >>>>>>> fcbd65f845657075574db755477b6c002e473fdf -->
         <div class="description highlighted">
             <p class="updescription">
-                <span class="productTitle ">{{currentImage.title}}</span><br />
-                <span class="productTitle ">{{currentImage.city}}, {{currentImage.state}}</span><br />
+                <span class="productTitle">{{currentImage.title}}</span><br />
+                <span class="productTitle2">{{currentImage.city}}, {{currentImage.state}}</span><br />
 
                 <small>{{currentImage.highLight}} </small>
             </p>
@@ -52,7 +52,10 @@
                 <img width="200px" height="150px" ng-src="{{image.image_lg}}" alt="{{image.title}}">
                 <div class="thumbnailDescription">
                     <p class="thumbnailTitle"> {{image.title | limitTo: 22}}{{image.title.length > 22 ? '...' : ''}}</p>
-                    <p class="thumbnailPrice pull-right"> ${{image.price}} </p>
+                    <!-- <p class="thumbnailPrice pull-right"> ${{image.price}} </p> -->
+                <p ng-show="image.youthPrice<image.price" class="thumbnailPrice pull-right">${{image.price}}</p>
+                <p ng-show="image.youthPrice>image.price && image.youthPrice>image.childPrice" class="thumbnailPrice pull-right">${{image.youthPrice}}</p>
+                <p ng-show="image.youthPrice<image.childPrice && image.price<image.childPrice" class="thumbnailPrice pull-right">${{image.childPrice}}</p>
                 </div>
             </li>
         </ul>

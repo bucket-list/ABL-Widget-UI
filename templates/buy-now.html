@@ -71,12 +71,13 @@
 
     </div>
     <!-- <div> 
-      --><div class= "cart inline pull-left" style="display=inline;width:55%">
-        <select class="form-control timeDropdown">
-          <option ng-repeat="time in currentImage.startTime" value="time">{{time}}</option>
-        </select>
-    
-    </div>
+      -->
+      <div class= "cart inline pull-left" style="display=inline;width:55%">
+        <p style="display:block">Select a time:<p>
+          <select class="form-control timeDropdown" ng-model="timez">
+            <option ng-repeat="timez in currentImage.startTime" >{{timez}}</option>
+          </select>
+      </div>
 
     <div class="cart inline pull-right" style="display=inline;width:25%">
       <!-- <div ng-if="currentImage.price!=0 && numberOfAdults!=0;" class="animate-if inline"><h4>Adult:</h4><span class="pull-right">{{numberOfAdults}}X{{currentImage.price | currency}}</span><br></div>
