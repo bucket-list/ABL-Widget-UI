@@ -33,18 +33,22 @@
     }
     .tos {
       float: left; 
-      width: 50%;
-      margin-top:15px;
-      margin-left: 8px;
+      width: 60%;
+/*      margin-top:15px;
+      margin-left: 8px;*/
     }
     .tos p {
       font-size: 16px; 
       display:inline;
     }
-    .buttonPosition {
+    .timeDropdown {
+      width: 50%;
+      float: left;
+    }
+/*    .buttonPosition {
       margin-top: 15px;
     }
-
+*/
     .divider {
       margin-top:10px;
       margin-bottom:10px;
@@ -61,56 +65,59 @@
 </div>
 <div></div>
 <div id="purchase_window" class="row col-sm-12">
-  <div>Selected Date: {{formData.date | date:"dd/MM/yyyy"}} at {{currentImage.startTime}}</div>
+  <!-- <div>Selected Date: {{formData.date | date:"dd/MM/yyyy"}} at </div> -->
   <div style="display:inline-block; min-height:200px;">
         <datepicker ng-change="checkDate(formData.date)" ng-click="open($event)" class="well well-sm" show-weeks="false" ng-model="formData.date" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true"></datepicker>
 
     </div>
     <!-- <div> 
-      --><div class= "cart inline pull-right" style="display=inline;width:55%">
-        
-        <div ng-show="currentImage.price!=0;">
-        <div  ng-init="numberOfAdults=1;">
-          <h4>Adult:</h4><br>
-          <div class="selectNumber">
-          <input type="number" min="0" max= "{{currentImage.maxOcc}}" ng-model="numberOfAdults">
-          <p style="font-size: 16px;"> <strong>${{currentImage.price}} each</strong></p>
+      --><div class= "cart inline pull-left" style="display=inline;width:55%">
+        <select class="form-control timeDropdown">
+          <option ng-repeat="time in currentImage.startTime" value="time">{{time}}</option>
+        </select>
+    
+    </div>
+
+    <div class="cart inline pull-right" style="display=inline;width:25%">
+      <!-- <div ng-if="currentImage.price!=0 && numberOfAdults!=0;" class="animate-if inline"><h4>Adult:</h4><span class="pull-right">{{numberOfAdults}}X{{currentImage.price | currency}}</span><br></div>
+      <div ng-if="currentImage.youthPrice!=0;">
+      <div ng-if="numberOfYouth!=0;" class="animate-if inline"><h4>Youth:</h4><span class="pull-right">{{numberOfYouth}}X{{currentImage.youthPrice | currency}}</span><br></div></div>
+      <div ng-if="currentImage.childPrice!=0;">
+        <div ng-if="numberOfChildren!=0;" class="animate-if inline"><h4>Children:</h4><span class="pull-right">{{numberOfChildren}}X{{currentImage.childPrice | currency}}</span><br></div>
+      </div> -->
+      <div ng-show="currentImage.price!=0;">
+        <div ng-init="numberOfAdults=1;">
+          <!-- <br> -->
+          <div class="selectNumber"><h4>Adult:</h4>
+          <input type="number" min="1" max= "{{currentImage.maxOcc}}" ng-model="numberOfAdults">
+          <p style="font-size: 14px;"> <strong>${{currentImage.price}} each</strong></p>
         </div>
       </div>
     </div>
         <div ng-show="currentImage.youthPrice!=0;">
         <div ng-init="numberOfYouth=1;">
-          <h4>Youth </h4><p>(12-18)</p>
-        <div class="selectNumber">
+          
+        <div class="selectNumber"><h4>Youth </h4><!-- <p>(12-18)</p> -->
           <input type="number" min="0" max= "{{currentImage.maxOcc}}" ng-model="numberOfYouth">
-          <p style="font-size: 16px"> <strong>${{currentImage.youthPrice}} each</strong></p>
+          <p style="font-size: 14px"> <strong>${{currentImage.youthPrice}} each</strong></p>
         </div>
         </div>
       </div>
       <div ng-show="currentImage.childPrice!=0;">
-        <div style="display=inline;width:55%"  ng-init="numberOfChildren=1;">
-          <h4>Children </h4><p>(12 and under)</p>
-        <div class="selectNumber">
-            <input type="number" min="0" max= "{{currentImage.maxOcc}}" ng-model="numberOfChildren">
-            <p style="font-size: 16px"><strong>${{currentImage.childPrice}} each</strong></p>
+        <div ng-init="numberOfChildren=1;">
+          
+        <div class="selectNumber"><h4>Child</h4><!-- <p>(0-12)</p> -->
+            <input type="number" min="0" max= "{{currentImage.maxOcc}}" ng-model="numberOfChildren" style="margin-left:5px;">
+            <p style="font-size: 14px"><strong>${{currentImage.childPrice}} each</strong></p>
         </div>
       </div>
     </div>
     <div ng-if="currentImage.price==0;"><div class="inline pricepadding"></div></div>
     <div ng-if="currentImage.youthPrice==0;"><div class="inline pricepadding"></div></div>
     <div ng-if="currentImage.childPrice==0;"><div class="inline pricepadding"></div></div>
-    
-    </div>
 
-    <div class="cart col-sm-4 pull-right">
-      <div ng-if="currentImage.price!=0 && numberOfAdults!=0;" class="animate-if inline"><h4>Adult:</h4><span class="pull-right">{{numberOfAdults}}X{{currentImage.price | currency}}</span><br></div>
-      <div ng-if="currentImage.youthPrice!=0;">
-      <div ng-if="numberOfYouth!=0;" class="animate-if inline"><h4>Youth:</h4><span class="pull-right">{{numberOfYouth}}X{{currentImage.youthPrice | currency}}</span><br></div></div>
-      <div ng-if="currentImage.childPrice!=0;">
-        <div ng-if="numberOfChildren!=0;" class="animate-if inline"><h4>Children:</h4><span class="pull-right">{{numberOfChildren}}X{{currentImage.childPrice | currency}}</span><br></div>
-      </div>
-      <br>
-      <div class="inline"><h4>Subtotal:</h4><span class="pull-right">{{paymentSubtotal | currency}}</span><br></div>
+      <!-- <br> -->
+      <div class="inline" style="margin-top:5px;"><h4>Subtotal:</h4><span class="pull-right">{{paymentSubtotal | currency}}</span><br></div>
       <!-- <div class="inline"><h4>Processing Fee:</h4><span class="pull-right">{{paymentHosting | currency}}</span><br></div> -->
       <div class="inline"><h4>Tax & Fees:</h4><span class="pull-right">{{tax_and_fee | currency}}</span><br></div>
 <!-- >>>>>>> fcbd65f845657075574db755477b6c002e473fdf -->
@@ -150,6 +157,9 @@
       <div id="dropin"></div>
       <div class="tos" >
         <input type="checkbox" name="agreement" ng-model = "formData.agreement" value="yes" required>&nbsp; <p>I agree to the <a href="#/terms"> Terms of Service</a></p>
+      </div>
+      <div class="tos" >
+        <input type="checkbox" name="agreement" ng-model = "formData.weightAgreement" value="yes" required>&nbsp; <p>I agree to the <a href="#/requirements">Age, Weight & Ability requirements</a></p>
       </div>
       
       <button analytics-on="click" analytics-event="Check out - {{currentImage._id}}" analytics-category="Commands" type="button" class="btn btn-warning pull-right btn-xlarge buttonPosition" ng-click="processPaymentForm()"  ng-disabled="userForm.$invalid" >Checkout</button>

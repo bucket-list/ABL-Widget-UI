@@ -1,0 +1,31 @@
+<a class= "back" href="#/form/payment">
+  <span style="text-decoration: none; color:black;" class="fa fa-chevron-left fa-2x"></span>
+</a>
+
+<div class="container row" style="max-width:100%;margin:10px;">
+    <!-- <div class="text-center"> -->
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+
+        <div class="col-md-4"><h4>Requirements:</h4>
+        <ul> 
+            <li ng-repeat="item in currentImage.requirements track by $index">{{item}}</li>
+        </ul>
+        <div class="col-md-4"><h4>Included:</h4>
+        <ul> 
+            <li ng-repeat="item in currentImage.whatIncluded track by $index">{{item}}</li>
+        </ul>
+
+       </div>
+       <div class="col-md-4"><h4>What to Bring:</h4>
+        <ul> 
+            <li ng-repeat="item in currentImage.whatToBring track by $index">{{item}}</li>
+        </ul>
+       </div>
+       <!-- </div> -->
+
+    </div>
+</div>

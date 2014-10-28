@@ -36,11 +36,9 @@ app.factory("serverService", function() {
 });
 app.controller('TermsCtrl', function ($scope, productService) {
     $scope.currentImage = productService.getCurrentProduct();
-    $rootScope.$on("$routeChangeSuccess", function(event, current, previous) {
-    if(previous && previous.params === "example") {
-        $location.path("/defaultPage");
-    }
-});
+})
+app.controller('AgeCtrl', function ($scope, productService) {
+    $scope.currentImage = productService.getCurrentProduct();
 })
 app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService, $state, serverService) { 
     $scope.currentImage = productService.getCurrentProduct();
@@ -104,47 +102,14 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
     }    //$scope.maxDate = $scope.maxDate ? null : new Date($scope.currentImage.enddate);
   };
         $scope.calculatePrice = function () {
-            
-                                    // $scope.numberOfAdults * $scope.currentImage.price 
-                                    // + $scope.numberOfYouth * $scope.currentImage.youthTotalPrice
-                                    // + $scope.numberOfChildren * $scope.currentImage.youthTotalPrice;
-// <<<<<<< HEAD
-//             $scope.adultSubtotal = $scope.numberOfAdults * $scope.currentImage.price;
-//             $scope.youthSubtotal = $scope.numberOfYouth * $scope.currentImage.youthPrice;
-//             $scope.childSubtotal = $scope.numberOfChildren * $scope.currentImage.childPrice;
-
-//             $scope.paymentSubtotal = $scope.adultSubtotal + $scope.youthSubtotal + $scope.childSubtotal;
-
-//             $scope.paymentHosting = $scope.numberOfAdults * $scope.currentImage.host_fee_value 
-//                                     + $scope.numberOfYouth * $scope.currentImage.youth_host_fee_value
-//                                     + $scope.numberOfChildren * $scope.currentImage.host_fee_value;
-
-//             $scope.paymentTax = $scope.numberOfAdults * $scope.currentImage.tax_fee_value 
-//                                 + $scope.numberOfYouth * $scope.currentImage.youth_tax_fee_value 
-//                                 + $scope.numberOfChildren * $scope.currentImage.child_tax_fee_value;
-
-//             $scope.paymentPrice = $scope.numberOfAdults * $scope.currentImage.totalPrice 
-//                                     + $scope.numberOfYouth * $scope.currentImage.youthTotalPrice 
-//                                     + $scope.numberOfChildren * $scope.currentImage.childTotalPrice;
-// =======
-            // if($scope.currentImage.childPrice !=0) {
-
-
-            // }
-            // else if ($scope.currentImage.youthPrice !=0) 
-            // {
-
-            // }
             if($scope.currentImage.price!=0){
                 $scope.adultSubtotal = $scope.numberOfAdults * $scope.currentImage.price;
                 $scope.paymentSubtotal = $scope.adultSubtotal;
                 $scope.paymentHosting = $scope.numberOfAdults * $scope.currentImage.host_fee_value;
                 $scope.paymentTax = $scope.numberOfAdults * $scope.currentImage.tax_fee_value;
                 $scope.paymentPrice = $scope.numberOfAdults * $scope.currentImage.totalPrice;
-                //console.log($scope.numberOfAdults,$scope.currentImage.price,$scope.paymentSubtotal,$scope.paymentHosting,$scope.paymentTax,$scope.paymentPrice);
             }
              else {
-                // $scope.adultSubtotal = $scope.numberOfAdults * $scope.currentImage.price;
                 $scope.paymentSubtotal = 0;
                 $scope.paymentHosting = 0;
                 $scope.paymentTax = 0;
@@ -157,23 +122,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 $scope.paymentHosting += $scope.numberOfYouth * $scope.currentImage.youth_host_fee_value;
                 $scope.paymentTax += $scope.numberOfYouth * $scope.currentImage.youth_tax_fee_value;
                 $scope.paymentPrice += $scope.numberOfYouth * $scope.currentImage.youthTotalPrice;
-                //console.log( $scope.numberOfYouth, $scope.currentImage.youthPrice, $scope.paymentSubtotal,$scope.paymentHosting,$scope.paymentTax,$scope.paymentPrice);
             } 
-            // else if($scope.currentImage.youthPrice!=0){
-            //     $scope.youthSubtotal = $scope.numberOfYouth * $scope.currentImage.youthPrice;    
-            //     $scope.paymentSubtotal = $scope.youthSubtotal;
-            //     $scope.paymentHosting = $scope.numberOfYouth * $scope.currentImage.youth_host_fee_value;
-            //     $scope.paymentTax = $scope.numberOfYouth * $scope.currentImage.youth_tax_fee_value;
-            //     $scope.paymentPrice = $scope.numberOfYouth * $scope.currentImage.youthTotalPrice;
-            // }
-
-            // else {
-            //     // $scope.adultSubtotal = $scope.numberOfAdults * $scope.currentImage.price;
-            //     $scope.paymentSubtotal = 0;
-            //     $scope.paymentHosting = 0;
-            //     $scope.paymentTax = 0;
-            //     $scope.paymentPrice = 0;
-            // }
             else if($scope.currentImage.childPrice!=0){
                 $scope.childSubtotal = $scope.numberOfChildren * $scope.currentImage.childPrice;    
                 $scope.paymentSubtotal += $scope.childSubtotal;
@@ -181,13 +130,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 $scope.paymentTax = $scope.numberOfChildren * $scope.currentImage.child_tax_fee_value;
                  $scope.paymentPrice += $scope.numberOfChildren * $scope.currentImage.childTotalPrice;
             }
-            //$scope.paymentSubtotal = $scope.adultSubtotal + $scope.youthSubtotal + $scope.childSubtotal; 
             $scope.tax_and_fee = $scope.paymentTax + $scope.paymentHosting;
-
-            //$scope.paymentPrice = $scope.numberOfAdults * $scope.currentImage.totalPrice 
-              //                      + $scope.numberOfYouth * $scope.currentImage.youthTotalPrice 
-                //                    + $scope.numberOfChildren * $scope.currentImage.childTotalPrice;
-// >>>>>>> fcbd65f845657075574db755477b6c002e473fdf
         }
     //this watches the ng-model input for changes and changes the payment price according to that and stores it
     $scope.$watch('numberOfAdults', function() {
@@ -269,30 +212,34 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
     // define angular module/app
         //var formApp = app.controller('formCtl', []);
      //$('#date_time').datetimepicker();
-}).directive('contenteditable', function() {
-    return {
-      restrict: 'A',
-      require: '?ngModel',
-      link: function(scope, element, attr, ngModel) {
-        var read;
-        if (!ngModel) {
-          return;
-        }
-        ngModel.$render = function() {
-          return element.html(ngModel.$viewValue);
-        };
-        element.bind('blur', function() {
-          if (ngModel.$viewValue !== $.trim(element.html())) {
-            return scope.$apply(read);
-          }
-        });
-        return read = function() {
-          //console.log("read()");
-          return ngModel.$setViewValue($.trim(element.html()));
-        };
-      }
-    };
-  });
+});
+// .directive('contenteditable', function() {
+//     return {
+//       restrict: 'A',
+//       require: '?ngModel',
+//       link: function(scope, element, attr, ngModel) {
+//         var read;
+//         if (!ngModel) {
+//           return;
+//         }
+//         ngModel.$render = function() {
+//           return element.html(ngModel.$viewValue);
+//         };
+//         element.bind('blur', function() {
+//           if (ngModel.$viewValue !== $.trim(element.html())) {
+//             return scope.$apply(read);
+//           }
+//         });
+//         return read = function() {
+//           //console.log("read()");
+//           return ngModel.$setViewValue($.trim(element.html()));
+//         };
+//       }
+//     };
+//   });
+
+
+
 
 // app.directive('datetimez', function() {
 //     return {
