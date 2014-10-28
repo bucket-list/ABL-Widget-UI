@@ -29,9 +29,9 @@
 
                 <small>{{currentImage.highLight}} </small>
             </p>
-              <span ng-show="currentImage.youthPrice<currentImage.price" class="price">${{currentImage.price}}</span>
-              <span ng-show="currentImage.youthPrice>currentImage.price && currentImage.youthPrice>currentImage.childPrice" class="price">${{currentImage.youthPrice}}</span>
-              <span ng-show="currentImage.youthPrice<currentImage.childPrice && currentImage.price<currentImage.childPrice" class="price">${{currentImage.childPrice}}</span>
+              <span ng-if="currentImage.price!=0;" class="price">${{currentImage.price}}</span>
+              <span ng-if="currentImage.youthPrice!=0 && currentImage.youthPrice>=currentImage.price" class="price">${{currentImage.youthPrice}}</span>
+              <span ng-if="currentImage.childPrice!=0 && currentImage.youthPrice<=currentImage.childPrice" class="price">${{currentImage.childPrice}}</span>
             <!-- <span class="price">${{currentImage.price}}</span> -->
                 <button onclick="location.href='#/form/interests'" ng-click="setCurrentImage(currentImage)" class="btn btn-warning btn-lg overimg-left" ><strong>Book Now</strong>
             </button>
@@ -47,6 +47,8 @@
     </div></div>
 >>>>>>> f66c3118b0688414ce6eacfcda3139d4d393fd07 -->
     <div id="thumbWrapper">
+        <a class="arrow prev" ng-click="nextSlide()"></a>
+        <a class="arrow next" ng-click="prevSlide()"></a>
         <ul id="thumbList" style="padding: 0px">
             <li ng-repeat="image in images | filter:categories" ng-click="setCurrentImage(image)">
                 <img width="200px" height="150px" ng-src="{{image.image_lg}}" alt="{{image.title}}">
