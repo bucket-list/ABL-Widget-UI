@@ -78,7 +78,7 @@ h4 {
   bottom: 0;
   margin: 0 auto;
   width: 100%;
-  height: 120px;
+  height: 150px;
   font-size: 25px;
   transition: height .5s;
   -webkit-transition: height .5s;
@@ -86,12 +86,44 @@ h4 {
   border-radius: 0px 0px 10px 10px;
 }
 
+.productTitle {
+  line-height:30px;
+}
+
+.thumbnailDescription {
+top: 28px;
+right: 6px;
+display: inline;
+position: absolute;
+z-index: 10;
+width: 200px;
+height: 57px;
+padding: 5px;
+background-color: rgba(1,1,1,0.5);
+border-radius: 0 0 10px 10px;
+line-height:15px;
+padding-top:10px;
+}
+
+.thumbnailPrice {
+  font-size:18px;
+
+}
+.thumbnailTitle {
+  font-size:15px;
+}
+
+.thumbnailDescription p {
+  color:white;
+
+}
+
 .highlighted small {
   opacity: 0;
   font-size:12px;
 }
 .show-description p {
-  height: 200px;
+  height: 240px;
 }
 .show-description small {
   opacity: 1;
@@ -154,6 +186,7 @@ h4 {
     padding-left: 2px;
     padding-right: 2px;
     cursor: pointer;
+    position:relative;
 
 }
 
