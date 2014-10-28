@@ -24,8 +24,7 @@ app.service('productService', function ($window) {
 app.factory("serverService", function() {
     return {
         //dev
-
-        serverHost: '162.242.170.162',//'127.0.0.1',
+        serverHost: '162.242.170.162',
         serverPort: '8081',
         // serverAuth: 'Basic dGVzdDphc2Rm',
         serverAuth: 'Basic YWdyaWdnczplcGljaG91c2U=',
@@ -208,9 +207,9 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                      $scope.formData.geoip = geodata;
                 });
             });
-    $.getJSON("http://"+serverService.serverHost+":"+serverService.serverPort+"/api/clientID", function (data) {
-        braintree.setup(data.token, "dropin", { container: "dropin"});
-    });
+        $.getJSON("http://localhost:8081/api/clientID", function (data) {
+            braintree.setup(data.token, "dropin", { container: "dropin"});
+        });
                 // , "<integration>", options
             // create a blank object to hold our form information
             // $scope will allow this to pass between controller and view
@@ -374,9 +373,6 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
             $('.description').on('hover', function() {
                 $(this).toggleClass('show-description');
                 });
-        
-                
-        
             };
           
           $scope.initSlider();

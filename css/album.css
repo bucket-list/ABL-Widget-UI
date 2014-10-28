@@ -166,15 +166,17 @@ padding-top:10px;
 }
 
 #thumbWrapper {
-    width: 100%;
+    width: 90%;
     overflow: auto;
     border-radius: 10px;
+    margin-left:32px;
 
 }
 
 #thumbList {
     white-space: nowrap;
     margin: 0px;
+    padding:0 20px;
 }
 
 #thumbList li {

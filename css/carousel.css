@@ -50,27 +50,31 @@
 }
 
 .arrow.prev {
-    opacity: 0.2;
-    left: 5px;
+    position: absolute;
+    opacity: 1;
+    left: 11px;
+    top: 47em;
     background-image: url(../img/paddle_prev_999.png);
     transition: 0.2s linear all;
 }
 
 .arrow.next {
-    opacity: 0.2;
-    right: -35px;
+    position: absolute;
+    opacity: 1;
+    right: 14px;
+    top: 47em;
     background-image: url(../img/paddle_next_999.png);
     transition: 0.2s linear all;
 }
 
 .arrow.prev:hover {
-    opacity: 1;
-    background-image: url(../img/paddle_prev_fff.png);
+    opacity: 0.5;
+    background-image: url(../img/paddle_prev_999.png);
 }
 
 .arrow.next:hover {
-    opacity: 1;
-    background-image: url(../img/paddle_next_fff.png);
+    opacity: 0.5;
+    background-image: url(../img/paddle_next_999.png);
 }
 
 
