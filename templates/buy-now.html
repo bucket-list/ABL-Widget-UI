@@ -14,7 +14,6 @@
     .theGrid {
       float: left; 
       width: 50%;
-      /*margin:4px 8px;*/
     }
     .theLabels {
       float: left; 
@@ -34,8 +33,6 @@
     .tos {
       float: left; 
       width: 60%;
-/*      margin-top:15px;
-      margin-left: 8px;*/
     }
     .tos p {
       font-size: 16px; 
@@ -45,10 +42,6 @@
       width: 50%;
       float: left;
     }
-/*    .buttonPosition {
-      margin-top: 15px;
-    }
-*/
     .divider {
       margin-top:10px;
       margin-bottom:10px;
@@ -65,13 +58,10 @@
 </div>
 <div></div>
 <div id="purchase_window" class="row col-sm-12">
-  <!-- <div>Selected Date: {{formData.date | date:"dd/MM/yyyy"}} at </div> -->
   <div style="display:inline-block; min-height:200px;">
         <datepicker ng-change="checkDate(formData.date)" ng-click="open($event)" class="well well-sm" show-weeks="false" ng-model="formData.date" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true"></datepicker>
 
     </div>
-    <!-- <div> 
-      -->
       <div class= "cart inline pull-left" style="display=inline;width:55%">
         <p style="display:block">Select a time:<p>
           <select class="form-control timeDropdown" ng-model="timez">
@@ -80,15 +70,8 @@
       </div>
 
     <div class="cart inline pull-right" style="display=inline;width:25%">
-      <!-- <div ng-if="currentImage.price!=0 && numberOfAdults!=0;" class="animate-if inline"><h4>Adult:</h4><span class="pull-right">{{numberOfAdults}}X{{currentImage.price | currency}}</span><br></div>
-      <div ng-if="currentImage.youthPrice!=0;">
-      <div ng-if="numberOfYouth!=0;" class="animate-if inline"><h4>Youth:</h4><span class="pull-right">{{numberOfYouth}}X{{currentImage.youthPrice | currency}}</span><br></div></div>
-      <div ng-if="currentImage.childPrice!=0;">
-        <div ng-if="numberOfChildren!=0;" class="animate-if inline"><h4>Children:</h4><span class="pull-right">{{numberOfChildren}}X{{currentImage.childPrice | currency}}</span><br></div>
-      </div> -->
       <div ng-show="currentImage.price!=0;">
         <div ng-init="numberOfAdults=1;">
-          <!-- <br> -->
           <div class="selectNumber"><h4>Adult:</h4>
           <input type="number" min="1" max= "{{currentImage.maxOcc}}" ng-model="numberOfAdults">
           <p style="font-size: 14px;"> <strong>${{currentImage.price}} each</strong></p>
@@ -98,7 +81,7 @@
         <div ng-show="currentImage.youthPrice!=0;">
         <div ng-init="numberOfYouth=1;">
           
-        <div class="selectNumber"><h4>Youth </h4><!-- <p>(12-18)</p> -->
+        <div class="selectNumber"><h4>Youth </h4>
           <input type="number" min="0" max= "{{currentImage.maxOcc}}" ng-model="numberOfYouth">
           <p style="font-size: 14px"> <strong>${{currentImage.youthPrice}} each</strong></p>
         </div>
@@ -107,7 +90,7 @@
       <div ng-show="currentImage.childPrice!=0;">
         <div ng-init="numberOfChildren=1;">
           
-        <div class="selectNumber"><h4>Child</h4><!-- <p>(0-12)</p> -->
+        <div class="selectNumber"><h4>Child</h4>
             <input type="number" min="0" max= "{{currentImage.maxOcc}}" ng-model="numberOfChildren" style="margin-left:5px;">
             <p style="font-size: 14px"><strong>${{currentImage.childPrice}} each</strong></p>
         </div>
@@ -116,29 +99,15 @@
     <div ng-if="currentImage.price==0;"><div class="inline pricepadding"></div></div>
     <div ng-if="currentImage.youthPrice==0;"><div class="inline pricepadding"></div></div>
     <div ng-if="currentImage.childPrice==0;"><div class="inline pricepadding"></div></div>
-
-      <!-- <br> -->
       <div class="inline" style="margin-top:5px;"><h4>Subtotal:</h4><span class="pull-right">{{paymentSubtotal | currency}}</span><br></div>
-      <!-- <div class="inline"><h4>Processing Fee:</h4><span class="pull-right">{{paymentHosting | currency}}</span><br></div> -->
       <div class="inline"><h4>Tax & Fees:</h4><span class="pull-right">{{tax_and_fee | currency}}</span><br></div>
-<!-- >>>>>>> fcbd65f845657075574db755477b6c002e473fdf -->
       <div class="inline"><h4>Total:</h4><span class="pull-right">
             {{paymentPrice | currency}}
       </span>
       </div>
     </div>
-
-  <!-- </div> -->
-
-      <!-- <hr class="divider" style="height: 1px;  color:#4C4C4C;">      -->
-        <!--               <pre>
-    {{ formData }} <br>
-    {{ geoip }}
-   {{ api_key }}
-  </pre>     -->
-  <!--  --></div>
+</div>
   <ng-form name="userForm" novalidate>
-<!-- <div popover-placement="top" popover="Error: {{ errorName }}" ng-show="errorName"></div> -->
     <div class="cart2 col-sm-8 inline" style="width:55%">
       <div >Full Name:</div>
       <div class="form-group" ng-class="{ 'has-error': userForm.name.$invalid && !userForm.name.$pristine }">
@@ -163,96 +132,6 @@
         <input type="checkbox" name="agreement" ng-model = "formData.weightAgreement" value="yes" required>&nbsp; <p>I agree to the <a href="#/requirements">Age, Weight & Ability requirements</a></p>
       </div>
       
-      <button analytics-on="click" analytics-event="Check out - {{currentImage._id}}" analytics-category="Commands" type="button" class="btn btn-warning pull-right btn-xlarge buttonPosition" ng-click="processPaymentForm()"  ng-disabled="userForm.$invalid" >Checkout</button>
+      <button analytics-on="click" analytics-event="Check out - {{currentImage.title}}" analytics-category="{{api_key}}" type="button" class="btn btn-warning pull-right btn-xlarge buttonPosition" ng-click="processPaymentForm()"  ng-disabled="userForm.$invalid" >Checkout</button>
     
   </ng-form>
-<!--             <input title="Click to edit" ng-change="checkDate(formData.date)" ng-click="open($event)" class="theInputs form-control" datepicker-popup="{{format}}" ng-model="formData.date" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" /> -->
-
-
-            <!-- <br class="clearfix" /> -->
-            <!-- <div class="theGrid">Street:</div><div class="theGrid">City:</div><div class="theGrid">State:</div>
-            <br class="clearfix" />
-            <div class="form-group" ng-class="{ 'has-error': userForm.address.$invalid && !userForm.address.$pristine }">
-            <input name="address" type="text" class="theGrid form-control" ng-model="formData.street_address" required></input>
-          </div>
-            <div class="form-group" ng-class="{ 'has-error': userForm.city.$invalid && !userForm.city.$pristine }">
-            <input name="city" type="text" class="theGrid form-control" ng-model="formData.city" required></input>
-          </div>
-            <div class="form-group" ng-class="{ 'has-error': userForm.state.$invalid && !userForm.state.$pristine }">
-            <input name="state" type="text" maxlength="2" class="theGrid form-control" ng-model="formData.state" ng-max-length="2"required></input>
-          </div>
-            <br class="clearfix" />
-            <div class="theGrid">Country:</div><div class="theGrid">Zip/Postal Code:</div> -->
-            
-            
-            <!-- <div class="form-group" ng-class="{ 'has-error': userForm.country.$invalid && !userForm.country.$pristine }">
-            <input name="country" type="text" class="theGrid form-control" ng-model="formData.country" required></input>
-          </div>
-            <div class="form-group" ng-class="{ 'has-error': userForm.zip_code.$invalid && !userForm.zip_code.$pristine}">
-            <input name="zip_code" type="text" ng-pattern="onlyNumbers" class="theGrid form-control" ng-model="formData.zip_code" maxlength="5" required></input>
-          </div>
-          <br/> -->
-
-
-           <!-- <input type="hidden" ng-model="formData.product_id" value="{{currentImage._id}}" />
-               <input type="hidden" class="form-control" ng-model="formData.geoip" value="{{geoip}}" />
-              <input type="hidden" ng-model="formData.price_paid" value="{{paymentPrice}}" /> -->
-             
-             <!-- <div style="width:75%"></div> -->
-             
-<!--  
-            <div class="payment col-sm-12"> <h3>Payment Method</h3> </div>
-
-            
-            <div class="clearfix"></div>   -->     <!-- </div> -->   
-      
-  <!-- </div> -->
-           <!--  <div id="messages" class="well" ng-show="message">{{ message }}{{form.content}}</div>
-            <span class="help-block" ng-show="errorName">{{ errorName }}</span>
-            <div class="billing col-sm-12" style="margin-bottom: 20px;"> 
-            <h3 class="col-sm-12">Select Dates </h3>
-            
-            <div class="form-group col-sm-6">
-<!--               <div class="input-group" >
-                <input ng-change="checkDate(dt)" ng-click="open($event)" type="text" class="form-control smaller" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-                <span class="input-group-addon">
-                  <i ng-click="open($event)" class="glyphicon glyphicon-calendar"></i>
-                </span>
-              </div> 
-            </div>
-            <div class="col-sm-6"></div>
-            <h3 class="col-sm-12">Billing Information</h3>
-            <div class="form-group col-sm-6">
-                <label for="fullName">Full Name</label>
-                <input type="text" class="form-control" name="name" ng-model="formData.fullName" placeholder="Please enter your full name" required>
-<!--                 <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">Your name is required.</p> 
-              </div>
-
-            <div class="form-group col-sm-6">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" name="email"  ng-model="formData.email" placeholder="John@example.com">
-              </div>
-            <div class="form-group col-sm-6">
-                <label for="Address">Street Address</label>
-                <input type="text" class="form-control" ng-model="formData.street_address" name="Address" placeholder="440 N. Wolfe Road">
-              </div>
-                <div class="form-group col-sm-3">
-                <label for="City">City</label>
-                <input type="text" class="form-control" ng-model="formData.city"  name="City" placeholder="Sunnyvale">
-              </div>
-            <div class="form-group col-sm-3">
-                <label for="State">State/Province</label>
-                <input type="text" class="form-control" ng-model="formData.state" name="State" placeholder="California">
-              </div>
-            <div class="form-group col-sm-3">
-                <label for="Country">Country</label>
-                <input type="text" class="form-control" ng-model="formData.country" name="Country" placeholder="USA">
-            </div>
-            <div class="form-group col-sm-3">
-                <label for="Country">Zip/Postal Code</label>
-                <input type="text" class="form-control" ng-model="formData.zip_code" name="zip" placeholder="95112">
-            </div>
-            <div class="form-group col-sm-3">
-                <label for="Country">Contact Number</label>
-                <input type="text" class="form-control" ng-model="formData.phone_number" name="phone" placeholder="Country/Area Code and Phone Number">
-            </div> -->

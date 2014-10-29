@@ -24,7 +24,7 @@
   <h2 class="moreInfoTitle">{{currentImage.title | capitalize}}</h2>
   <h3 class="moreInfoLocation text-center">{{currentImage.city | capitalize}}, {{currentImage.state | capitalize}}</h3>
 <tabset>
-  <tab heading="Overview">      
+  <tab heading="Overview" analytics-on="click" analytics-event="Overview - {{currentImage.title}}" analytics-category="{{api_key}}">      
     <div class="container" style="max-width:100%;display: relative;">
    
     <div class="slider">
@@ -65,7 +65,7 @@
     </div>
   </div>
   </tab>
-          <tab heading="More Information">
+          <tab heading="More Information" analytics-on="click" analytics-event="More Info - {{currentImage.title}}" analytics-category="{{api_key}}">
             <div class="container row" style="max-width:100%;">
         <div class="col-md-4"> <h4>Requirements:</h4>
         <ul> 
@@ -86,7 +86,7 @@
        </div>
      </div>
           </tab>
-    <tab heading="Refund Policy">
+    <tab heading="Refund Policy" analytics-on="click" analytics-event="Refund Policy - {{currentImage.title}}" analytics-category="{{api_key}}">
       <p>
         Our cancellation policy lasts 30 days. If 30 days have gone by since your purchase, unfortunately we can’t offer you a refund or exchange.
 
@@ -137,6 +137,6 @@ If you are shipping an item over $75, you should consider using a trackable ship
       </p>
     </tab>
     </tabset>
-        <button analytics-on="click" analytics-event="Book Now - {{currentImage.title}}" analytics-category="{{api_key}}" onclick="location.href='#/form/payment'" class="btn btn-warning btn-xlarge pull-right" ><strong>Book Now</strong></button>      
+        <button analytics-on="click" analytics-event="More Info - Book Now - {{currentImage.title}}" analytics-category="{{api_key}}" onclick="location.href='#/form/payment'" class="btn btn-warning btn-xlarge pull-right" ><strong>Book Now</strong></button>      
 <!--  -->
 

@@ -29,11 +29,11 @@
 
                 <small>{{currentImage.highLight}} </small>
             </p>
-              <span ng-if="currentImage.price!=0;" class="price">${{currentImage.price}}</span>
-              <span ng-if="currentImage.youthPrice!=0 && currentImage.youthPrice>=currentImage.price" class="price">${{currentImage.youthPrice}}</span>
-              <span ng-if="currentImage.childPrice!=0 && currentImage.youthPrice<=currentImage.childPrice" class="price">${{currentImage.childPrice}}</span>
+              <span ng-if="currentImage.price!=0 && currentImage.youthPrice<currentImage.price" class="price">${{currentImage.price}}</span>
+              <span ng-if="currentImage.youthPrice!=0 && currentImage.youthPrice>currentImage.price" class="price">${{currentImage.youthPrice}}</span>
+              <span ng-if="currentImage.childPrice!=0 && currentImage.youthPrice<currentImage.childPrice" class="price">${{currentImage.childPrice}}</span>
             <!-- <span class="price">${{currentImage.price}}</span> -->
-                <button onclick="location.href='#/form/interests'" ng-click="setCurrentImage(currentImage)" class="btn btn-warning btn-lg overimg-left" ><strong>Book Now</strong>
+                <button onclick="location.href='#/form/interests'" ng-click="setCurrentImage(currentImage)" class="btn btn-warning btn-lg overimg-left" analytics-on="click" analytics-event="Main Book Now - {{currentImage.title}}" analytics-category="{{api_key}}"><strong>Book Now</strong>
             </button>
         </div>
     </div>
