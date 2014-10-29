@@ -12,18 +12,18 @@ angular.module('formApp', ['ngAnimate', 'ABL.controllers', 'ui.router', 'ui.boot
         // route to show our basic form (/form)
         .state('form', {
             url: '/form',
-            templateUrl: '/templates/form.html',
+            templateUrl: '/asset/templates/form.html',
             controller: 'formController'
         })
 
         .state('terms', {
             url: '/terms',
-            templateUrl: '/templates/terms.html',
+            templateUrl: '/asset/templates/terms.html',
             controller: 'TermsCtrl'
         })
         .state('age', {
             url: '/requirements',
-            templateUrl: '/templates/requirements.html',
+            templateUrl: '/asset/templates/requirements.html',
             controller: 'AgeCtrl'
         })
         
@@ -32,27 +32,27 @@ angular.module('formApp', ['ngAnimate', 'ABL.controllers', 'ui.router', 'ui.boot
         // url will be nested (/form/profile)
         .state('form.profile', {
             url: '/profile',
-            templateUrl: '/templates/home.html',
+            templateUrl: '/asset/templates/home.html',
             controller: 'AlbumCtrl'
         })
         
         // url will be /form/interests
         .state('form.interests', {
             url: '/interests',
-            templateUrl: '/templates/more-info.html',
+            templateUrl: '/asset/templates/more-info.html',
             controller: 'MainCtrl'
         })
         
         // url will be /form/payment
         .state('form.payment', {
             url: '/payment',
-            templateUrl: '/templates/buy-now.html',
+            templateUrl: '/asset/templates/buy-now.html',
             controller: 'PaymentCtrl'
         })
 
         .state('complete', {
             url: '/complete',
-            templateUrl: '/templates/form-payment.html'
+            templateUrl: '/asset/templates/form-payment.html'
         });
        
     // catch all route
