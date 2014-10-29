@@ -24,6 +24,7 @@ app.service('productService', function ($window) {
 app.factory("serverService", function() {
     return {
         //dev
+        api_key: location.search.split("api_key=")[1];
         serverHost: 'js.ablsolution.com',
         serverPort: '8081',
         // serverAuth: 'Basic dGVzdDphc2Rm',
@@ -34,14 +35,17 @@ app.factory("serverService", function() {
     };
 
 });
-app.controller('TermsCtrl', function ($scope, productService) {
+app.controller('TermsCtrl', function ($scope, productService, serverService) {
     $scope.currentImage = productService.getCurrentProduct();
+    $scope.api_key = serverService.api_key;
 })
-app.controller('AgeCtrl', function ($scope, productService) {
+app.controller('AgeCtrl', function ($scope, productService, serverService) {
     $scope.currentImage = productService.getCurrentProduct();
+    $scope.api_key = serverService.api_key;
 })
 app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService, $state, serverService) { 
     $scope.currentImage = productService.getCurrentProduct();
+    $scope.api_key = serverService.api_key;
     $scope.formData = {};
     $scope.onlyNumbers = /^\d+$/;
     //total price is calculated here and accessed here
@@ -267,9 +271,10 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
 // });
 
 
-app.controller('MainCtrl', function ($scope, productService) {
+app.controller('MainCtrl', function ($scope, productService, serverService) {
     $scope.currentImage = productService.getCurrentProduct();
     $scope.slides = $scope.currentImage.image_array;
+    $scope.api_key = serverService.api_key;
 
         $scope.currentIndex = 0;
 
@@ -318,7 +323,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
     $scope.images = [];
     $scope.imageCategories = [];
     $scope.currentImage = {};
-
+    $scope.api_key = serverService.api_key;
     $scope.setData = function(data) {
         productService.setData(data);
     }
