@@ -24,7 +24,7 @@ app.service('productService', function ($window) {
 app.factory("serverService", function() {
     return {
         //dev
-        api_key: location.search.split("api_key=")[1];
+        api_key: location.search.split("api_key=")[1],
         serverHost: 'js.ablsolution.com',
         serverPort: '8081',
         // serverAuth: 'Basic dGVzdDphc2Rm',
