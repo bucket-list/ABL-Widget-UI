@@ -49,14 +49,15 @@
     <!-- load angular, nganimate, and ui-router -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-animate.min.js"></script>
     <script src="/asset/js/app.js"></script>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-55872447-1', 'auto');
-    </script>
+  ga('create', 'UA-55872447-1', 'auto');
+</script>
+
 </head>
 <body ng-app="formApp">
 
@@ -64,14 +65,6 @@
 <div class="container">
     <div ui-view></div>
 </div>
-
-<!-- <div class="row">
-    <div class="col-sm-8 col-sm-offset-2">
-    <div class="jumbotron text-muted text-center" >
-        <p>a demo by <a href="http://ablsolution.com" target="_blank">ABL Solutions</a></p>
-    </div>
-    </div>
-</div> -->
 
 <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
 <script>
@@ -90,17 +83,17 @@
 
  //CLIENT-TOKEN-FROM-SERVER
 
-    $("#submit_checkout").click(function(e) {
-      form = $('#checkout');
-      console.log(form.serialize());
-      e.preventDefault();
-      $("#submit_checkout").attr("disabled", "disabled");
-      $.post("http://dev.ablsolution.com/api/checkout", form.serialize(), function (data) {
-        form.parent().replaceWith(data);
-      });
-    });
+//     $("#submit_checkout").click(function(e) {
+//       form = $('#checkout');
+//       console.log(form.serialize());
+//       e.preventDefault();
+//       $("#submit_checkout").attr("disabled", "disabled");
+//       $.post("http://dev.ablsolution.com/api/checkout", form.serialize(), function (data) {
+//         form.parent().replaceWith(data);
+//       });
+//     });
 
-});
+// });
 
 
 // $('#purchase').click(function(e) {
