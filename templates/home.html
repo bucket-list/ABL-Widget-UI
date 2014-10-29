@@ -1,27 +1,6 @@
-<!--     <div class ="text-center">
-        <h1 style="color:white">ABL API Demo</h1>
-    </div> -->
 <div id="albumWrapper">
-<!--     <div id="header" class="img-title">
-        <h2>{{currentImage.title}}</h2>
-
-        <select ng-model="categories"
-                ng-options="category for category in imageCategories">
-            <option value="">all</option>
-        </select>
-    </div> -->
-    
     <div id="albumImage" style="position:relative">
         <img height="450px" ng-src="{{currentImage.image_lg}}" alt="{{currentImage.title}}">
-<!-- <<<<<<< HEAD
-        <span class="pricetag">
-            <h3 style="color:white">${{currentImage.price}}</h3>
-        </span>
-=======
-        <span class="pricetag">
-            <h3 style="color:white">${{currentImage.price}}</h3>
-        </span>
->>>>>>> fcbd65f845657075574db755477b6c002e473fdf -->
         <div class="description highlighted">
             <p class="updescription">
                 <span class="productTitle">{{currentImage.title}}</span><br />
@@ -32,20 +11,10 @@
               <span ng-if="currentImage.price!=0 && currentImage.youthPrice<currentImage.price" class="price">${{currentImage.price}}</span>
               <span ng-if="currentImage.youthPrice!=0 && currentImage.youthPrice>currentImage.price" class="price">${{currentImage.youthPrice}}</span>
               <span ng-if="currentImage.childPrice!=0 && currentImage.youthPrice<currentImage.childPrice" class="price">${{currentImage.childPrice}}</span>
-            <!-- <span class="price">${{currentImage.price}}</span> -->
-                <button onclick="location.href='#/form/interests'" ng-click="setCurrentImage(currentImage)" class="btn btn-warning btn-lg overimg-left" analytics-on="click" analytics-event="Main Book Now - {{currentImage.title}}" analytics-category="{{api_key}}"><strong>Book Now</strong>
+                <button onclick="location.href='#/form/interests'" ng-click="setCurrentImage(currentImage)" class="btn btn-warning btn-lg overimg-left" analytics-on="click" analytics-event="Main Book Now - {{currentImage.title}}" analytics-category="key: {{api_key}}"><strong>Book Now</strong>
             </button>
         </div>
     </div>
-<!-- =======
-        <span class="pricetag"><h3 style="color:white">${{currentImage.price}}</h3></span>
-        <div class="description highlighted"><p class="updescription">{{currentImage.title}}<br />
-        <small>{{currentImage.highLight}} </small></p>
-        <span class="price">${{currentImage.price}}</span>
-        <button onclick="location.href='#/form/interests'" analytics-on="click" analytics-event="More Info - {{currentImage._id}}" analytics-category="Commands" ng-click="setData(currentImage)" class="btn btn-primary btn-lg overimg-left" ><strong>Book Now</strong></button>
-        
-    </div></div>
->>>>>>> f66c3118b0688414ce6eacfcda3139d4d393fd07 -->
     <div id="thumbWrapper">
         <a class="arrow prev" ng-click="nextSlide()"></a>
         <a class="arrow next" ng-click="prevSlide()"></a>
@@ -54,7 +23,6 @@
                 <img width="200px" height="150px" ng-src="{{image.image_lg}}" alt="{{image.title}}">
                 <div class="thumbnailDescription">
                     <p class="thumbnailTitle"> {{image.title | limitTo: 22}}{{image.title.length > 22 ? '...' : ''}}</p>
-                    <!-- <p class="thumbnailPrice pull-right"> ${{image.price}} </p> -->
                 <p ng-show="image.youthPrice<image.price" class="thumbnailPrice pull-right">${{image.price}}</p>
                 <p ng-show="image.youthPrice>image.price && image.youthPrice>image.childPrice" class="thumbnailPrice pull-right">${{image.youthPrice}}</p>
                 <p ng-show="image.youthPrice<image.childPrice && image.price<image.childPrice" class="thumbnailPrice pull-right">${{image.childPrice}}</p>
