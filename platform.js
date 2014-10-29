@@ -40,7 +40,7 @@ console.log('hello from server');
     function createablWidget(ablWidget, id, key) {
         <% if (useIframe) { %>
             var iframe = document.createElement('iframe');
-            iframe.setAttribute('src', '//162.242.170.162/api/3rd/abl-ui/widget/'+id+'/init?iframe=true&api_key='+api_key);
+            iframe.setAttribute('src', '//162.242.170.162/v1/3rd/abl-ui/widget/'+id+'/init?iframe=true&api_key='+api_key);
             iframe.setAttribute('class', 'abl-widget');
             iframe.setAttribute('data-abl-id', id);
             iframe.setAttribute('data-api-key', key);
