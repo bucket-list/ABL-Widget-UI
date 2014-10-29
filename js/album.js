@@ -154,7 +154,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                      $scope.formData.geoip = geodata;
                 });
             });
-        $.getJSON("http://"+serverService.serverHost+":"+serverService.serverPort+"/api/clientID", function (data) {
+        $.getJSON("http://"+serverService.serverHost+"/api/clientID", function (data) {
             braintree.setup(data.token, "dropin", { container: "dropin"});
         });
                 // , "<integration>", options
