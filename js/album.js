@@ -24,7 +24,7 @@ app.service('productService', function ($window) {
 app.factory("serverService", function() {
     return {
         //dev
-        serverHost: '162.242.170.162',
+        serverHost: 'js.ablsolution.com',
         serverPort: '8081',
         // serverAuth: 'Basic dGVzdDphc2Rm',
         serverAuth: 'Basic YWdyaWdnczplcGljaG91c2U=',
@@ -347,7 +347,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
     //console.log(serverService.serverHost+" "+serverService.serverPort+" "+serverService.serverAuth+" "+$scope.serverHost+" "+$scope.serverPort+" "+$scope.serverAuth+" ");
         // $http.defaults.headers.get = { 'Basic' : 'YWdyaWdnczpGdWNreW91MjAxNA' };
         //$http.defaults.headers.common.Authorization = 'Basic YWdyaWdnczpGdWNreW91MjAxNA==';
-        $http.get("http://"+$scope.serverHost+":"+$scope.serverPort+"/api/product?city=whistler", {headers: {'Authorization': $scope.serverAuth}}).success($scope.handleImagesLoaded);
+        $http.get("http://"+$scope.serverHost+"/api/product?city=whistler", {headers: {'Authorization': $scope.serverAuth}}).success($scope.handleImagesLoaded);
     };
 
     $scope.setCurrentImage = function (image) {
