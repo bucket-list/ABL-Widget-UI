@@ -67,59 +67,6 @@
 </div>
 
 <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
-<script>
- $(function() {
 
-  $('#buyNow').click(function(e) {
-     $('#dropin').appendTo('.braintree');
-     e.preventDefault();
-     // braintree.setup("eyJ2ZXJzaW9uIjoxLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiJjNmMwNDkzZmM3YTM1ODA1ODEyOTk5MTQ4NGZkMjgxNmU1Y2YzYTEwMzJhNzBjZTdkODJkODc5NDAyNDJlNGRhfGNyZWF0ZWRfYXQ9MjAxNC0wOC0yNlQyMzo0NjozOC4zMDE0NDk3MjIrMDAwMFx1MDAyNm1lcmNoYW50X2lkPWRjcHNweTJicndkanIzcW5cdTAwMjZwdWJsaWNfa2V5PTl3d3J6cWszdnIzdDRuYzgiLCJjaGFsbGVuZ2VzIjpbImN2diJdLCJjbGllbnRBcGlVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZGNwc3B5MmJyd2RqcjNxbi9jbGllbnRfYXBpIiwiYXNzZXRzVXJsIjoiaHR0cHM6Ly9hc3NldHMuYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJhdXRoVXJsIjoiaHR0cHM6Ly9hdXRoLnZlbm1vLnNhbmRib3guYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJwYXltZW50QXBwcyI6W10sIm1lcmNoYW50SWQiOiJkY3BzcHkyYnJ3ZGpyM3FuIiwidGhyZWVEU2VjdXJlRW5hYmxlZCI6ZmFsc2UsInBheXBhbEVuYWJsZWQiOnRydWUsInBheXBhbCI6eyJkaXNwbGF5TmFtZSI6IkFjbWUgV2lkZ2V0cywgTHRkLiAoU2FuZGJveCkiLCJjbGllbnRJZCI6bnVsbCwicHJpdmFjeVVybCI6Imh0dHA6Ly9leGFtcGxlLmNvbS9wcCIsInVzZXJBZ3JlZW1lbnRVcmwiOiJodHRwOi8vZXhhbXBsZS5jb20vdG9zIiwiYmFzZVVybCI6Imh0dHBzOi8vYXNzZXRzLmJyYWludHJlZWdhdGV3YXkuY29tIiwiYXNzZXRzVXJsIjoiaHR0cHM6Ly9jaGVja291dC5wYXlwYWwuY29tIiwiZGlyZWN0QmFzZVVybCI6bnVsbCwiYWxsb3dIdHRwIjp0cnVlLCJlbnZpcm9ubWVudE5vTmV0d29yayI6dHJ1ZSwiZW52aXJvbm1lbnQiOiJvZmZsaW5lIiwibWVyY2hhbnRBY2NvdW50SWQiOiI1enc1bW0iLCJjdXJyZW5jeUlzb0NvZGUiOiJVU0QifSwiYW5hbHl0aWNzIjp7InVybCI6Imh0dHBzOi8vYXBpLnNhbmRib3guYnJhaW50cmVlZ2F0ZXdheS5jb206NDQzL21lcmNoYW50cy9kY3BzcHkyYnJ3ZGpyM3FuL2NsaWVudF9hcGkvYW5hbHl0aWNzIn19", 'dropin', { container: 'dropin' });
-  });
-  //toggling the short description
-  $('.description').on('hover', function() {
-  $(this).toggleClass('show-description');
-  });
-  
-
- //CLIENT-TOKEN-FROM-SERVER
-
-//     $("#submit_checkout").click(function(e) {
-//       form = $('#checkout');
-//       console.log(form.serialize());
-//       e.preventDefault();
-//       $("#submit_checkout").attr("disabled", "disabled");
-//       $.post("http://dev.ablsolution.com/api/checkout", form.serialize(), function (data) {
-//         form.parent().replaceWith(data);
-//       });
-//     });
-
-// });
-
-
-// $('#purchase').click(function(e) {
-//   e.preventDefault();
-//   $("#purchase_window").innerHTML = "";
-//   document.getElementById('purchase_window').innerHTML = '';
-// $("#purchase_window").append('<div class="modal-body" id="purchase_window">'+'<h3>Completing Purchase</h3><div class="progress"><div class="progress-bar progress-bar-striped active"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">Completing Purchase</span></div></div></div>');
-
-
-// // $("#purchase_window").show();
-
-// });
-
-// var myApp;
-// myApp = myApp || (function () {
-//     var pleaseWaitDiv = $('<div class="modal hide" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false"><div class="modal-header"><h1>Processing...</h1></div><div class="modal-body"><div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div></div></div>');
-//     return {
-//         showPleaseWait: function() {
-//             pleaseWaitDiv.modal();
-//         },
-//         hidePleaseWait: function () {
-//             pleaseWaitDiv.modal('hide');
-//         },
-
-//     };
-// })();
-</script>
 </body>
 </html>
