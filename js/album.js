@@ -213,7 +213,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                             //$scope.errorSuperhero = data.errors.superheroAlias;
                         } else {
                             //customerData = JSON.parse(data);
-                            console.log(data[0].data.booking_ref);
+                            console.log(data[0].booking_ref);
                             $scope.book_ref = data[0].data.booking_ref;
                             $state.go('complete');
                             // if successful, bind success message to message
