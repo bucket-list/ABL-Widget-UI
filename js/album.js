@@ -39,7 +39,7 @@ app.factory("serverService", function() {
 myApp.factory('CustomerData', function () {
 
     var data = {
-        customerData = ''
+        customerData : ''
     };
 
     return {
