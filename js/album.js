@@ -36,7 +36,7 @@ app.factory("serverService", function() {
 
 });
 
-myApp.factory('CustomerData', function () {
+app.factory('CustomerData', function () {
 
     var data = {
         customerData : ''
