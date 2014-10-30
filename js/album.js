@@ -44,11 +44,9 @@ app.factory('CustomerData', function () {
 
     return {
         getCustomerData: function () {
-            console.log(data);
             return data.customerInfo;
         },
         setCustomerData: function (customer) {
-            console.log(data.customerInfo);
             data.customerInfo = customer;
         }
     };
