@@ -27,7 +27,7 @@ console.log('hello from server');
         // console.log(key);
         var processed = ablWidget.getAttribute('data-abl-processed');
 
-        if (!id || processed === 'done' || !key) {
+        if (!id || processed === 'done') {
             //skip this one as it has either already been processed, or lacks an ID
             //This is done to ensure logic is not executed twice in the event that the
             //user erroneously embeds the script tag more than once on a single page
