@@ -45,7 +45,7 @@ app.factory('CustomerData', function () {
     return {
         getCustomerData: function () {
             console.log(data);
-            return data.customerInfo;
+            return data;
         },
         setCustomerData: function (data) {
             console.log(data);
