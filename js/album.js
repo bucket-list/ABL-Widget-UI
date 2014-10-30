@@ -195,7 +195,6 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                     headers : { 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': $scope.serverAuth }  // set the headers so angular passing info as form data (not request payload)
                 })
                     .success(function(data) {
-                        console.log("http: "+data);
                         if (!data.success) {
                             // if not successful, bind errors to error variables       
                             $scope.alerts = [];
@@ -213,7 +212,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                             $scope.errorName = data.error;
                             //$scope.errorSuperhero = data.errors.superheroAlias;
                         } else {
-                            customerData = JSON.parse(data);
+                            //customerData = JSON.parse(data);
                             console.log(customerData.booking_ref);
                             $scope.book_ref = data.data.booking_ref;
                             $state.go('complete');
