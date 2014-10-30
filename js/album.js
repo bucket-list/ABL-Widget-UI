@@ -35,6 +35,28 @@ app.factory("serverService", function() {
     };
 
 });
+
+myApp.factory('CustomerData', function () {
+
+    var data = {
+        customerData = ''
+    };
+
+    return {
+        getCustomerData: function () {
+            return data.customerData;
+        },
+        setCustomerData: function (data) {
+            data.customerData = data;
+        }
+    };
+});
+
+app.controller('CompleteCtrl', function ($scope, CustomerData) {
+    $scope.customer_info = getCustomerData();
+    // $scope.currentImage = productService.getCurrentProduct();
+    // $scope.api_key = serverService.api_key;
+})
 app.controller('TermsCtrl', function ($scope, productService, serverService) {
     $scope.currentImage = productService.getCurrentProduct();
     $scope.api_key = serverService.api_key;
@@ -43,7 +65,7 @@ app.controller('AgeCtrl', function ($scope, productService, serverService) {
     $scope.currentImage = productService.getCurrentProduct();
     $scope.api_key = serverService.api_key;
 })
-app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService, $state, serverService) { 
+app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService, $state, serverService, CustomerData) { 
     $scope.currentImage = productService.getCurrentProduct();
     $scope.api_key = serverService.api_key;
     $scope.formData = {};
@@ -213,10 +235,11 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                             //$scope.errorSuperhero = data.errors.superheroAlias;
                         } else {
                             //customerData = JSON.parse(data);
-                            $scope.booking_ref = data.customer_info.booking_ref;
+                            CustomerData.setCustomerData(data.customer_info)
+                            // $scope.booking_ref = data.customer_info.booking_ref;
                             $state.go('complete');
                             // if successful, bind success message to message
-                            $scope.message = data.message;
+                            // $scope.message = data.message;
 
                         }
                     }).error(function(data) {
