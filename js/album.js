@@ -39,15 +39,17 @@ app.factory("serverService", function() {
 app.factory('CustomerData', function () {
 
     var data = {
-        CustomerData : ''
+        customerInfo : ''
     };
 
     return {
         getCustomerData: function () {
-            return data.CustomerData;
+            console.log(data);
+            return data.customerInfo;
         },
         setCustomerData: function (data) {
-            data.CustomerData = data;
+            console.log(data.customerInfo);
+            data.customerInfo = data;
         }
     };
 });
