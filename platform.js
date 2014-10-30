@@ -23,7 +23,7 @@ console.log('hello from server');
     function processablWidget(ablWidget) {
         var id = ablWidget.getAttribute('data-abl-id');
         //console.log(ablWidget);
-        var key = ablWidget.getAttribute('data-api-key');
+        var key = location.search.split("api_key=")[1];//ablWidget.getAttribute('data-api-key');
         // console.log(key);
         var processed = ablWidget.getAttribute('data-abl-processed');
 
