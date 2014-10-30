@@ -52,7 +52,8 @@ angular.module('formApp', ['ngAnimate', 'ABL.controllers', 'ui.router', 'ui.boot
 
         .state('complete', {
             url: '/complete',
-            templateUrl: '/asset/templates/form-payment.html'
+            templateUrl: '/asset/templates/form-payment.html',
+            controller: 'PaymentCtrl'
         });
        
     // catch all route
