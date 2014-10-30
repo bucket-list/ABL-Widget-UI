@@ -45,11 +45,11 @@ app.factory('CustomerData', function () {
     return {
         getCustomerData: function () {
             console.log(data);
-            return data;
+            return data.customerInfo;
         },
-        setCustomerData: function (data) {
-            console.log(data);
-            data.customerInfo = data;
+        setCustomerData: function (customer) {
+            console.log(data.customerInfo);
+            data.customerInfo = customer;
         }
     };
 });
