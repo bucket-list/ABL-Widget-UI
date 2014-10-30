@@ -54,6 +54,7 @@ app.factory('CustomerData', function () {
 
 app.controller('CompleteCtrl', function ($scope, CustomerData) {
     $scope.customer_info = CustomerData.getCustomerData();
+    console.log($scope.customer_info);
     // $scope.currentImage = productService.getCurrentProduct();
     // $scope.api_key = serverService.api_key;
 })
