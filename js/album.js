@@ -168,6 +168,9 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
          $scope.processPaymentForm = function(expr) {
                 var form = this;
                 form.formData.product_id = $scope.currentImage._id;
+                form.formData.subtotal = $scope.paymentSubtotal;
+                form.formData.hosting_paid = $scope.paymentHosting;
+                form.formData.tax_paid = $scope.paymentTax;
                 form.formData.price_paid = $scope.paymentPrice;
                 
                 form.formData.number_of_adults = $scope.numberOfAdults;
@@ -211,7 +214,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                             //$scope.errorSuperhero = data.errors.superheroAlias;
                         } else {
                             console.log(data);
-                            $scope.book_ref = data.book_ref;
+                            $scope.book_ref = data.booking_ref;
                             $state.go('complete');
                             // if successful, bind success message to message
                             $scope.message = data.message;
