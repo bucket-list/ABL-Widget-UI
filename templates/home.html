@@ -8,7 +8,7 @@
 
                 <small>{{currentImage.highLight}} </small>
             </p>
-              <span ng-show="currentImage.youthPrice<currentImage.price && currentImage.price<currentImage.childPrice" class="price">${{currentImage.price}}</span>
+              <span ng-show="currentImage.youthPrice<currentImage.price && currentImage.price>currentImage.childPrice" class="price">${{currentImage.price}}</span>
               <span ng-show="currentImage.youthPrice>currentImage.price && currentImage.youthPrice>currentImage.childPrice" class="price">${{currentImage.youthPrice}}</span>
               <span ng-show="currentImage.youthPrice<currentImage.childPrice && currentImage.price<currentImage.childPrice" class="price">${{currentImage.childPrice}}</span>
                 <button onclick="location.href='#/form/interests'" ng-click="setCurrentImage(currentImage)" class="btn btn-warning btn-lg overimg-left" analytics-on="click" analytics-event="Main Page - Book Now - {{currentImage.title}}" analytics-category="{{api_key}}"><strong>Book Now</strong>
