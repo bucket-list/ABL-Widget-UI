@@ -48,7 +48,7 @@ app.factory('CustomerData', function () {
             return data.customerInfo;
         },
         setCustomerData: function (data) {
-            console.log(data.customerInfo);
+            console.log(data);
             data.customerInfo = data;
         }
     };
