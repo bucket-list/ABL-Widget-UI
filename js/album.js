@@ -238,7 +238,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                             //customerData = JSON.parse(data);
                         CustomerData.setCustomerData(data.customer_info);
                         $scope.vas = CustomerData.getCustomerData();
-                        console.log(vas);
+                        console.log($scope.vas);
                             // $scope.booking_ref = data.customer_info.booking_ref;
                             $state.go('complete');
                             // if successful, bind success message to message
