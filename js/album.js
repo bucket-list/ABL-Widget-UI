@@ -238,7 +238,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                             //$scope.errorSuperhero = data.errors.superheroAlias;
                         } else {
                             //customerData = JSON.parse(data);
-                        CustomerData.setCustomerData(data.customer_info);
+                        CustomerData.setCustomerData(data.customer_info.booking_ref);
                         $scope.vas = CustomerData.getCustomerData();
                         console.log($scope.vas);
                             // $scope.booking_ref = data.customer_info.booking_ref;
