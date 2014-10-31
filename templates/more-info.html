@@ -34,7 +34,7 @@
     <div class="container" style="max-width:100%;display: relative;">
    
     <div class="slider">
-      <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage"
+      <img ng-repeat="slide in slides track by $index" class="slide slide-animation nonDraggableImage"
            ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
            ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide}}" width="300px" height="250px">
       <a class="arrow prev" ng-click="nextSlide()"></a>
