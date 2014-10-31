@@ -51,9 +51,9 @@
        <div class="topRight">
         
         <h2>{{currentImage.duration}} Hours for 
-          <span ng-show="currentImage.youthPrice < currentImage.price" id="price">${{currentImage.price}}</span>
-          <span ng-show="currentImage.youthPrice > currentImage.price" id="price">${{currentImage.youthPrice}}</span>
-          <span ng-show="currentImage.youthPrice < currentImage.childPrice" id="price">${{currentImage.childPrice}}</span>
+          <span ng-show="currentImage.price > currentImage.youthPrice && currentImage.childPrice < currentImage.price" id="price">${{currentImage.price}}</span>
+          <span ng-show="currentImage.youthPrice > currentImage.price && currentImage.childPrice < currentImage.youthPrice " id="price">${{currentImage.youthPrice}}</span>
+          <span ng-show="currentImage.childPrice > currentImage.youthPrice && currentImage.childPrice > currentImage.price" id="price">${{currentImage.childPrice}}</span>
         </h2>
           <div class="overview">
           <h3> Overview: </h3> 
