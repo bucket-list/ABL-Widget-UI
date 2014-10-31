@@ -1,4 +1,4 @@
-var app = angular.module('ABL.controllers', ['ngAnimate','braintree']);
+var app = angular.module('ABL.controllers', ['ngAnimate']);
 // var braintree = require('braintree');
 
 app.service('productService', function ($window) {
