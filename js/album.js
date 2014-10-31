@@ -231,16 +231,14 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                             $timeout(function(){
                                 $scope.alerts.splice($scope.alerts.indexOf(alert), 1);
                             }, 5000); // maybe '}, 3000, false);' to avoid calling apply
-                            $.getJSON("http://"+serverService.serverHost+"/api/clientID", function (data) {
-                                braintree.setup(data.token, "dropin", { container: "dropin"});
-                            });
+                            // $.getJSON("http://"+serverService.serverHost+"/api/clientID", function (data) {
+                            //     braintree.setup(data.token, "dropin", { container: "dropin"});
+                            // });
                             $scope.errorName = data.error;
                             //$scope.errorSuperhero = data.errors.superheroAlias;
                         } else {
                             //customerData = JSON.parse(data);
                         CustomerData.setCustomerData(data.customer_info.booking_ref);
-                        $scope.vas = CustomerData.getCustomerData();
-                        console.log($scope.vas);
                             // $scope.booking_ref = data.customer_info.booking_ref;
                             $state.go('complete');
                             // if successful, bind success message to message
