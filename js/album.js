@@ -159,6 +159,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 });
             });
         $.getJSON("http://"+serverService.serverHost+"/api/clientID", function (data) {
+            console.log(data.token);
             braintree.setup(data.token, "dropin", { container: "dropin"});
         });
                 // , "<integration>", options
