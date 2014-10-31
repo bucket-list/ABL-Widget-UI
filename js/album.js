@@ -216,8 +216,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                     url     : "http://"+$scope.serverHost+":"+$scope.serverPort+"/api/checkout",
                     data    : $.param(form.formData),  // pass in data as strings
                     headers : { 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': $scope.serverAuth }  // set the headers so angular passing info as form data (not request payload)
-                })
-                    .success(function(data) {
+                }).success(function(data) {
                         if (!data.success) {
                             // if not successful, bind errors to error variables       
                             $scope.alerts = [];
@@ -238,7 +237,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                             //$scope.errorSuperhero = data.errors.superheroAlias;
                         } else {
                             //customerData = JSON.parse(data);
-                        CustomerData.setCustomerData(data.customer_info.booking_ref);
+                            CustomerData.setCustomerData(data.customer_info.booking_ref);
                             // $scope.booking_ref = data.customer_info.booking_ref;
                             $state.go('complete');
                             // if successful, bind success message to message

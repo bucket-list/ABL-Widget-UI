@@ -64,7 +64,7 @@
     </div>
       <div class= "cart inline pull-left" style="display=inline;width:55%">
         <p style="display:block">Select a time:<p>
-          <select class="form-control timeDropdown" ng-model="timez" ng-required="true" ng-init="timez = options[0]">
+          <select class="form-control timeDropdown" ng-model="timez" ng-required="true" ng-init="timez = currentImage.startTime.options[0]">
             <option ng-repeat="timez in currentImage.startTime" >{{timez}}</option>
           </select>
       </div>
