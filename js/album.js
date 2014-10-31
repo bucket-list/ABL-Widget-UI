@@ -190,6 +190,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
             // process the form
          $scope.processPaymentForm = function(expr) {
                 var form = this;
+                $scope.selTime = $scope.timez[0];
                 form.formData.product_id = $scope.currentImage._id;
                 form.formData.subtotal = $scope.paymentSubtotal;
                 form.formData.hosting_paid = $scope.paymentHosting;
