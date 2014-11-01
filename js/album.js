@@ -302,11 +302,11 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
 // });
 
 
-app.controller('MainCtrl', function ($scope, productService, serverService) {
+app.controller('MainCtrl', function ($scope, $analytics, productService, serverService) {
     $scope.currentImage = productService.getCurrentProduct();
     $scope.slides = $scope.currentImage.image_array;
     $scope.api_key = serverService.api_key;
-
+    $analytics.pageTrack('/form/main_pg');
         $scope.currentIndex = 0;
 
         $scope.setCurrentSlideIndex = function (index) {
