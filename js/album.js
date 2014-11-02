@@ -192,7 +192,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
               headers: { "cache-control": "no-cache" },
               success: function (data) {
                 console.log(data.token);
-                braintree.setup(data.token, "dropin", { container: "dropin"});
+                braintree.setup(data.token, "dropin", { container: "userForm"});
               },
               error: function (data) {
                 console.log(data);
