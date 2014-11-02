@@ -193,6 +193,9 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 console.log(data.token);
                 braintree.setup(data.token, "dropin", { container: "dropin"});
               },
+              error: function (data) {
+                console.log(data);
+              },
               dataType: "json",
               cache: false
             });
