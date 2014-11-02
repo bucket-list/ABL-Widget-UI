@@ -107,7 +107,7 @@
       </div>
     </div>
 </div>
-  <ng-form name="userForm" id="checkout" novalidate>
+  <form name="userForm" id="checkout" novalidate>
     <div class="cart2 col-sm-8 inline" style="width:55%">
       <div >Full Name:</div>
       <div class="form-group" ng-class="{ 'has-error': userForm.name.$invalid && !userForm.name.$pristine }">
@@ -134,4 +134,4 @@
       
       <button analytics-on="click" analytics-event="Check out - {{currentImage.title}}" analytics-category="{{api_key}}" type="button" class="btn btn-warning pull-right btn-xlarge buttonPosition" ng-click="processPaymentForm()"  ng-disabled="userForm.$invalid" >Checkout</button>
     
-  </ng-form>
+  </form>
