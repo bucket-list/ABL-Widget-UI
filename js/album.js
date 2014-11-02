@@ -181,10 +181,21 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                      $scope.formData.geoip = geodata;
                 });
             });
-        $.getJSON("http://"+serverService.serverHost+"/api/clientID", function (data) {
-            console.log(data.token);
-            braintree.setup(data.token, "dropin", { container: "dropin"});
-        });
+        // $.getJSON("http://"+serverService.serverHost+"/api/clientID", function (data) {
+        //     console.log(data.token);
+        //     braintree.setup(data.token, "dropin", { container: "dropin"});
+        // });
+
+        $.ajax({
+              type: "GET",
+              url: "http://"+serverService.serverHost+"/api/clientID",
+              success: function (data) {
+                console.log(data.token);
+                braintree.setup(data.token, "dropin", { container: "dropin"});
+              },
+              dataType: "json",
+              cache: false
+            });
                 // , "<integration>", options
             // create a blank object to hold our form information
             // $scope will allow this to pass between controller and view
