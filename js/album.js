@@ -20,7 +20,27 @@ app.service('productService', function ($window) {
         getCurrentProduct: getCurrentProduct
     };
 });
-
+app.factory("convertCurrency" function(){
+    var currency = {
+        rate : 0,
+        convertFrom: 'CAD',
+        convertTo: 'USD'
+    }
+    return {
+        getCurrencyRate: function() {
+            var query = "https://query.yahooapis.com/v1/public/"
+                + "yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22"+currency.convertFrom+
+                currency.convertTo+"%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
+             $.getJSON("https://freegeoip.net/json/", function (data) {
+                currency.rate = data.results.rate.Rate;
+             });
+            return currency.rate; 
+        },
+        setCurrencyRate: function(rate) {
+            currency.rate = rate;
+        }
+    };
+});
 app.factory("serverService", function() {
     return {
         //dev
@@ -320,7 +340,9 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
 // });
 
 
-app.controller('MainCtrl', function ($scope, $analytics, productService, serverService) {
+app.controller('MainCtrl', function ($scope, $analytics, productService, serverService, convertCurrency) {
+    $scope.rate = convertCurrency.getCurrencyRate();
+    alert($scope.rate);
     $scope.currentImage = productService.getCurrentProduct();
     $scope.slides = $scope.currentImage.image_array;
     $scope.api_key = serverService.api_key;
