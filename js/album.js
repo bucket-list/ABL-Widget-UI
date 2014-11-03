@@ -188,7 +188,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
         console.log("Token should be blank /" + $scope.token + " /");
         $.ajax({
               type: "GET",
-              url: "http://"+serverService.serverHost+"/api/clientID",
+              url: "https://"+serverService.serverHost+"/api/clientID",
               headers: { "cache-control": "no-cache" },
               success: function (data) {
                 console.log("payment nonce");
@@ -233,7 +233,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 //console.log(form.formData);
                 $http({
                     method  : 'POST',
-                    url     : "http://"+$scope.serverHost+":"+$scope.serverPort+"/api/checkout",
+                    url     : "https://"+$scope.serverHost+":"+$scope.serverPort+"/api/checkout",
                     data    : $.param(form.formData),  // pass in data as strings
                     headers : { 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': $scope.serverAuth }  // set the headers so angular passing info as form data (not request payload)
                 }).success(function(data) {
