@@ -175,8 +175,8 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
         $scope.boughtForDate = moment(new Date($scope.formData.date)).format('MM-DD-YYYY');
     });
     $scope.geoip = {};
-        $.getJSON("http://jsonip.com?callback=?", function (data) {
-                $.getJSON("http://www.telize.com/geoip/"+data.ip, function (geodata) {
+        $.getJSON("https://freegeoip.net/json/", function (data) {
+                $.getJSON("https://freegeoip.net/json/"+data.ip, function (geodata) {
                      $scope.formData.geoip = geodata;
                 });
             });
