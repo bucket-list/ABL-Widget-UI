@@ -28,10 +28,8 @@ app.factory("convertCurrency" function(){
     }
     return {
         getCurrencyRate: function() {
-            var query = "https://query.yahooapis.com/v1/public/"
-                + "yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22"+currency.convertFrom+
-                currency.convertTo+"%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
-             $.getJSON("https://freegeoip.net/json/", function (data) {
+            var query = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22"+currency.convertFrom+currency.convertTo+"%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
+             $.getJSON(query, function (data) {
                 currency.rate = data.results.rate.Rate;
              });
             return currency.rate; 
