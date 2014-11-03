@@ -1,8 +1,6 @@
 'use strict';
 /*globals document, console, XMLHttpRequest*/
 
-console.log('hello from server');
-
 (function(global) {
     var serverHost = '<%= serverHost %>';
     var api_key = '<%= api_key %>';

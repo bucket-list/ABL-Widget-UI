@@ -182,10 +182,26 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                      $scope.formData.geoip = geodata;
                 });
             });
-        $.getJSON("http://"+serverService.serverHost+"/api/clientID", function (data) {
-            console.log(data.token);
-            braintree.setup(data.token, "dropin", { container: "dropin"});
-        });
+        // $.getJSON("http://"+serverService.serverHost+"/api/clientID", function (data) {
+        //     console.log(data.token);
+        //     braintree.setup(data.token, "dropin", { container: "dropin"});
+        // });
+        $scope.token = '';
+        $.ajax({
+              type: "GET",
+              url: "http://"+serverService.serverHost+"/api/clientID",
+              headers: { "cache-control": "no-cache" },
+              success: function (data) {
+                console.log(data.token);
+                braintree.setup(data.token, "dropin", { container: "dropin"});
+                $scope.token = data.token;
+              },
+              error: function (data) {
+                console.log(data);
+              },
+              dataType: "json",
+              cache: false
+            });
                 // , "<integration>", options
             // create a blank object to hold our form information
             // $scope will allow this to pass between controller and view
@@ -198,7 +214,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 form.formData.hosting_paid = $scope.paymentHosting;
                 form.formData.tax_paid = $scope.paymentTax;
                 form.formData.price_paid = $scope.paymentPrice;
-                
+                form.formData.nonce = $scope.token;
                 form.formData.number_of_adults = $scope.numberOfAdults;
                 form.formData.number_of_youth = $scope.numberOfYouth;
                 form.formData.number_of_children = $scope.numberOfChildren;
@@ -303,11 +319,11 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
 // });
 
 
-app.controller('MainCtrl', function ($scope, productService, serverService) {
+app.controller('MainCtrl', function ($scope, $analytics, productService, serverService) {
     $scope.currentImage = productService.getCurrentProduct();
     $scope.slides = $scope.currentImage.image_array;
     $scope.api_key = serverService.api_key;
-
+    $analytics.pageTrack('/form/main_pg');
         $scope.currentIndex = 0;
 
         $scope.setCurrentSlideIndex = function (index) {
