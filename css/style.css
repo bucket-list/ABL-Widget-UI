@@ -34,16 +34,23 @@ pre                             { margin-bottom:20px; }
     
 /* enter animation */
 #form-views.ng-enter            { 
-    -webkit-animation: transform-origin: 50% 50%; animation: rotateOutNewspaper .5s both ease-in; 
+-webkit-animation:slideInRight 0.5s both ease;
+-moz-animation:slideInRight 0.5s both ease;
+animation:slideInRight 0.5s both ease; 
+
+  /*  -webkit-animation: transform-origin: 50% 50%; animation: rotateOutNewspaper .5s both ease-in; 
 	-moz-animation: transform-origin: 50% 50%; animation: rotateOutNewspaper .5s both ease-in; 
-	animation: transform-origin: 50% 50%; animation: rotateOutNewspaper .5s both ease-in; 
+	animation: transform-origin: 50% 50%; animation: rotateOutNewspaper .5s both ease-in; */
 }
 
 /* leave animation */
 #form-views.ng-leave            { 
-    -webkit-animation: transform-origin: 50% 50%; animation: rotateOutNewspaper .5s both ease-in; 
+-webkit-animation:slideOutLeft 0.5s both ease;
+-moz-animation:slideOutLeft 0.5s both ease;
+animation:slideOutLeft 0.5s both ease; 
+   /* -webkit-animation: transform-origin: 50% 50%; animation: rotateOutNewspaper .5s both ease-in; 
 	-moz-animation: transform-origin: 50% 50%; animation: rotateOutNewspaper .5s both ease-in; 
-	animation: transform-origin: 50% 50%; animation: rotateOutNewspaper .5s both ease-in; 
+	animation: transform-origin: 50% 50%; animation: rotateOutNewspaper .5s both ease-in; */
 }
 /*slideOutLeft 0.5s both ease;  */
 /* ANIMATIONS
