@@ -185,15 +185,15 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
         //     braintree.setup(data.token, "dropin", { container: "dropin"});
         // });
         $scope.token = '';
-        console.log("Token should be blank /" + $scope.token + " /");
+        // console.log("Token should be blank /" + $scope.token + " /");
         $.ajax({
               type: "GET",
               url: "https://"+serverService.serverHost+"/api/clientID",
               headers: { "cache-control": "no-cache" },
               success: function (data) {
-                console.log("payment nonce");
-                console.log(data.token);
-                console.log("Token should be blank /" + $scope.token + " /");
+                // console.log("payment nonce");
+                // console.log(data.token);
+                // console.log("Token should be blank /" + $scope.token + " /");
                 braintree.setup(data.token, "dropin", { container: "dropin"});
                 $scope.token = data.token;
               },
