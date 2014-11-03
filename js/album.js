@@ -20,7 +20,7 @@ app.service('productService', function ($window) {
         getCurrentProduct: getCurrentProduct
     };
 });
-app.factory("convertCurrency" function(){
+app.factory("convertCurrency", function(){
     var currency = {
         rate : 0,
         convertFrom: 'CAD',
