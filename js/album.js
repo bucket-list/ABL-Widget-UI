@@ -85,7 +85,7 @@ app.controller('AgeCtrl', function ($scope, productService, serverService) {
     $scope.currentImage = productService.getCurrentProduct();
     $scope.api_key = serverService.api_key;
 })
-app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService, $state, serverService, CustomerData) { 
+app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService, $state, serverService, CustomerData, convertCurrency) { 
     $scope.currentImage = productService.getCurrentProduct();
     $scope.api_key = serverService.api_key;
     $scope.formData = {};
@@ -174,7 +174,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 $scope.paymentSubtotal += $scope.childSubtotal;
                 $scope.paymentHosting += $scope.numberOfChildren * $scope.currentImage.child_host_fee_value;
                 $scope.paymentTax = $scope.numberOfChildren * $scope.currentImage.child_tax_fee_value;
-                 $scope.paymentPrice += $scope.numberOfChildren * $scope.currentImage.childTotalPrice;
+                $scope.paymentPrice += $scope.numberOfChildren * $scope.currentImage.childTotalPrice;
             }
             $scope.tax_and_fee = $scope.paymentTax + $scope.paymentHosting;
         }
