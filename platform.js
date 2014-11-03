@@ -1,5 +1,7 @@
 'use strict';
 /*globals document, console, XMLHttpRequest*/
+//var server = "https://js.ablsolution.com";
+var server = "https://162.242.170.162";
 
 (function(global) {
     var serverHost = '<%= serverHost %>';
@@ -37,8 +39,8 @@
 
     function createablWidget(ablWidget, id, key) {
         <% if (useIframe) { %>
-            var iframe = document.createElement('iframe');//162.242.170.162
-            iframe.setAttribute('src', 'https://js.ablsolution.com/iframe/widget/'+id+'/init?iframe=true&api_key='+api_key);
+            var iframe = document.createElement('iframe');
+            iframe.setAttribute('src', server+'/iframe/widget/'+id+'/init?iframe=true&api_key='+api_key);
             iframe.setAttribute('class', 'abl-widget');
             iframe.setAttribute('data-abl-id', id);
             //iframe.setAttribute('data-api-key', key);
