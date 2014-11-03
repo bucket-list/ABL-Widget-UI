@@ -241,7 +241,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 form.formData.number_of_children = $scope.numberOfChildren;
                 // var dateTime = new Date(form.formData.date+form.formData.time);
                 
-                // console.log($scope.timez, $scope.newtime);
+                console.log(form.formData);
                 form.formData.date_togo = form.formData.date; //new Date(form.formData.date+form.formData.time);
                 form.formData.time_togo = $scope.timez;//new Date(form.formData.time);
                 form.formData.api_key = location.search.split("api_key=")[1];
