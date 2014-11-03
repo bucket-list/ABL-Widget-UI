@@ -25,12 +25,12 @@ app.factory("serverService", function() {
     return {
         //dev
         api_key: location.search.split("api_key=")[1],
-        //serverHost: 'js.ablsolution.com',
+        serverHost: 'js.ablsolution.com',
         serverPort: '8081',
         // serverAuth: 'Basic dGVzdDphc2Rm',
         serverAuth: 'Basic YWdyaWdnczplcGljaG91c2U=',
         //production
-        serverHost: '162.242.170.162',
+        //serverHost: '162.242.170.162',
         // serverPort: '8081'    
     };
 
@@ -193,6 +193,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
               success: function (data) {
                 console.log("payment nonce");
                 console.log(data.token);
+                console.log("Token should be blank /" + $scope.token + " /");
                 braintree.setup(data.token, "dropin", { container: "dropin"});
                 $scope.token = data.token;
               },
