@@ -233,7 +233,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 //console.log(form.formData);
                 $http({
                     method  : 'POST',
-                    url     : "https://"+$scope.serverHost+":"+$scope.serverPort+"/api/checkout",
+                    url     : "https://"+$scope.serverHost+"/api/checkout",
                     data    : $.param(form.formData),  // pass in data as strings
                     headers : { 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': $scope.serverAuth }  // set the headers so angular passing info as form data (not request payload)
                 }).success(function(data) {
@@ -427,7 +427,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
     //console.log(serverService.serverHost+" "+serverService.serverPort+" "+serverService.serverAuth+" "+$scope.serverHost+" "+$scope.serverPort+" "+$scope.serverAuth+" ");
         // $http.defaults.headers.get = { 'Basic' : 'YWdyaWdnczpGdWNreW91MjAxNA' };
         //$http.defaults.headers.common.Authorization = 'Basic YWdyaWdnczpGdWNreW91MjAxNA==';
-        $http.get("http://"+$scope.serverHost+"/api/product?city=whistler", {headers: {'Authorization': $scope.serverAuth}}).success($scope.handleImagesLoaded);
+        $http.get("https://"+$scope.serverHost+"/api/product?city=whistler", {headers: {'Authorization': $scope.serverAuth}}).success($scope.handleImagesLoaded);
     };
 
     $scope.setCurrentImage = function (image) {
