@@ -9,7 +9,6 @@ app.service('productService', function ($window) {
     var setData = function(dataFromView) {
         currentProduct = dataFromView;
         $window.sessionStorage["currentProductData"] = JSON.stringify(currentProduct);
-        console.log("Data"+dataFromView);
     };
     var getCurrentProduct = function(){
         sessionCurrentProduct= $window.sessionStorage["currentProductData"];
@@ -174,7 +173,6 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
     });    
     $scope.$watch('timez', function() {
         $scope.boughtForDate = moment(new Date($scope.formData.date)).format('MM-DD-YYYY');
-        console.log($scope.boughtForDate+" "+$scope.timez);//moment($scope.boughtForDate).format('MM-DD-YYYY hh:mmA'));.setTime($scope.timez)
     });
     $scope.geoip = {};
         $.getJSON("http://jsonip.com?callback=?", function (data) {
@@ -187,11 +185,13 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
         //     braintree.setup(data.token, "dropin", { container: "dropin"});
         // });
         $scope.token = '';
+        console.log("Token should be blank /" + $scope.token + " /");
         $.ajax({
               type: "GET",
               url: "http://"+serverService.serverHost+"/api/clientID",
               headers: { "cache-control": "no-cache" },
               success: function (data) {
+                console.log("payment nonce");
                 console.log(data.token);
                 braintree.setup(data.token, "dropin", { container: "dropin"});
                 $scope.token = data.token;
