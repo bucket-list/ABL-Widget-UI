@@ -16,10 +16,10 @@
         </div>
     </div>
     <div id="thumbWrapper">
-        <a class="arrow prev" ng-click="nextSlide()"></a>
-        <a class="arrow next" ng-click="prevSlide()"></a>
+        <a class="arrow prev home leftArrow" ng-click="prevSlide()"></a>
+        <a class="arrow next home rightArrow" ng-click="nextSlide()"></a>
         <ul id="thumbList" style="padding: 0px"><!-- analytics-on="click" analytics-event="Main Page - Thumbnails - {{currentImage.title}}" analytics-category="{{api_key}}" -->
-            <li ng-repeat="image in images | filter:categories" ng-click="setCurrentImage(image)" >
+            <li id = "anchor{{$index}}" ng-repeat="image in images | filter:categories" ng-click="setCurrentImage(image)" >
                 <img width="200px" height="150px" ng-src="{{image.image_lg}}" alt="{{image.title}}">
                 <div class="thumbnailDescription">
                     <p class="thumbnailTitle"> {{image.title | limitTo: 22}}{{image.title.length > 22 ? '...' : ''}}</p>

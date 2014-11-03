@@ -1,4 +1,5 @@
 var app = angular.module('ABL.controllers', ['ngAnimate']);
+// var braintree = require('braintree');
 
 app.service('productService', function ($window) {
     //var allProducts = getData();
@@ -317,11 +318,11 @@ app.controller('MainCtrl', function ($scope, productService, serverService) {
             return $scope.currentIndex === index;
         };
 
-        $scope.prevSlide = function () {
+        $scope.nextSlide = function () {
             $scope.currentIndex = ($scope.currentIndex < $scope.slides.length - 1) ? ++$scope.currentIndex : 0;
         };
 
-        $scope.nextSlide = function () {
+        $scope.prevSlide = function () {
             $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
         };
 });
@@ -349,7 +350,7 @@ app.controller('MainCtrl', function ($scope, productService, serverService) {
     //         }
     //     };
     // });
-app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, productService, serverService) {
+app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, productService, serverService, $location, $anchorScroll) {
     $scope.url = 'images.json';
     $scope.images = [];
     $scope.imageCategories = [];
@@ -366,6 +367,32 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
             };
           
           $scope.initSlider();
+
+    // $scope.nextSlide = function(index) {
+    //     var newindex = index + 1
+    //     var newHash = 'anchor' + newindex;
+    //     if ($location.hash() !== newHash) {
+    //         $location.hash('anchor' + newindex);
+    //     } else {
+    //         $anchorScroll();
+    //     }
+
+    // };
+
+    $scope.nextSlide = function () {
+        $(".rightArrow").click(function () { 
+            var leftPos = $('#thumbWrapper').scrollLeft();
+                $("#thumbWrapper").animate({scrollLeft: leftPos + 623}, 500);
+        });
+    };
+
+    $scope.prevSlide = function () {
+        $(".leftArrow").click(function () { 
+        var leftPos = $('#thumbWrapper').scrollLeft();
+        $("#thumbWrapper").animate({scrollLeft: leftPos - 623}, 500);
+        });
+    };
+
 
 
     $scope.handleImagesLoaded = function (data, status) {
