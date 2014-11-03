@@ -204,7 +204,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
         //     console.log(data.token);
         //     braintree.setup(data.token, "dropin", { container: "dropin"});
         // });
-        $scope.token = '';
+        //$scope.token = '';
         // console.log("Token should be blank /" + $scope.token + " /");
         $.ajax({
               type: "GET",
@@ -215,7 +215,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 // console.log(data.token);
                 // console.log("Token should be blank /" + $scope.token + " /");
                 braintree.setup(data.token, "dropin", { container: "dropin"});
-                $scope.token = data.token;
+                //$scope.token = data.token;
               },
               error: function (data) {
                 console.log(data);
@@ -235,7 +235,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 form.formData.hosting_paid = $scope.paymentHosting;
                 form.formData.tax_paid = $scope.paymentTax;
                 form.formData.price_paid = $scope.paymentPrice;
-                form.formData.nonce = $scope.token;
+                //form.formData.nonce = $scope.token;
                 form.formData.number_of_adults = $scope.numberOfAdults;
                 form.formData.number_of_youth = $scope.numberOfYouth;
                 form.formData.number_of_children = $scope.numberOfChildren;
