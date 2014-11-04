@@ -389,7 +389,7 @@ app.controller('MainCtrl', function ($scope, $analytics, productService, serverS
     //         }
     //     };
     // });
-app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, productService, serverService, $location, $anchorScroll) {
+app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, productService, serverService,convertCurrency, $location, $anchorScroll) {
     $scope.rate = parseFloat(convertCurrency.getCurrencyRate());
     $scope.url = 'images.json';
     $scope.images = [];
