@@ -326,7 +326,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
 
 app.directive('sumbitBT', function ($document) {
     var linkFn;
-    linkFn = function($scope, e$lement, $attrs) {
+    linkFn = function($scope, $element, $attrs) {
         $element.$('#dropin').dispatchEvent(new Event('submit'));
     };
     return {
