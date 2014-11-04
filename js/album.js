@@ -340,8 +340,9 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
 // });
 
 
+
 app.controller('MainCtrl', function ($scope, $location, $analytics, productService, serverService, convertCurrency) {
-    $scope.rate = convertCurrency.getCurrencyRate();
+    $scope.rate = parseFloat(convertCurrency.getCurrencyRate());
     console.log("Current Rate "+$scope.rate);
     $scope.currentImage = productService.getCurrentProduct();
     $scope.slides = $scope.currentImage.image_array;
@@ -392,7 +393,8 @@ app.controller('MainCtrl', function ($scope, $location, $analytics, productServi
     //         }
     //     };
     // });
-app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, productService, serverService, $location, $anchorScroll) {
+app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, productService, serverService,convertCurrency, $location, $anchorScroll) {
+    $scope.rate = parseFloat(convertCurrency.getCurrencyRate());
     $scope.url = 'images.json';
     $scope.images = [];
     $scope.imageCategories = [];
