@@ -327,18 +327,17 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
 app.directive('sumbitBT', function ($document) {
     var linkFn;
     linkFn = function(scope, element,attrs) {
-        $(document).getElementById('dropin').dispatchEvent(new Event('submit'));
+        $('#dropin').dispatchEvent(new Event('submit'));
     };
     return {
         restrict: 'C',
         link: linkFn
     }
-
 });
 
 
 // app.directive('datetimez', function() {
-//     return {
+//     return {(document).getElementById
 //         restrict: 'A',
 //         require : 'ngModel',
 //         link: function(scope, element, attrs, ngModelCtrl) {
