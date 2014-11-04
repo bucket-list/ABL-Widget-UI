@@ -217,6 +217,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 braintree.setup(data.token, "dropin", { container: "dropin"},
                 paymentMethodNonceReceived: function (event, nonce) {
                     $scope.nonce = nonce;
+                    console.log($scope.nonce);
                 });
                 //$scope.token = data.token;
               },
