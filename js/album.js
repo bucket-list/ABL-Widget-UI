@@ -355,13 +355,17 @@ app.directive('sumbitBT', function ( $document) {
 // });
 
 
-app.controller('MainCtrl', function ($scope, $analytics, productService, serverService, convertCurrency) {
+
+app.controller('MainCtrl', function ($scope, $location, $analytics, productService, serverService, convertCurrency) {
     $scope.rate = parseFloat(convertCurrency.getCurrencyRate());
     console.log("Current Rate "+$scope.rate);
     $scope.currentImage = productService.getCurrentProduct();
     $scope.slides = $scope.currentImage.image_array;
     $scope.api_key = serverService.api_key;
     $analytics.pageTrack('/form/main_pg');
+        $scope.nextState = function () {
+            $location.path('/form/payment');
+        }
         $scope.currentIndex = 0;
 
         $scope.setCurrentSlideIndex = function (index) {
@@ -473,9 +477,14 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
         productService.setData(image);
         _.$inject = ["$scope", "image"]
     };
+
+    $scope.nextState = function () {
+        $location.path('/form/interests');
+    }
     $scope.clickFunction = function() {
         $rootScope.$broadcast('Update', $scope.currentImage);
       };
+
 
     // Defer fetch for 1 second to give everything an opportunity layout
     $timeout($scope.fetch, 5);

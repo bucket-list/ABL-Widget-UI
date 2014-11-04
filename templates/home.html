@@ -11,7 +11,7 @@
               <span ng-show="currentImage.youthPrice<currentImage.price && currentImage.price>currentImage.childPrice" class="price">${{currentImage.price * rate}} USD</span>
               <span ng-show="currentImage.youthPrice>currentImage.price && currentImage.youthPrice>currentImage.childPrice" class="price">${{currentImage.youthPrice * rate}} USD</span>
               <span ng-show="currentImage.youthPrice<currentImage.childPrice && currentImage.price<currentImage.childPrice" class="price">${{currentImage.childPrice * rate}} USD</span>
-                <button onclick="location.href='#/form/interests'" ng-click="setCurrentImage(currentImage)" class="btn btn-warning btn-lg overimg-left" analytics-on="click" analytics-event="Main Page - Book Now - {{currentImage.title}}" analytics-category="{{api_key}}"><strong>Book Now</strong>
+                <button ng-click="setCurrentImage(currentImage); nextState()" class="btn btn-warning btn-lg overimg-left" analytics-on="click" analytics-event="Main Page - Book Now - {{currentImage.title}}" analytics-category="{{api_key}}"><strong>Book Now</strong>
             </button>
         </div>
     </div>
