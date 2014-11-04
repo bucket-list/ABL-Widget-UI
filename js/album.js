@@ -214,10 +214,11 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 // console.log("payment nonce");
                 // console.log(data.token);
                 // console.log("Token should be blank /" + $scope.token + " /");
-                braintree.setup(data.token, "dropin", { container: "dropin"},
+                braintree.setup(data.token, "dropin", { container: "dropin",
                 paymentMethodNonceReceived: function (event, nonce) {
                     $scope.nonce = nonce;
                     console.log($scope.nonce);
+                    }
                 });
                 //$scope.token = data.token;
               },
