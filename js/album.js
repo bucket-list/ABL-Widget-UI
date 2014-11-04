@@ -205,6 +205,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
         // });
         //$scope.token = '';
         // console.log("Token should be blank /" + $scope.token + " /");
+        $scope.nonce = '';
         $.ajax({
               type: "GET",
               url: serverService.serverHost+"/api/clientID",
@@ -213,7 +214,10 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 // console.log("payment nonce");
                 // console.log(data.token);
                 // console.log("Token should be blank /" + $scope.token + " /");
-                braintree.setup(data.token, "dropin", { container: "dropin"});
+                braintree.setup(data.token, "dropin", { container: "dropin"},
+                paymentMethodNonceReceived: function (event, nonce) {
+                    $scope.nonce = nonce;
+                });
                 //$scope.token = data.token;
               },
               error: function (data) {
@@ -240,7 +244,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 form.formData.number_of_youth = $scope.numberOfYouth;
                 form.formData.number_of_children = $scope.numberOfChildren;
                 // var dateTime = new Date(form.formData.date+form.formData.time);
-                
+                form.formData.payment_method_nonce = $scope.nonce;
                 console.log(form.formData);
                 form.formData.date_togo = form.formData.date; //new Date(form.formData.date+form.formData.time);
                 form.formData.time_togo = $scope.timez;//new Date(form.formData.time);
@@ -318,7 +322,17 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
 //     };
 //   });
 
+app.directive('sumbitBT', function ( $document) {
+    var linkFn;
+    linkFn = function(scope, element,attrs) {
+        $document.getElementById(“dropin”).dispatchEvent(new Event(‘submit’));
+    };
+    return {
+        restrict: 'C',
+        link: linkFn
+    }
 
+})
 
 
 // app.directive('datetimez', function() {
