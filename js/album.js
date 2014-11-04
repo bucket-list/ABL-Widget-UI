@@ -341,7 +341,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
 
 
 app.controller('MainCtrl', function ($scope, $analytics, productService, serverService, convertCurrency) {
-    $scope.rate = convertCurrency.getCurrencyRate();
+    $scope.rate = parseFloat(convertCurrency.getCurrencyRate());
     console.log("Current Rate "+$scope.rate);
     $scope.currentImage = productService.getCurrentProduct();
     $scope.slides = $scope.currentImage.image_array;
