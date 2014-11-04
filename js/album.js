@@ -324,7 +324,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
 //     };
 //   });
 
-app.directive('sumbitBT', function ( $document) {
+app.directive('sumbitBT', function ($document) {
     var linkFn;
     linkFn = function(scope, element,attrs) {
         $document.getElementById(“dropin”).dispatchEvent(new Event(‘submit’));
@@ -334,7 +334,7 @@ app.directive('sumbitBT', function ( $document) {
         link: linkFn
     }
 
-})
+});
 
 
 // app.directive('datetimez', function() {
