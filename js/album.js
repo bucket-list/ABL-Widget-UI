@@ -248,15 +248,13 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
               async: false
             });
         }
-        var resultNonce;
-        setupBrainTree(function(nonce){
+        var resultNonce = setupBrainTree(function(nonce){
             console.log("in callback: "+nonce);
         //     // form.formData.payment_method_nonce = nonce;
-         NonceData.setNonce(nonce);
-         resultNonce = nonce;
+         return NonceData.setNonce(nonce);
+         //resultNonce = nonce;
         //     $scope.nonce = nonce;
         });
-        console.log("test " + resultNonce);
                 // , "<integration>", options
             // create a blank object to hold our form information
             // $scope will allow this to pass between controller and view
@@ -264,7 +262,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
 
          $scope.processPaymentForm = function(expr) {
                 var form = this;
-                
+                $.when.apply($, resultNonce).then(function() {
                 ///$scope.$('div#dropin').dispatchEvent(new Event('submit'));
                 // (function(){
                 console.log("nonce to pass "+ NonceData.getNonce()+" "+ $scope.nonce);
@@ -332,11 +330,11 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                     }).error(function(data) {
                         console.log(data);
                     });
-            // }
+            }
             };
         $scope.processPayment = function() {
             document.getElementById('checkout').dispatchEvent(new Event('submit'));
-            $timeout($scope.processPaymentForm(), 1000);
+            $timeout($scope.processPaymentForm(), 100);
         };
     // define angular module/app
         //var formApp = app.controller('formCtl', []);
