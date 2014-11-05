@@ -249,9 +249,11 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
             });
         }
         var resultNonce = setupBrainTree(function(nonce){
+            $.when.apply($, nonce).then(function() {
             console.log("in callback: "+nonce);
         //     // form.formData.payment_method_nonce = nonce;
-         return NonceData.setNonce(nonce);
+         NonceData.setNonce(nonce);
+         });
          //resultNonce = nonce;
         //     $scope.nonce = nonce;
         });
@@ -262,11 +264,10 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
 
          $scope.processPaymentForm = function(expr) {
                 var form = this;
-                $.when.apply($, resultNonce).then(function() {
+               
                 ///$scope.$('div#dropin').dispatchEvent(new Event('submit'));
                 // (function(){
                 console.log("nonce to pass "+ NonceData.getNonce()+" "+ $scope.nonce);
-                });
                 //     alert("FUCK YOU!");
                 //   }); //.dispatchEvent(new Event('submit'));//tigger('submit');
                 //$("#dropin")
