@@ -260,7 +260,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
             // process the form
          $scope.processPaymentForm = function(expr) {
                 var form = this;
-                document.getElementById('checkout').dispatchEvent(new Event('submit'));
+                $timeout(document.getElementById('checkout').dispatchEvent(new Event('submit')), 250);
                 ///$scope.$('div#dropin').dispatchEvent(new Event('submit'));
                 // (function(){
                     console.log("nonce to pass "+ NonceData.getNonce()+ $scope.nonce);
