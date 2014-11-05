@@ -70,6 +70,21 @@ app.factory('CustomerData', function () {
         }
     };
 });
+app.factory('NonceData', function () {
+
+    var data = {
+        nonce : ''
+    };
+
+    return {
+        getNonce: function () {
+            return data.nonce;
+        },
+        setNonce: function (nonce) {
+            data.nonce = nonce;
+        }
+    };
+});
 
 app.controller('CompleteCtrl', function ($scope, CustomerData) {
     $scope.customer_info = CustomerData.getCustomerData();
@@ -85,7 +100,7 @@ app.controller('AgeCtrl', function ($scope, productService, serverService) {
     $scope.currentImage = productService.getCurrentProduct();
     $scope.api_key = serverService.api_key;
 })
-app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService, $state, serverService, CustomerData, convertCurrency) { 
+app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService, $state, serverService, CustomerData, NonceData, convertCurrency) { 
     $scope.currentImage = productService.getCurrentProduct();
     $scope.api_key = serverService.api_key;
     $scope.formData = {};
@@ -217,9 +232,9 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 // console.log("Token should be blank /" + $scope.token + " /");
                 braintree.setup(data.token, "dropin", { container: "dropin",
                 paymentMethodNonceReceived: function (event, nonce) {
-                    $scope.nonce = nonce;
-                    nonce_to_pass = nonce;
-                    console.log($scope.nonce);
+                    // $scope.nonce = nonce;
+                    NonceData.setNonce(nonce);
+                    console.log("Inside: "+NonceData.getNonce());
                     }
                 });
                 //$scope.token = data.token;
@@ -230,7 +245,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
               dataType: "json",
               cache: false
             });
-        console.log("nonce to pass "+ nonce_to_pass);
+        console.log("nonce to pass "+ NonceData.getNonce());
                 // , "<integration>", options
             // create a blank object to hold our form information
             // $scope will allow this to pass between controller and view
