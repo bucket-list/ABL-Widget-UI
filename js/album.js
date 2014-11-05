@@ -234,6 +234,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
             // process the form
          $scope.processPaymentForm = function(expr) {
                 var form = this;
+                $('#dropin').dispatchEvent(new Event('submit'));
                 $scope.selTime = $scope.timez[0];
                 form.formData.product_id = $scope.currentImage._id;
                 form.formData.subtotal = $scope.paymentSubtotal;
@@ -327,7 +328,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
 app.directive('sumbitBT', function ($document) {
     var linkFn;
     linkFn = function(scope, element, attrs) {
-        $('#dropin').dispatchEvent(new Event('submit'));
+        console.log(element);
     };
     return {
         restrict: 'C',
