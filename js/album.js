@@ -269,7 +269,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 //   }); //.dispatchEvent(new Event('submit'));//tigger('submit');
                 //$("#dropin")
                 // if(NonceData.getNonce()!=='') {
-                $timeout(250);
+                $timeout(function(), 250);
                 $scope.selTime = $scope.timez[0];
                 form.formData.product_id = $scope.currentImage._id;
                 form.formData.subtotal = $scope.paymentSubtotal;
