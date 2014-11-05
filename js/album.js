@@ -521,7 +521,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
             };
           
           $scope.initSlider();
-    $scope.currentImage.price = Math.round($scope.currentImage.price * $scope.rate);
+    $scope.currentImage.price = ($scope.currentImage.price * $scope.rate).toFixed(2);
     // $scope.nextSlide = function(index) {
     //     var newindex = index + 1
     //     var newHash = 'anchor' + newindex;
