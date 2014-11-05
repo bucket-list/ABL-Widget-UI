@@ -243,7 +243,8 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 console.log(data);
               },
               dataType: "json",
-              cache: false
+              cache: false,
+              async: false
             });
         
                 // , "<integration>", options
