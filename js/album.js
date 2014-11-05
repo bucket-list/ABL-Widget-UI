@@ -502,8 +502,9 @@ app.controller('MainCtrl', function ($scope, $location, $analytics, productServi
     //     };
     // });
 app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, productService, serverService,convertCurrency, $location, $anchorScroll, convertCurrencyResolve) {
-    console.log("convertCurrencyResolve "+ convertCurrencyResolve);
-    $scope.rate = parseFloat(convertCurrencyResolve.rate);
+    console.log("convertCurrencyResolve "+ convertCurrencyResolve.query.results.rate.Rate);
+    $scope.rate = parseFloat(convertCurrencyResolve.query.results.rate.Rate);
+    console.log("convertCurrencyResolve "+ $scope.rate);
     $scope.url = 'images.json';
     $scope.images = [];
     $scope.imageCategories = [];
