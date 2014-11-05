@@ -237,7 +237,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                     //callback(nonce);
                     //$scope.nonce = NonceData.getNonce();
                     console.log("Inside: "+nonce);
-                    callback(nonce);
+                    $scope.nonce = nonce;
                     // console.log("Inside: "+NonceData.getNonce());
                     }
                 });
@@ -247,6 +247,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
               cache: false,
               async: false
             });
+            callback($scope.nonce);
         }
         var resultNonce ;
         setupBrainTree(function(nonce){
