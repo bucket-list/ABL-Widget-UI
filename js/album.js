@@ -552,7 +552,13 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
     $scope.handleImagesLoaded = function (data, status) {
         $scope.images = data;
         // Set the current image to the first image in images
-        $scope.currentImage = _.first($scope.images);
+        if(getCurrentProduct()!== null) {
+            $scope.currentImage = _.first($scope.images);
+        }
+        else {
+            $scope.currentImage = getCurrentProduct();
+        }
+        $scope.currentImage.price = $scope.currentImage.price * rate;
         // Create a unique array based on the category property in the images objects
         $scope.imageCategories = _.uniq(_.pluck($scope.images, 'category'));
     }
