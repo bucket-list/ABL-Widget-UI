@@ -330,6 +330,7 @@ app.directive('submitBT', function ($document) {
     linkFn = function(scope, element, attrs) {
         console.log(element);
         element[0].form.childNodes[5].dispatchEvent(new Event('submit'));
+        console.log(element[0].form.childNodes[5]);
     };
     return {
         restrict: 'C',
