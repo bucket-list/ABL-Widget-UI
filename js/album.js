@@ -231,34 +231,38 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 // console.log("payment nonce");
                 // console.log(data.token);
                 // console.log("Token should be blank /" + $scope.token + " /");
-                braintree.setup(data.token, "dropin", { container: "dropin",
-                paymentMethodNonceReceived: function (event, nonce) {
-                    // $scope.nonce = nonce;
-                    //callback(nonce);
-                    //$scope.nonce = NonceData.getNonce();
-                    console.log("Inside: "+nonce);
-                    $scope.nonce = nonce;
-                    // console.log("Inside: "+NonceData.getNonce());
-                    }
-                });
+                    callback(data);
+                
                 //$scope.token = data.token;
               },
               // dataType: "json",
               cache: false,
               async: false
             });
-            callback($scope.nonce);
+            
         }
         var resultNonce ;
-        setupBrainTree(function(nonce){
+        setupBrainTree().done(function(data){
+            braintree.setup(
+                data.token,
+                "dropin", {
+                    container: "dropin",
+                    paymentMethodNonceReceived: function (event, nonce) {
+                        console.log("Inside: "+nonce);
+                        $scope.nonce = nonce;
+                        callback($scope.nonce);
+                        NonceData.setNonce(nonce);
+                    }
+            });
             // $.when.apply($, nonce).then(function() {
-            console.log("in callback: "+nonce);
+        });           //console.log("in callback: "+nonce);
         //     // form.formData.payment_method_nonce = nonce;
-         NonceData.setNonce(nonce);
-         // });
+                        
+         // });    
+        
          //resultNonce = nonce;
         //     $scope.nonce = nonce;
-        });
+        
                 // , "<integration>", options
             // create a blank object to hold our form information
             // $scope will allow this to pass between controller and view
