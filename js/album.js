@@ -248,7 +248,8 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
               async: false
             });
         }
-        var resultNonce = setupBrainTree(function(nonce){
+        var resultNonce ;
+        setupBrainTree(function(nonce){
             $.when.apply($, nonce).then(function() {
             console.log("in callback: "+nonce);
         //     // form.formData.payment_method_nonce = nonce;
