@@ -38,7 +38,7 @@ angular.module('formApp', ['ngAnimate', 'ABL.controllers', 'ui.router', 'ui.boot
                 convertCurrencyResolve: function (){
                     var query = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22CADUSD%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
                     $.getJSON(query, function (data) {
-                       return data.query.results.rate.Rate;
+                       return { rate: data.query.results.rate.Rate };
                     });
                 }
             }    
