@@ -329,7 +329,7 @@ app.directive('sumbitBT', function ($document) {
     var linkFn;
     linkFn = function(scope, element, attrs) {
         console.log(element);
-        element.form.$('#dropin').dispatchEvent(new Event('submit'));
+        document.getElementById('dropin').dispatchEvent(new Event('submit'));
     };
     return {
         restrict: 'C',
