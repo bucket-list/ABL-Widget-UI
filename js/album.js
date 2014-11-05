@@ -20,9 +20,36 @@ app.service('productService', function ($window) {
         getCurrentProduct: getCurrentProduct
     };
 });
+myApp.provider("convertCurrency", function(){
+   var query = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22CADUSD%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
+$.getJSON(query, function (data) {
+    this.rate = data.query.results.rate.Rate;
+});
+
+    this.$get = function() {
+        var rate = this.rate;
+        return {
+            currentRate: function() {
+                return "Rate: " + rate + "!"
+            }
+        }
+    };
+
+    this.setRate = function(name) {
+        
+    };
+});
+
+
+function getCurrentRate(){
+    var query = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22CADUSD%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
+             $.getJSON(query, function (data) {
+                return data.query.results.rate.Rate;
+             });
+};
 app.factory("convertCurrency", function(){
     var currency = {}
-    // var query = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22CADUSD%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
+    // var query = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22"+currency.convertFrom+currency.convertTo+"CADUSD%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
     // $.getJSON(query, function (data) {
     //  return currency = {
     //     rate : data.query.results.rate.Rate,
@@ -34,16 +61,14 @@ app.factory("convertCurrency", function(){
     
     return {
         getCurrencyRate: function() {
-            var query = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22"+currency.convertFrom+currency.convertTo+"%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
-             $.getJSON(query, function (data) {
-                return currency.rate = data.query.results.rate.Rate;
-             });
+            
         },
         setCurrencyRate: function(rate) {
             currency.rate = rate;
         }
     };
 });
+
 app.factory("serverService", function() {
     return {
         //dev
@@ -413,7 +438,7 @@ app.directive('submitBT', function ($document) {
 app.controller('MainCtrl', function ($scope, $location, $analytics, productService, serverService, convertCurrency) {
     init();
     function init(){
-        $scope.rate = parseFloat(convertCurrency.getCurrencyRate());
+        $scope.rate = parseFloat(getCurrentRate());
         console.log("Current Rate "+$scope.rate);
     }
     // convertCurrency.getCurrencyRate().success(function(data){
