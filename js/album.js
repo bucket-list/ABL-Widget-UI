@@ -420,6 +420,7 @@ app.directive('submitBT', function ($document) {
 
 
 app.controller('MainCtrl', function ($scope, $location, $analytics, productService, serverService, convertCurrency) {
+    convertCurrency.getCurrencyRate();
     $scope.rate = parseFloat(convertCurrency.getCurrencyRate());
     console.log("Current Rate "+$scope.rate);
     $scope.currentImage = productService.getCurrentProduct();
