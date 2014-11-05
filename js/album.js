@@ -221,7 +221,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
         //$scope.token = '';
         // console.log("Token should be blank /" + $scope.token + " /");
         $scope.nonce = '';
-        var nonce_to_pass = '';
+        //var nonce_to_pass = '';
         $.ajax({
               type: "GET",
               url: serverService.serverHost+"/api/clientID",
@@ -234,6 +234,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 paymentMethodNonceReceived: function (event, nonce) {
                     // $scope.nonce = nonce;
                     NonceData.setNonce(nonce);
+                    $scope.nonce = NonceData.getNonce();
                     console.log("Inside: "+NonceData.getNonce());
                     }
                 });
@@ -256,7 +257,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 document.getElementById('checkout').dispatchEvent(new Event('submit'));
                 ///$scope.$('div#dropin').dispatchEvent(new Event('submit'));
                 // (function(){
-                    console.log("nonce to pass "+ NonceData.getNonce());
+                    console.log("nonce to pass "+ NonceData.getNonce()+ $scope.nonce);
                 //     alert("FUCK YOU!");
                 //   }); //.dispatchEvent(new Event('submit'));//tigger('submit');
                 //$("#dropin")
