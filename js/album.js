@@ -41,12 +41,12 @@ app.service('productService', function ($window) {
 // });
 
 
-function getCurrentRate(){
+function getCurrentRate(callback){
     var query = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22CADUSD%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
         var rate = $.getJSON(query, function (data) {
-            return data.query.results.rate.Rate;
+            callback(data.query.results.rate.Rate);
         });
-        return rate;
+        //return rate;
 };
 app.factory("convertCurrency", function(){
     var currency = {}
@@ -439,7 +439,9 @@ app.directive('submitBT', function ($document) {
 app.controller('MainCtrl', function ($scope, $location, $analytics, productService, serverService, convertCurrency) {
     init();
     function init(){
-        $scope.rate = parseFloat(getCurrentRate());
+        getCurrentRate(function(rate){
+            $scope.rate = parseFloat(rate);
+        });
         console.log("Current Rate "+$scope.rate);
     }
     // convertCurrency.getCurrencyRate().success(function(data){
