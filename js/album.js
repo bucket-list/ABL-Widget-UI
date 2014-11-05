@@ -234,13 +234,14 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 braintree.setup(data.token, "dropin", { container: "dropin",
                 paymentMethodNonceReceived: function (event, nonce) {
                     // $scope.nonce = nonce;
-                    callback(nonce);
-                    $scope.nonce = NonceData.getNonce();
+                    //callback(nonce);
+                    //$scope.nonce = NonceData.getNonce();
+                    return nonce;
                     console.log("Inside: "+NonceData.getNonce());
                     }
                 });
                 //$scope.token = data.token;
-              },
+              }
               error: function (data) {
                 console.log(data);
               },
@@ -249,12 +250,13 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
               async: false
             });
         }
-        setupBrainTree(function(nonce){
-            console.log("in callback: "+nonce);
-            form.formData.payment_method_nonce = nonce;
-            NonceData.setNonce(nonce);
-            $scope.nonce = nonce;
-        });
+        $scope.nonce = setupBrainTree();
+        //     function(nonce){
+        //     console.log("in callback: "+nonce);
+        //     // form.formData.payment_method_nonce = nonce;
+            NonceData.setNonce($scope.nonce);
+        //     $scope.nonce = nonce;
+        // }
         console.log("test " + $scope.nonce);
                 // , "<integration>", options
             // create a blank object to hold our form information
