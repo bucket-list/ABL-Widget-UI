@@ -521,6 +521,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
             };
           
           $scope.initSlider();
+          alert("USD: "+ ($scope.currentImage.price * $scope.rate) + " toFixed: "+ ($scope.currentImage.price * $scope.rate).toFixed(2))
     $scope.currentImage.price = ($scope.currentImage.price * $scope.rate).toFixed(2);
     // $scope.nextSlide = function(index) {
     //     var newindex = index + 1
