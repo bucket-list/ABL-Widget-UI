@@ -521,7 +521,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
             };
           
           $scope.initSlider();
-
+    $scope.currentImage.price = Math.round($scope.currentImage.price * $scope.rate);
     // $scope.nextSlide = function(index) {
     //     var newindex = index + 1
     //     var newHash = 'anchor' + newindex;
@@ -562,7 +562,6 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
         else {
             $scope.currentImage = productService.getCurrentProduct();
         }
-        $scope.currentImage.price = $scope.currentImage.price * $scope.rate + 10;
         // Create a unique array based on the category property in the images objects
         $scope.imageCategories = _.uniq(_.pluck($scope.images, 'category'));
     }
