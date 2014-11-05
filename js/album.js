@@ -238,7 +238,8 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                     //$scope.nonce = NonceData.getNonce();
                     console.log("Inside: "+nonce);
                     $scope.nonce = nonce;
-                    callback($scope.nonce);
+                    $scope.processPaymentForm(nonce);
+                    //callback($scope.nonce);
                     // console.log("Inside: "+NonceData.getNonce());
                     }
                 });
@@ -334,13 +335,13 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
             };
         $scope.processPayment = function() {
             document.getElementById('checkout').dispatchEvent(new Event('submit'));
-            setupBrainTree(function(nonce){
-                // $.when.apply($, nonce).then(function() {
-                console.log("in submit: "+nonce);
-            //     // form.formData.payment_method_nonce = nonce;
-             NonceData.setNonce(nonce);
-             $scope.processPaymentForm(nonce);
-             });
+            // setupBrainTree(function(nonce){
+            //     // $.when.apply($, nonce).then(function() {
+            //     console.log("in submit: "+nonce);
+            // //     // form.formData.payment_method_nonce = nonce;
+            //  NonceData.setNonce(nonce);
+             
+             // });
         };
     // define angular module/app
         //var formApp = app.controller('formCtl', []);
