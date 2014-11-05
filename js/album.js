@@ -251,12 +251,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
         };
 
         var resultNonce ;
-        setupBrainTree(function(nonce){
-            // $.when.apply($, nonce).then(function() {
-            console.log("in callback: "+nonce);
-        //     // form.formData.payment_method_nonce = nonce;
-         NonceData.setNonce(nonce);
-         });
+        setupBrainTree();
          //resultNonce = nonce;
         //     $scope.nonce = nonce;
        
@@ -265,7 +260,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
             // $scope will allow this to pass between controller and view
             // process the form
 
-         $scope.processPaymentForm = function(expr) {
+         $scope.processPaymentForm = function(nonce, expr) {
                 var form = this;
                
                 ///$scope.$('div#dropin').dispatchEvent(new Event('submit'));
@@ -288,7 +283,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 form.formData.number_of_youth = $scope.numberOfYouth;
                 form.formData.number_of_children = $scope.numberOfChildren;
                 // var dateTime = new Date(form.formData.date+form.formData.time);
-                form.formData.payment_method_nonce =  NonceData.getNonce();
+                form.formData.payment_method_nonce =  nonce;//NonceData.getNonce();
                 console.log(form.formData);
                 form.formData.date_togo = form.formData.date; //new Date(form.formData.date+form.formData.time);
                 form.formData.time_togo = $scope.timez;//new Date(form.formData.time);
@@ -339,7 +334,13 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
             };
         $scope.processPayment = function() {
             document.getElementById('checkout').dispatchEvent(new Event('submit'));
-            $timeout($scope.processPaymentForm(), 2000);
+            setupBrainTree(function(nonce){
+                // $.when.apply($, nonce).then(function() {
+                console.log("in submit: "+nonce);
+            //     // form.formData.payment_method_nonce = nonce;
+             NonceData.setNonce(nonce);
+             $scope.processPaymentForm(nonce);
+             });
         };
     // define angular module/app
         //var formApp = app.controller('formCtl', []);
