@@ -35,8 +35,8 @@ app.factory("convertCurrency", function(){
     return {
         getCurrencyRate: function() {
             var query = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22"+currency.convertFrom+currency.convertTo+"%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
-            return $.getJSON(query, function (data) {
-                //currency.rate = data.query.results.rate.Rate;
+             $.getJSON(query, function (data) {
+                return currency.rate = data.query.results.rate.Rate;
              });
         },
         setCurrencyRate: function(rate) {
@@ -411,11 +411,16 @@ app.directive('submitBT', function ($document) {
 
 
 app.controller('MainCtrl', function ($scope, $location, $analytics, productService, serverService, convertCurrency) {
-    convertCurrency.getCurrencyRate().success(function(data){
+    init();
+    function init(){
         $scope.rate = parseFloat(convertCurrency.getCurrencyRate());
         console.log("Current Rate "+$scope.rate);
+    }
+    // convertCurrency.getCurrencyRate().success(function(data){
+        
+        
 
-    });
+    // });
     
     $scope.currentImage = productService.getCurrentProduct();
     $scope.slides = $scope.currentImage.image_array;
