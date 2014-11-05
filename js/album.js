@@ -237,15 +237,12 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                     //callback(nonce);
                     //$scope.nonce = NonceData.getNonce();
                     return nonce;
-                    console.log("Inside: "+NonceData.getNonce());
+                    // console.log("Inside: "+NonceData.getNonce());
                     }
                 });
                 //$scope.token = data.token;
               },
-              error: function (data) {
-                console.log(data);
-              },
-              dataType: "json",
+              // dataType: "json",
               cache: false,
               async: false
             });
@@ -254,7 +251,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
         //     function(nonce){
         //     console.log("in callback: "+nonce);
         //     // form.formData.payment_method_nonce = nonce;
-            NonceData.setNonce($scope.nonce);
+            // NonceData.setNonce($scope.nonce);
         //     $scope.nonce = nonce;
         // }
         console.log("test " + $scope.nonce);
@@ -267,7 +264,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 document.getElementById('checkout').dispatchEvent(new Event('submit'));
                 ///$scope.$('div#dropin').dispatchEvent(new Event('submit'));
                 // (function(){
-                    console.log("nonce to pass "+ NonceData.getNonce()+ $scope.nonce);
+                    console.log("nonce to pass "+ NonceData.getNonce()+" "+ $scope.nonce);
                 //     alert("FUCK YOU!");
                 //   }); //.dispatchEvent(new Event('submit'));//tigger('submit');
                 //$("#dropin")
