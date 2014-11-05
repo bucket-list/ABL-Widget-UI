@@ -253,8 +253,9 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
             console.log("in callback: "+nonce);
             form.formData.payment_method_nonce = nonce;
             NonceData.setNonce(nonce);
+            $scope.nonce = nonce;
         });
-        console.log("test " + NonceData.getNonce());
+        console.log("test " + $scope.nonce);
                 // , "<integration>", options
             // create a blank object to hold our form information
             // $scope will allow this to pass between controller and view
@@ -269,7 +270,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 //   }); //.dispatchEvent(new Event('submit'));//tigger('submit');
                 //$("#dropin")
                 // if(NonceData.getNonce()!=='') {
-                $timeout(function(), 250);
+                // $timeout(function(), 250);
                 $scope.selTime = $scope.timez[0];
                 form.formData.product_id = $scope.currentImage._id;
                 form.formData.subtotal = $scope.paymentSubtotal;
