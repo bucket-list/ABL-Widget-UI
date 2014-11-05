@@ -261,9 +261,10 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
             // create a blank object to hold our form information
             // $scope will allow this to pass between controller and view
             // process the form
+
          $scope.processPaymentForm = function(expr) {
                 var form = this;
-                document.getElementById('checkout').dispatchEvent(new Event('submit'));
+                
                 ///$scope.$('div#dropin').dispatchEvent(new Event('submit'));
                 // (function(){
                 console.log("nonce to pass "+ NonceData.getNonce()+" "+ $scope.nonce);
@@ -333,7 +334,10 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                     });
             // }
             };
-
+        $scope.processPayment = function() {
+            document.getElementById('checkout').dispatchEvent(new Event('submit'));
+            $scope.processPaymentForm();
+        };
     // define angular module/app
         //var formApp = app.controller('formCtl', []);
      //$('#date_time').datetimepicker();
