@@ -248,8 +248,8 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
               cache: false,
               async: false
             });
-            
-        }
+        });
+
         var resultNonce ;
         setupBrainTree(function(nonce){
             // $.when.apply($, nonce).then(function() {
@@ -259,7 +259,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
          });
          //resultNonce = nonce;
         //     $scope.nonce = nonce;
-        });
+       
                 // , "<integration>", options
             // create a blank object to hold our form information
             // $scope will allow this to pass between controller and view
