@@ -245,7 +245,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
               dataType: "json",
               cache: false
             });
-        console.log("nonce to pass "+ NonceData.getNonce());
+        
                 // , "<integration>", options
             // create a blank object to hold our form information
             // $scope will allow this to pass between controller and view
@@ -255,6 +255,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 document.getElementById('checkout').dispatchEvent(new Event('submit'));
                 ///$scope.$('div#dropin').dispatchEvent(new Event('submit'));
                 // (function(){
+                    console.log("nonce to pass "+ NonceData.getNonce());
                 //     alert("FUCK YOU!");
                 //   }); //.dispatchEvent(new Event('submit'));//tigger('submit');
                 //$("#dropin")
