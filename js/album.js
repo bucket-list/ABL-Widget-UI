@@ -448,7 +448,7 @@ app.controller('MainCtrl', function ($scope, $location, $analytics, productServi
     }
     // convertCurrency.getCurrencyRate().success(function(data){
         
-        
+        console.log("Current Rate "+$scope.rate);
 
     // });
     
