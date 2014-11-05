@@ -206,6 +206,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
         //$scope.token = '';
         // console.log("Token should be blank /" + $scope.token + " /");
         $scope.nonce = '';
+        var nonce_to_pass = '';
         $.ajax({
               type: "GET",
               url: serverService.serverHost+"/api/clientID",
@@ -217,6 +218,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 braintree.setup(data.token, "dropin", { container: "dropin",
                 paymentMethodNonceReceived: function (event, nonce) {
                     $scope.nonce = nonce;
+                    nonce_to_pass = nonce;
                     console.log($scope.nonce);
                     }
                 });
@@ -228,7 +230,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
               dataType: "json",
               cache: false
             });
-        console.log($scope.nonce);
+        console.log("nonce to pass "+ nonce_to_pass);
                 // , "<integration>", options
             // create a blank object to hold our form information
             // $scope will allow this to pass between controller and view
