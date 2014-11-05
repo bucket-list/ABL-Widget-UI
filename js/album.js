@@ -439,7 +439,7 @@ app.directive('submitBT', function ($document) {
 app.controller('MainCtrl', function ($scope, $location, $analytics, productService, serverService, convertCurrency) {
     init();
     function init(){
-        var exchangeRate;
+    var exchangeRate;
        $scope.rate = getCurrentRate(function(rate){
             console.log(rate);
             return parseFloat(rate);
@@ -501,8 +501,9 @@ app.controller('MainCtrl', function ($scope, $location, $analytics, productServi
     //         }
     //     };
     // });
-app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, productService, serverService,convertCurrency, $location, $anchorScroll) {
-    $scope.rate = parseFloat(convertCurrency.getCurrencyRate());
+app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, productService, serverService,convertCurrency, $location, $anchorScroll, convertCurrencyResolve) {
+    console.log("convertCurrencyResolve "+ convertCurrencyResolve);
+    $scope.rate = parseFloat(convertCurrencyResolve.rate());
     $scope.url = 'images.json';
     $scope.images = [];
     $scope.imageCategories = [];
