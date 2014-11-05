@@ -35,11 +35,11 @@ app.factory("convertCurrency", function(){
     });
     
     return {
-    var query = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22"+currency.convertFrom+currency.convertTo+"%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
-    $.getJSON(query, function (data) {
-        console.log(currency.rate);
-        currency.rate = data.query.results.rate.Rate;
-     });
+    // var query = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22"+currency.convertFrom+currency.convertTo+"%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
+    // $.getJSON(query, function (data) {
+    //     console.log(currency.rate);
+    //     currency.rate = data.query.results.rate.Rate;
+    //  });
         getCurrencyRate: function() {
             var query = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22"+currency.convertFrom+currency.convertTo+"%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
              $.getJSON(query, function (data) {
