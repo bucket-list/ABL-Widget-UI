@@ -266,7 +266,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 ///$scope.$('div#dropin').dispatchEvent(new Event('submit'));
                 // (function(){
                 console.log("nonce to pass "+ NonceData.getNonce()+" "+ $scope.nonce);
-                }
+                });
                 //     alert("FUCK YOU!");
                 //   }); //.dispatchEvent(new Event('submit'));//tigger('submit');
                 //$("#dropin")
@@ -331,7 +331,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                     });
                     // .error(function(data) {
                     //     console.log(data);
-                    // });
+                  // });
             };
         $scope.processPayment = function() {
             document.getElementById('checkout').dispatchEvent(new Event('submit'));
