@@ -235,8 +235,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
          $scope.processPaymentForm = function(expr) {
                 var form = this;
                 $('#dropin').submit(function(){
-                  $( "span" ).text( "Validated..." ).show();
-                    return;
+                    alert("FUCK YOU!");
                   }); //.dispatchEvent(new Event('submit'));//tigger('submit');
                 //$("#dropin")
                 $scope.selTime = $scope.timez[0];
