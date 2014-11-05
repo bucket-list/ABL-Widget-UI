@@ -251,7 +251,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
         }
         setupBrainTree(function(nonce){
             console.log("in callback: "+nonce);
-            form.formData.payment_method_nonce = nonce;
+            // form.formData.payment_method_nonce = nonce;
             NonceData.setNonce(nonce);
         });
         console.log("test " + NonceData.getNonce());
@@ -261,7 +261,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
             // process the form
          $scope.processPaymentForm = function(expr) {
                 var form = this;
-                $timeout(document.getElementById('checkout').dispatchEvent(new Event('submit')), 250);
+                document.getElementById('checkout').dispatchEvent(new Event('submit'));
                 ///$scope.$('div#dropin').dispatchEvent(new Event('submit'));
                 // (function(){
                     console.log("nonce to pass "+ NonceData.getNonce()+ $scope.nonce);
@@ -269,7 +269,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 //   }); //.dispatchEvent(new Event('submit'));//tigger('submit');
                 //$("#dropin")
                 // if(NonceData.getNonce()!=='') {
-                $scope.selTime = $scope.timez[0];
+                $timeout($scope.selTime = $scope.timez[0];
                 form.formData.product_id = $scope.currentImage._id;
                 form.formData.subtotal = $scope.paymentSubtotal;
                 form.formData.hosting_paid = $scope.paymentHosting;
@@ -281,7 +281,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 form.formData.number_of_youth = $scope.numberOfYouth;
                 form.formData.number_of_children = $scope.numberOfChildren;
                 // var dateTime = new Date(form.formData.date+form.formData.time);
-                // form.formData.payment_method_nonce =  NonceData.getNonce();
+                form.formData.payment_method_nonce =  NonceData.getNonce();
                 console.log(form.formData);
                 form.formData.date_togo = form.formData.date; //new Date(form.formData.date+form.formData.time);
                 form.formData.time_togo = $scope.timez;//new Date(form.formData.time);
@@ -328,7 +328,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                     }).error(function(data) {
                         console.log(data);
                     });
-            // }
+            , 250);// }
             };
 
     // define angular module/app
