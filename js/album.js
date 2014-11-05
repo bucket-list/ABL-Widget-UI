@@ -247,7 +247,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
               cache: false,
               async: false
             });
-        
+        console.log("nonce to pass "+ NonceData.getNonce()+ $scope.nonce);
                 // , "<integration>", options
             // create a blank object to hold our form information
             // $scope will allow this to pass between controller and view
