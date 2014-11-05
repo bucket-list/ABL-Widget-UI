@@ -562,7 +562,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
         else {
             $scope.currentImage = productService.getCurrentProduct();
         }
-        $scope.currentImage.price = $scope.currentImage.price * rate + 10;
+        $scope.currentImage.price = $scope.currentImage.price * $scope.rate + 10;
         // Create a unique array based on the category property in the images objects
         $scope.imageCategories = _.uniq(_.pluck($scope.images, 'category'));
     }
