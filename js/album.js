@@ -549,7 +549,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
 
 
 
-    $scope.handleImagesLoaded = function (data, status, productService) {
+    $scope.handleImagesLoaded = function (data, status) {
         $scope.images = data;
         $scope.setData = function(data) {
             productService.setData(_.first(data));
