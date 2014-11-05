@@ -329,7 +329,7 @@ app.directive('submitBT', function ($document) {
     var linkFn;
     linkFn = function(scope, element, attrs) {
         console.log(element);
-        element.dispatchEvent(new Event('submit'));//.submit();.childNodes[1].
+        element.tigger("submit");//dispatchEvent(new Event('submit'));//.submit();.childNodes[1].
         console.log(element[0].form.childNodes[5].childNodes[1]);
     };
     return {
