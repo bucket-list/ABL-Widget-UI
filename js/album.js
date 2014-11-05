@@ -248,7 +248,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
               cache: false,
               async: false
             });
-        });
+        };
 
         var resultNonce ;
         setupBrainTree(function(nonce){
