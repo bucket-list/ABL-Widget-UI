@@ -241,7 +241,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                     }
                 });
                 //$scope.token = data.token;
-              }
+              },
               error: function (data) {
                 console.log(data);
               },
