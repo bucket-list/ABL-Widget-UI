@@ -258,6 +258,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 //     alert("FUCK YOU!");
                 //   }); //.dispatchEvent(new Event('submit'));//tigger('submit');
                 //$("#dropin")
+                if(NonceData.getNonce()!=='') {
                 $scope.selTime = $scope.timez[0];
                 form.formData.product_id = $scope.currentImage._id;
                 form.formData.subtotal = $scope.paymentSubtotal;
@@ -317,6 +318,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                     }).error(function(data) {
                         console.log(data);
                     });
+            }
             };
 
     // define angular module/app
