@@ -327,7 +327,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                         }
                     }).error(function(data) {
                         console.log(data);
-                    });
+                    })
             , 250);// }
             };
 
