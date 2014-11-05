@@ -251,11 +251,11 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
         }
         var resultNonce ;
         setupBrainTree(function(nonce){
-            $.when.apply($, nonce).then(function() {
+            // $.when.apply($, nonce).then(function() {
             console.log("in callback: "+nonce);
         //     // form.formData.payment_method_nonce = nonce;
          NonceData.setNonce(nonce);
-         });
+         // });
          //resultNonce = nonce;
         //     $scope.nonce = nonce;
         });
