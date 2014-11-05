@@ -440,6 +440,7 @@ app.controller('MainCtrl', function ($scope, $location, $analytics, productServi
     init();
     function init(){
         getCurrentRate(function(rate){
+            console.log(rate);
             $scope.rate = parseFloat(rate);
         });
         console.log("Current Rate "+$scope.rate);
