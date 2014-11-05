@@ -503,7 +503,7 @@ app.controller('MainCtrl', function ($scope, $location, $analytics, productServi
     // });
 app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, productService, serverService,convertCurrency, $location, $anchorScroll, convertCurrencyResolve) {
     console.log("convertCurrencyResolve "+ convertCurrencyResolve);
-    $scope.rate = parseFloat(convertCurrencyResolve.rate());
+    $scope.rate = parseFloat(convertCurrencyResolve.rate);
     $scope.url = 'images.json';
     $scope.images = [];
     $scope.imageCategories = [];
