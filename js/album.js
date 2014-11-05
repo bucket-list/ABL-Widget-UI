@@ -521,7 +521,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
             };
           
         $scope.initSlider();
-        var usd = $scope.currentImage.price * $scope.rate;
+        var usd = +($scope.currentImage.price * $scope.rate);
         var fixed = ($scope.currentImage.price * $scope.rate).toFixed(2);
         console.log("USD: "+ usd + " toFixed: "+ fixed );
         $scope.currentImage.price = ($scope.currentImage.price * $scope.rate).toFixed(2);
