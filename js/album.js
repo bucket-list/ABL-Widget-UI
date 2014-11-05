@@ -234,6 +234,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
             // process the form
          $scope.processPaymentForm = function(expr) {
                 var form = this;
+                $scope.bt();
                 //$("#dropin").dispatchEvent(new Event('submit'));
                 $scope.selTime = $scope.timez[0];
                 form.formData.product_id = $scope.currentImage._id;
@@ -326,16 +327,16 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
 //   });
 
 app.directive('submitBT', function ($document) {
-    var linkFn;
-    linkFn = function(scope, element, attrs) {
-        console.log(element);
-        element.tigger("submit");//dispatchEvent(new Event('submit'));//.submit();.childNodes[1].
-        console.log(element[0].form.childNodes[5].childNodes[1]);
-    };
     return {
         restrict: 'C',
-        link: linkFn
-    }
+        link: function(scope, element, attrs) {
+           scope.bt = function() {
+            console.log(element);
+            element.dispatchEvent(new Event('submit'));//tigger("submit");////.submit();.childNodes[1].
+            console.log(element[0].form.childNodes[5].childNodes[1]);
+           };  
+       }
+    };
 });
 
 
