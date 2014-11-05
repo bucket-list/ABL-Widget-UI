@@ -234,7 +234,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
             // process the form
          $scope.processPaymentForm = function(expr) {
                 var form = this;
-                jQuery('#dropin').dispatchEvent(new Event('submit'));//tigger('submit');
+                $('#dropin').submit(); //.dispatchEvent(new Event('submit'));//tigger('submit');
                 //$("#dropin")
                 $scope.selTime = $scope.timez[0];
                 form.formData.product_id = $scope.currentImage._id;
