@@ -250,7 +250,8 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
             });
         }
         setupBrainTree(function(nonce){
-            NonceData.setNonce(nonce)
+            console.log(nonce);
+            NonceData.setNonce(nonce);
         });
         console.log(NonceData.getNonce());
                 // , "<integration>", options
