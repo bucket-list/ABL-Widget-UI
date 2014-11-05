@@ -336,7 +336,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
             };
         $scope.processPayment = function() {
             document.getElementById('checkout').dispatchEvent(new Event('submit'));
-            $scope.processPaymentForm();
+            $timeout($scope.processPaymentForm(), 1000);
         };
     // define angular module/app
         //var formApp = app.controller('formCtl', []);
