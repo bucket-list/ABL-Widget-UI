@@ -27,7 +27,7 @@ app.factory("convertCurrency", function(){
         console.log(currency.rate);
         //currency.rate = ;
     
-    var currency = {
+    return var currency = {
         rate : data.query.results.rate.Rate,
         convertFrom: 'CAD',
         convertTo: 'USD'
