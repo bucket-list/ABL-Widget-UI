@@ -439,9 +439,10 @@ app.directive('submitBT', function ($document) {
 app.controller('MainCtrl', function ($scope, $location, $analytics, productService, serverService, convertCurrency) {
     init();
     function init(){
-        getCurrentRate(function(rate){
+        var exchangeRate;
+       $scope.rate = getCurrentRate(function(rate){
             console.log(rate);
-            $scope.rate = parseFloat(rate);
+            return parseFloat(rate);
         });
         console.log("Current Rate "+$scope.rate);
     }
