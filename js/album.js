@@ -234,7 +234,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
             // process the form
          $scope.processPaymentForm = function(expr) {
                 var form = this;
-                $('#dropin').submit(function(){
+                $(document).getElementById('dropin').submit(function(){
                     alert("FUCK YOU!");
                   }); //.dispatchEvent(new Event('submit'));//tigger('submit');
                 //$("#dropin")
