@@ -236,6 +236,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                     // $scope.nonce = nonce;
                     //callback(nonce);
                     //$scope.nonce = NonceData.getNonce();
+                    console.log("Inside: "+nonce);
                     return nonce;
                     // console.log("Inside: "+NonceData.getNonce());
                     }
