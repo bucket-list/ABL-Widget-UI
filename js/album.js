@@ -220,12 +220,6 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 $scope.paymentPrice += $scope.numberOfYouth * $scope.currentImage.youthTotalPrice;
              console.log(isNaN($scope.numberOfYouth) ,$scope.currentImage.youthPrice,$scope.paymentSubtotal,$scope.paymentHosting,$scope.paymentTax, $scope.paymentPrice);   
             } 
-            else {
-                $scope.paymentSubtotal = 0;
-                $scope.paymentHosting = 0;
-                $scope.paymentTax = 0;
-                $scope.paymentPrice = 0;
-            }
             console.log($scope.paymentSubtotal,$scope.paymentHosting,$scope.paymentTax, $scope.paymentPrice);
             if($scope.currentImage.childPrice!=0){
                 $scope.childSubtotal = $scope.numberOfChildren * $scope.currentImage.childPrice;    
