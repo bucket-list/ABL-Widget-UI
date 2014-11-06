@@ -226,13 +226,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 $scope.paymentTax = $scope.numberOfChildren * $scope.currentImage.child_tax_fee_value;
                 $scope.paymentPrice += $scope.numberOfChildren * $scope.currentImage.childTotalPrice;
             }
-            $scope.paymentSubtotal = ($scope.paymentSubtotal * $scope.rate).toFixed(2);
-            $scope.paymentHosting = ($scope.paymentHosting * $scope.rate).toFixed(2);
-            $scope.paymentTax = ($scope.paymentTax * $scope.rate).toFixed(2);
-            $scope.tax_and_fee = $scope.paymentTax + $scope.paymentHosting
-
-            $scope.paymentPrice = ($scope.paymentPrice * $scope.rate).toFixed(2);
-
+            $scope.tax_and_fee = $scope.paymentTax + $scope.paymentHosting;
         }
     //this watches the ng-model input for changes and changes the payment price according to that and stores it
     $scope.$watch('numberOfAdults', function() {
@@ -309,12 +303,13 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 //$("#dropin")
                 // if(NonceData.getNonce()!=='') {
                 // $timeout(function(), 250);
+
                 $scope.selTime = $scope.timez[0];
                 form.formData.product_id = $scope.currentImage._id;
-                form.formData.subtotal = $scope.paymentSubtotal;
-                form.formData.hosting_paid = $scope.paymentHosting;
-                form.formData.tax_paid = $scope.paymentTax;
-                form.formData.price_paid = $scope.paymentPrice;
+                form.formData.subtotal = ($scope.paymentSubtotal * $scope.rate).toFixed(2);
+                form.formData.hosting_paid = ($scope.paymentHosting * $scope.rate).toFixed(2);
+                form.formData.tax_paid = ($scope.paymentTax * $scope.rate).toFixed(2);
+                form.formData.price_paid = ($scope.paymentPrice * $scope.rate).toFixed(2);
                 //form.formData.nonce = $scope.token;
 
                 form.formData.number_of_adults = $scope.numberOfAdults;
@@ -391,7 +386,7 @@ app.controller('MainCtrl', function ($scope, $location, $analytics, productServi
     
     $scope.currentImage = productService.getCurrentProduct();
     $scope.rate = currencyRate.getCurrencyRate();    
-    $scope.currentImage.price = +($scope.currentImage.price * $scope.rate).toFixed(2);
+    // $scope.currentImage.price = +($scope.currentImage.price * $scope.rate).toFixed(2);
     $scope.slides = $scope.currentImage.image_array;
     $scope.api_key = serverService.api_key;
     $analytics.pageTrack('/form/main_pg');
@@ -418,11 +413,11 @@ app.controller('MainCtrl', function ($scope, $location, $analytics, productServi
 });
 
 app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, productService, serverService, currencyRate, $location, $anchorScroll, convertCurrencyResolve) {
-    console.log(convertCurrencyResolve);
+    // console.log(convertCurrencyResolve);
     $scope.rate = parseFloat(convertCurrencyResolve.data.query.results.rate.Rate);
     currencyRate.setCurrencyRate($scope.rate);   
 
-    console.log("convertCurrencyResolve "+ $scope.rate);
+    // console.log("convertCurrencyResolve "+ $scope.rate);
     $scope.url = 'images.json';
     $scope.images = [];
     $scope.imageCategories = [];
@@ -480,7 +475,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
         else {
             $scope.currentImage = productService.getCurrentProduct();
         }
-        $scope.currentImage.price = +($scope.currentImage.price * $scope.rate).toFixed(2);
+        // $scope.currentImage.price = +($scope.currentImage.price * $scope.rate).toFixed(2);
         // Create a unique array based on the category property in the images objects
         $scope.imageCategories = _.uniq(_.pluck($scope.images, 'category'));
     }
