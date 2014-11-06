@@ -298,7 +298,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                
                 ///$scope.$('div#dropin').dispatchEvent(new Event('submit'));
                 // (function(){
-                console.log("nonce to pass "+ NonceData.getNonce()+" "+ $scope.nonce);
+                //console.log("nonce to pass "+ NonceData.getNonce()+" "+ $scope.nonce);
                 //     alert("FUCK YOU!");
                 //   }); //.dispatchEvent(new Event('submit'));//tigger('submit');
                 //$("#dropin")
@@ -317,7 +317,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 form.formData.number_of_youth = $scope.numberOfYouth;
                 form.formData.number_of_children = $scope.numberOfChildren;
                 // var dateTime = new Date(form.formData.date+form.formData.time);
-                form.formData.payment_method_nonce =  nonce;//NonceData.getNonce();
+                form.formData.payment_method_nonce = nonce;//NonceData.getNonce();
                 // console.log(form.formData);
                 form.formData.date_togo = form.formData.date; //new Date(form.formData.date+form.formData.time);
                 form.formData.time_togo = $scope.timez;//new Date(form.formData.time);
