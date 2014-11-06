@@ -219,6 +219,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 $scope.paymentHosting += $scope.numberOfYouth * $scope.currentImage.youth_host_fee_value;
                 $scope.paymentTax += $scope.numberOfYouth * $scope.currentImage.youth_tax_fee_value;
                 $scope.paymentPrice += $scope.numberOfYouth * $scope.currentImage.youthTotalPrice;
+                console.log($scope.numberOfYouth);
              console.log(isNaN($scope.numberOfYouth) ,$scope.currentImage.youthPrice,$scope.paymentSubtotal,$scope.paymentHosting,$scope.paymentTax, $scope.paymentPrice);   
             } 
             console.log($scope.paymentSubtotal,$scope.paymentHosting,$scope.paymentTax, $scope.paymentPrice);
