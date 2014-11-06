@@ -213,6 +213,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
             }
             console.log($scope.paymentSubtotal,$scope.paymentHosting,$scope.paymentTax, $scope.paymentPrice);
             if($scope.currentImage.youthPrice!=0){
+                $scope.numberOfYouth = parseInt($scope.numberOfYouth);
                 $scope.youthSubtotal = $scope.numberOfYouth * $scope.currentImage.youthPrice;    
                 $scope.paymentSubtotal += $scope.youthSubtotal;
                 $scope.paymentHosting += $scope.numberOfYouth * $scope.currentImage.youth_host_fee_value;
@@ -222,6 +223,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
             } 
             console.log($scope.paymentSubtotal,$scope.paymentHosting,$scope.paymentTax, $scope.paymentPrice);
             if($scope.currentImage.childPrice!=0){
+                $scope.numberOfChildren = parseInt($scope.numberOfChildren);
                 $scope.childSubtotal = $scope.numberOfChildren * $scope.currentImage.childPrice;    
                 $scope.paymentSubtotal += $scope.childSubtotal;
                 $scope.paymentHosting += $scope.numberOfChildren * $scope.currentImage.child_host_fee_value;
