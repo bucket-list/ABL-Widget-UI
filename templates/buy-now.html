@@ -132,7 +132,7 @@
         <input type="checkbox" name="agreement" ng-model = "formData.weightAgreement" value="yes" required>&nbsp; <p>I agree to the <a href="#/requirements">Age, Weight & Ability requirements</a></p>
       </div>
       <div class="tos" >
-        <p style="color:red">All prices are shown in Canadain Dollar, but we charge in US Dollar</p>
+        <p style="color:red; font-size:12px;">All prices are shown in Canadain Dollar, but we charge in US Dollar</p>
       </div>
       
       <button analytics-on="click" analytics-event="Check out - {{currentImage.title}}" analytics-category="{{api_key}}" type="button" class="btn btn-warning pull-right btn-xlarge buttonPosition" ng-click="processPayment()"  ng-disabled="userForm.$invalid" >Checkout</button>
