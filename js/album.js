@@ -211,20 +211,16 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 $scope.paymentTax = 0;
                 $scope.paymentPrice = 0;
             }
-            console.log($scope.paymentSubtotal,$scope.paymentHosting,$scope.paymentTax, $scope.paymentPrice);
             if($scope.currentImage.youthPrice!=0){
-                $scope.numberOfYouth = parseInt($scope.numberOfYouth);
+                //$scope.numberOfYouth = parseInt($scope.numberOfYouth);
                 $scope.youthSubtotal = $scope.numberOfYouth * $scope.currentImage.youthPrice;    
                 $scope.paymentSubtotal += $scope.youthSubtotal;
                 $scope.paymentHosting += $scope.numberOfYouth * $scope.currentImage.youth_host_fee_value;
                 $scope.paymentTax += $scope.numberOfYouth * $scope.currentImage.youth_tax_fee_value;
                 $scope.paymentPrice += $scope.numberOfYouth * $scope.currentImage.youthTotalPrice;
-                console.log(" "+$scope.numberOfYouth+ " "+ parseInt($scope.numberOfYouth));
-             console.log(isNaN($scope.numberOfYouth) , $scope.currentImage.youthPrice,$scope.paymentSubtotal,$scope.paymentHosting,$scope.paymentTax, $scope.paymentPrice);   
             } 
-            console.log($scope.paymentSubtotal,$scope.paymentHosting,$scope.paymentTax, $scope.paymentPrice);
             if($scope.currentImage.childPrice!=0){
-                $scope.numberOfChildren = parseInt($scope.numberOfChildren);
+                //$scope.numberOfChildren = parseInt($scope.numberOfChildren);
                 $scope.childSubtotal = $scope.numberOfChildren * $scope.currentImage.childPrice;    
                 $scope.paymentSubtotal += $scope.childSubtotal;
                 $scope.paymentHosting += $scope.numberOfChildren * $scope.currentImage.child_host_fee_value;
@@ -232,7 +228,6 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 $scope.paymentPrice += $scope.numberOfChildren * $scope.currentImage.childTotalPrice;
             }
             $scope.tax_and_fee = $scope.paymentTax + $scope.paymentHosting;
-            console.log($scope.paymentSubtotal,$scope.paymentHosting,$scope.paymentTax, $scope.paymentPrice,$scope.tax_and_fee);
         }
     //this watches the ng-model input for changes and changes the payment price according to that and stores it
     $scope.$watch('numberOfAdults', function() {
