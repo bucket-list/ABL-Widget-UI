@@ -421,7 +421,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
     console.log(convertCurrencyResolve);
     $scope.rate = parseFloat(convertCurrencyResolve.data.query.results.rate.Rate);
     currencyRate.setCurrencyRate($scope.rate);   
-    $scope.currentImage.price = +($scope.currentImage.price * $scope.rate).toFixed(2);
+
     console.log("convertCurrencyResolve "+ $scope.rate);
     $scope.url = 'images.json';
     $scope.images = [];
@@ -480,6 +480,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
         else {
             $scope.currentImage = productService.getCurrentProduct();
         }
+        $scope.currentImage.price = +($scope.currentImage.price * $scope.rate).toFixed(2);
         // Create a unique array based on the category property in the images objects
         $scope.imageCategories = _.uniq(_.pluck($scope.images, 'category'));
     }
