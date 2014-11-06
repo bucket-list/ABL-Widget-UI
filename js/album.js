@@ -464,9 +464,10 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
 
     $scope.handleImagesLoaded = function (data, status) {
         $scope.images = data;
-        $scope.setData = function(data) {
-            productService.setData(_.first(data));
-        }
+        // $scope.setData = function(data) {
+        //     productService.setData(_.first(data));
+        // }
+        $scope.setData(_.first($scope.images));
         // productService.setData(_.first($scope.images));
         // Set the current image to the first image in images
         if(productService.getCurrentProduct() === null) {
