@@ -11,6 +11,7 @@ app.service('productService', function ($window) {
         $window.sessionStorage["currentProductData"] = JSON.stringify(currentProduct);
     };
     var getCurrentProduct = function(){
+
         sessionCurrentProduct= $window.sessionStorage["currentProductData"];
         objectifiedProduct = JSON.parse(sessionCurrentProduct);
         return objectifiedProduct;
@@ -132,6 +133,11 @@ app.controller('AgeCtrl', function ($scope, productService, serverService) {
 })
 app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService, $state, serverService, CustomerData, NonceData, convertCurrency) { 
     $scope.currentImage = productService.getCurrentProduct();
+    var usd = +($scope.currentImage.price * $scope.rate);
+    var fixed = ($scope.currentImage.price * $scope.rate).toFixed(2);
+    console.log("USD: "+ usd + " toFixed: "+ fixed );
+    $scope.currentImage.price = ($scope.currentImage.price * $scope.rate).toFixed(2);
+    
     $scope.api_key = serverService.api_key;
     $scope.formData = {};
     $scope.onlyNumbers = /^\d+$/;
@@ -521,10 +527,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
             };
           
         $scope.initSlider();
-        var usd = +($scope.currentImage.price * $scope.rate);
-        var fixed = ($scope.currentImage.price * $scope.rate).toFixed(2);
-        console.log("USD: "+ usd + " toFixed: "+ fixed );
-        $scope.currentImage.price = ($scope.currentImage.price * $scope.rate).toFixed(2);
+        
     // $scope.nextSlide = function(index) {
     //     var newindex = index + 1
     //     var newHash = 'anchor' + newindex;
