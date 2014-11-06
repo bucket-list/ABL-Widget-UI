@@ -137,7 +137,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
     var fixed = $scope.currentImage.price * $scope.rate;
     fixed.toFixed(2);
     console.log(fixed);
-    console.log(usd);
+    console.log(usd + " "+ $scope.currentImage.price * $scope.rate);
     $scope.currentImage.price = ($scope.currentImage.price * $scope.rate).toFixed(2);
     
     $scope.api_key = serverService.api_key;
