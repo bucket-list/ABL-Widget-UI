@@ -49,8 +49,8 @@ function getCurrentRate(callback){
         });
         //return rate;
 };
-app.factory("convertCurrency", function(){
-    var currency = {}
+app.factory("currencyRate", function(){
+    var currency = { rate: 0 }
     // var query = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22"+currency.convertFrom+currency.convertTo+"CADUSD%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
     // $.getJSON(query, function (data) {
     //  return currency = {
@@ -63,7 +63,7 @@ app.factory("convertCurrency", function(){
     
     return {
         getCurrencyRate: function() {
-            
+            return currency.rate;
         },
         setCurrencyRate: function(rate) {
             currency.rate = rate;
@@ -131,8 +131,9 @@ app.controller('AgeCtrl', function ($scope, productService, serverService) {
     $scope.currentImage = productService.getCurrentProduct();
     $scope.api_key = serverService.api_key;
 })
-app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService, $state, serverService, CustomerData, NonceData, convertCurrency) { 
+app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService, $state, serverService, CustomerData, NonceData, currencyRate) { 
     $scope.currentImage = productService.getCurrentProduct();
+    $scope.rate = currencyRate.getCurrencyRate();
     console.log("Price " +isNaN($scope.currentImage.price)+" rate: "+ isNaN($scope.rate)+" Rate valiue"+ $scope.rate);
     var usd = $scope.currentImage.price * parseFloat($scope.rate);
     var fixed = $scope.currentImage.price * parseFloat($scope.rate);
@@ -445,7 +446,7 @@ app.directive('submitBT', function ($document) {
 
 
 
-app.controller('MainCtrl', function ($scope, $location, $analytics, productService, serverService, convertCurrency) {
+app.controller('MainCtrl', function ($scope, $location, $analytics, productService, serverService, currencyRate) {
     init();
     function init(){
     var exchangeRate;
@@ -510,9 +511,10 @@ app.controller('MainCtrl', function ($scope, $location, $analytics, productServi
     //         }
     //     };
     // });
-app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, productService, serverService,convertCurrency, $location, $anchorScroll, convertCurrencyResolve) {
+app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, productService, serverService, currencyRate, $location, $anchorScroll, convertCurrencyResolve) {
     console.log(convertCurrencyResolve);
     $scope.rate = parseFloat(convertCurrencyResolve.data.query.results.rate.Rate);
+    currencyRate.setCurrencyRate($scope.rate);
     console.log("convertCurrencyResolve "+ $scope.rate);
     $scope.url = 'images.json';
     $scope.images = [];
