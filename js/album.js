@@ -133,7 +133,7 @@ app.controller('AgeCtrl', function ($scope, productService, serverService) {
 })
 app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService, $state, serverService, CustomerData, NonceData, convertCurrency) { 
     $scope.currentImage = productService.getCurrentProduct();
-    console.log("Price " +isNaN($scope.currentImage.price)+" rate: "+ isNaN($scope.rate));
+    console.log("Price " +isNaN($scope.currentImage.price)+" rate: "+ isNaN($scope.rate)+" Rate valiue"+ $scope.rate);
     var usd = $scope.currentImage.price * parseFloat($scope.rate);
     var fixed = $scope.currentImage.price * parseFloat($scope.rate);
     fixed.toFixed(2);
