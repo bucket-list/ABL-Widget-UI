@@ -34,11 +34,11 @@
     <div class="container" style="max-width:100%;display: relative;">
    
     <div class="slider">
-      <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage"
+      <img ng-repeat="slide in slides track by $index" class="slide slide-animation nonDraggableImage"
            ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
-           ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide}}" width="300px" height="250px">
-      <a class="arrow prev" ng-click="nextSlide()"></a>
-      <a class="arrow next" ng-click="prevSlide()"></a>
+           ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide}}" width="325px" height="250px">
+      <a class="arrow prev" ng-click="prevSlide()"></a>
+      <a class="arrow next" ng-click="nextSlide()"></a>
       <nav class="navslider">
         <div class="wrapper">
           <ul class="dots">
@@ -51,9 +51,9 @@
        <div class="topRight">
         
         <h2>{{currentImage.duration}} Hours for 
-          <span ng-show="currentImage.price!=0;" id="price">${{currentImage.price}}</span>
-          <span ng-show="currentImage.youthPrice!=0 && currentImage.youthPrice > currentImage.price" id="price">${{currentImage.youthPrice}}</span>
-          <span ng-show="currentImage.childPrice!=0 && currentImage.youthPrice < currentImage.childPrice" id="price">${{currentImage.childPrice}}</span>
+          <span ng-show="currentImage.price > currentImage.youthPrice && currentImage.childPrice < currentImage.price" id="price">${{currentImage.price}}</span>
+          <span ng-show="currentImage.youthPrice > currentImage.price && currentImage.childPrice < currentImage.youthPrice " id="price">${{currentImage.youthPrice}}</span>
+          <span ng-show="currentImage.childPrice > currentImage.youthPrice && currentImage.childPrice > currentImage.price" id="price">${{currentImage.childPrice}}</span>
         </h2>
           <div class="overview">
           <h3> Overview: </h3> 
@@ -127,6 +127,6 @@
   </div>
     </tab>
     </tabset>
-        <button analytics-on="click" analytics-event="More Info - Book Now - {{currentImage.title}}" analytics-category="{{api_key}}" onclick="location.href='#/form/payment'" class="btn btn-warning btn-xlarge pull-right" ><strong>Book Now</strong></button>      
+        <button analytics-on="click" analytics-event="More Info - Book Now - {{currentImage.title}}" analytics-category="{{api_key}}" ng-click="nextState()" class="btn btn-warning btn-xlarge pull-right" ><strong>Book Now</strong></button>      
 <!--  -->
 

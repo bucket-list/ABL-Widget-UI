@@ -34,8 +34,19 @@
       float: left; 
       width: 60%;
     }
+    .usd {
+      float: left; 
+      width: 60%;
+    }
+
     .tos p {
       font-size: 16px; 
+      display:inline;
+    }
+    .usd p {
+      color:red; 
+      font-size:12px;
+
       display:inline;
     }
     .timeDropdown {
@@ -64,8 +75,8 @@
     </div>
       <div class= "cart inline pull-left" style="display=inline;width:55%">
         <p style="display:block">Select a time:<p>
-          <select class="form-control timeDropdown" ng-model="timez">
-            <option ng-repeat="timez in currentImage.startTime" >{{timez}}</option>
+          <select class="form-control timeDropdown" ng-model="timez" ng-required="true" ng-init="timez = currentImage.startTime[0]">
+            <option ng-repeat="time in currentImage.startTime" >{{time}}</option>
           </select>
       </div>
 
@@ -78,7 +89,7 @@
         </div>
       </div>
     </div>
-        <div ng-show="currentImage.youthPrice!=0;">
+        <div ng-if="currentImage.youthPrice!=0;">
         <div ng-init="numberOfYouth=1;">
           
         <div class="selectNumber"><h4>Youth </h4>
@@ -87,7 +98,7 @@
         </div>
         </div>
       </div>
-      <div ng-show="currentImage.childPrice!=0;">
+      <div ng-if="currentImage.childPrice!=0;">
         <div ng-init="numberOfChildren=1;">
           
         <div class="selectNumber"><h4>Child</h4>
@@ -107,7 +118,7 @@
       </div>
     </div>
 </div>
-  <ng-form name="userForm" novalidate>
+  <form name="userForm" id="checkout" enctype="application/x-www-form-urlencoded" novalidate>
     <div class="cart2 col-sm-8 inline" style="width:55%">
       <div >Full Name:</div>
       <div class="form-group" ng-class="{ 'has-error': userForm.name.$invalid && !userForm.name.$pristine }">
@@ -131,7 +142,10 @@
       <div class="tos" >
         <input type="checkbox" name="agreement" ng-model = "formData.weightAgreement" value="yes" required>&nbsp; <p>I agree to the <a href="#/requirements">Age, Weight & Ability requirements</a></p>
       </div>
+      <div class="usd">
+        <p>Prices are shown in CAD, <b>we will be charging in USD</b></p>
+      </div>
       
-      <button analytics-on="click" analytics-event="Check out - {{currentImage.title}}" analytics-category="{{api_key}}" type="button" class="btn btn-warning pull-right btn-xlarge buttonPosition" ng-click="processPaymentForm()"  ng-disabled="userForm.$invalid" >Checkout</button>
+      <button analytics-on="click" analytics-event="Check out - {{currentImage.title}}" analytics-category="{{api_key}}" type="button" class="btn btn-warning pull-right btn-xlarge buttonPosition" ng-click="processPayment()"  ng-disabled="userForm.$invalid" >Checkout</button>
     
-  </ng-form>
+  </form>

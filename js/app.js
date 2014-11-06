@@ -13,7 +13,7 @@ angular.module('formApp', ['ngAnimate', 'ABL.controllers', 'ui.router', 'ui.boot
         .state('form', {
             url: '/form',
             templateUrl: '/asset/templates/form.html',
-            controller: 'formController'
+            controller: 'formController',
         })
 
         .state('terms', {
@@ -33,7 +33,16 @@ angular.module('formApp', ['ngAnimate', 'ABL.controllers', 'ui.router', 'ui.boot
         .state('form.profile', {
             url: '/profile',
             templateUrl: '/asset/templates/home.html',
-            controller: 'AlbumCtrl'
+            controller: 'AlbumCtrl',
+            resolve: {
+                convertCurrencyResolve: function ($http){
+                    var query = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22CADUSD%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
+                    return $http({ method: 'GET', url: query })
+                        .then(function (data) {
+                        return data;
+                    });
+                }
+            }    
         })
         
         // url will be /form/interests
@@ -52,7 +61,8 @@ angular.module('formApp', ['ngAnimate', 'ABL.controllers', 'ui.router', 'ui.boot
 
         .state('complete', {
             url: '/complete',
-            templateUrl: '/asset/templates/form-payment.html'
+            templateUrl: '/asset/templates/form-payment.html',
+            controller: 'CompleteCtrl'
         });
        
     // catch all route

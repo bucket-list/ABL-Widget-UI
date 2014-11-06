@@ -1,7 +1,7 @@
 'use strict';
 /*globals document, console, XMLHttpRequest*/
-
-console.log('hello from server');
+//var server = "https://js.ablsolution.com";
+var server = "http://162.242.170.162";
 
 (function(global) {
     var serverHost = '<%= serverHost %>';
@@ -23,11 +23,11 @@ console.log('hello from server');
     function processablWidget(ablWidget) {
         var id = ablWidget.getAttribute('data-abl-id');
         //console.log(ablWidget);
-        var key = ablWidget.getAttribute('data-api-key');
+        var key = location.search.split("api_key=")[1];//ablWidget.getAttribute('data-api-key');
         // console.log(key);
         var processed = ablWidget.getAttribute('data-abl-processed');
 
-        if (!id || processed === 'done' || !key) {
+        if (!id || processed === 'done') {
             //skip this one as it has either already been processed, or lacks an ID
             //This is done to ensure logic is not executed twice in the event that the
             //user erroneously embeds the script tag more than once on a single page
@@ -39,11 +39,11 @@ console.log('hello from server');
 
     function createablWidget(ablWidget, id, key) {
         <% if (useIframe) { %>
-            var iframe = document.createElement('iframe');//162.242.170.162
-            iframe.setAttribute('src', '//js.ablsolution.com/iframe/widget/'+id+'/init?iframe=true&api_key='+api_key);
+            var iframe = document.createElement('iframe');
+            iframe.setAttribute('src', server+'/iframe/widget/'+id+'/init?iframe=true&api_key='+api_key);
             iframe.setAttribute('class', 'abl-widget');
             iframe.setAttribute('data-abl-id', id);
-            iframe.setAttribute('data-api-key', key);
+            //iframe.setAttribute('data-api-key', key);
             iframe.setAttribute('frameborder', '0');
             iframe.setAttribute('scrolling', 'no');
             iframe.style.border = 'none';
