@@ -225,6 +225,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 $scope.paymentTax = 0;
                 $scope.paymentPrice = 0;
             }
+            console.log($scope.paymentSubtotal,$scope.paymentHosting,$scope.paymentTax, $scope.paymentPrice);
             if($scope.currentImage.childPrice!=0){
                 $scope.childSubtotal = $scope.numberOfChildren * $scope.currentImage.childPrice;    
                 $scope.paymentSubtotal += $scope.childSubtotal;
@@ -233,6 +234,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 $scope.paymentPrice += $scope.numberOfChildren * $scope.currentImage.childTotalPrice;
             }
             $scope.tax_and_fee = $scope.paymentTax + $scope.paymentHosting;
+            console.log($scope.paymentSubtotal,$scope.paymentHosting,$scope.paymentTax, $scope.paymentPrice,$scope.tax_and_fee);
         }
     //this watches the ng-model input for changes and changes the payment price according to that and stores it
     $scope.$watch('numberOfAdults', function() {
