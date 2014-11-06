@@ -23,7 +23,7 @@ pre                             { margin-bottom:20px; }
 /* ANIMATION STYLINGS
 ============================================================================= */
 
-#signup-form            { position:relative; height: 650px; width: 750px; padding:30px; border-radius:10px; }
+#signup-form            { position:relative; height: 650px; width: 750px; padding-left:30px;padding-right:30px;padding-top:30px;padding-bottom:30px; border-radius:10px; }
 
 /* basic styling for entering and leaving */
 /* left and right added to ensure full width */
