@@ -133,11 +133,11 @@ app.controller('AgeCtrl', function ($scope, productService, serverService) {
 })
 app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService, $state, serverService, CustomerData, NonceData, convertCurrency) { 
     $scope.currentImage = productService.getCurrentProduct();
-    var usd = $scope.currentImage.price * $scope.rate;
-    var fixed = $scope.currentImage.price * $scope.rate;
+    var usd = parseFloat($scope.currentImage.price * $scope.rate);
+    var fixed = parseFloat($scope.currentImage.price * $scope.rate);
     fixed.toFixed(2);
     console.log(fixed);
-    console.log(usd + " ", +($scope.currentImage.price * $scope.rate));
+    console.log(usd + " "+ $scope.currentImage.price * $scope.rate));
     $scope.currentImage.price = +($scope.currentImage.price * $scope.rate).toFixed(2);
     
     $scope.api_key = serverService.api_key;
