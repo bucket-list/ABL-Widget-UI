@@ -211,7 +211,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 $scope.paymentTax = 0;
                 $scope.paymentPrice = 0;
             }
-            
+            console.log($scope.paymentSubtotal,$scope.paymentHosting,$scope.paymentTax, $scope.paymentPrice);
             if($scope.currentImage.youthPrice!=0){
                 $scope.youthSubtotal = $scope.numberOfYouth * $scope.currentImage.youthPrice;    
                 $scope.paymentSubtotal += $scope.youthSubtotal;
