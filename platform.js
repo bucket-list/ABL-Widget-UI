@@ -74,7 +74,7 @@ var server = "https://js.ablsolution.com";
                             barPara.innerHTML = JSON.stringify(result);
                         }
                     };
-                    barXhr.open('POST', serverHost+'/api/3rd/abl-ui/widget/'+id+'/bar?api_key='+api_key);
+                    barXhr.open('POST', server+'/api/3rd/abl-ui/widget/'+id+'/bar?api_key='+api_key);
                     var content = {
                         ablId: id,
                     };
@@ -92,7 +92,7 @@ var server = "https://js.ablsolution.com";
                     ablWidgetButton.onclick = ablWidgetButtonFunction;
                 }
             };
-            xhr.open("GET", serverHost+'/api/3rd/abl-ui/widget/'+id+'/init?api_key='+api_key);
+            xhr.open("GET", server+'/api/3rd/abl-ui/widget/'+id+'/init?api_key='+api_key);
             xhr.send();
         <% } %>
     }
