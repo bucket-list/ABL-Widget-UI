@@ -38,6 +38,12 @@
       font-size: 16px; 
       display:inline;
     }
+    .usd p {
+      color:red; 
+      font-size:12px;
+
+      display:inline;
+    }
     .timeDropdown {
       width: 50%;
       float: left;
@@ -131,8 +137,8 @@
       <div class="tos" >
         <input type="checkbox" name="agreement" ng-model = "formData.weightAgreement" value="yes" required>&nbsp; <p>I agree to the <a href="#/requirements">Age, Weight & Ability requirements</a></p>
       </div>
-      <div class="tos" >
-        <p style="color:red; font-size:12px;">Prices are shown in Canadain Dollars, <b>we will be charging in US Dollars</b></p>
+      <div class="usd">
+        <p>Prices are shown in CAD, <b>we will be charging in USD</b></p>
       </div>
       
       <button analytics-on="click" analytics-event="Check out - {{currentImage.title}}" analytics-category="{{api_key}}" type="button" class="btn btn-warning pull-right btn-xlarge buttonPosition" ng-click="processPayment()"  ng-disabled="userForm.$invalid" >Checkout</button>
