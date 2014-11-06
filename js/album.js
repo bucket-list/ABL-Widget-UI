@@ -134,15 +134,7 @@ app.controller('AgeCtrl', function ($scope, productService, serverService) {
 app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService, $state, serverService, CustomerData, NonceData, currencyRate) { 
     $scope.currentImage = productService.getCurrentProduct();
 
-    $scope.rate = currencyRate.getCurrencyRate();
-    
-    console.log("Price " +isNaN($scope.currentImage.price)+" rate: "+ isNaN($scope.rate)+" Rate valiue"+ $scope.rate);
-    var usd = $scope.currentImage.price * parseFloat($scope.rate);
-    var fixed = $scope.currentImage.price * $scope.rate;
-    fixed.toFixed(2);
-    console.log(fixed);
-    console.log(usd + " "+ $scope.currentImage.price * $scope.rate);
-    
+    $scope.rate = currencyRate.getCurrencyRate();    
     $scope.currentImage.price = +($scope.currentImage.price * $scope.rate).toFixed(2);
     
     $scope.api_key = serverService.api_key;
@@ -234,7 +226,13 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 $scope.paymentTax = $scope.numberOfChildren * $scope.currentImage.child_tax_fee_value;
                 $scope.paymentPrice += $scope.numberOfChildren * $scope.currentImage.childTotalPrice;
             }
-            $scope.tax_and_fee = $scope.paymentTax + $scope.paymentHosting;
+            $scope.paymentSubtotal = ($scope.paymentSubtotal * $scope.rate).toFixed(2);
+            $scope.paymentHosting = ($scope.paymentHosting * $scope.rate).toFixed(2);
+            $scope.paymentTax = ($scope.paymentTax * $scope.rate).toFixed(2);
+            $scope.tax_and_fee = $scope.paymentTax + $scope.paymentHosting
+
+            $scope.paymentPrice = ($scope.paymentPrice * $scope.rate).toFixed(2);
+
         }
     //this watches the ng-model input for changes and changes the payment price according to that and stores it
     $scope.$watch('numberOfAdults', function() {
@@ -279,8 +277,6 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                     // $scope.nonce = nonce;
                     //callback(nonce);
                     //$scope.nonce = NonceData.getNonce();
-                    console.log("Inside: "+nonce);
-                    $scope.nonce = nonce;
                     $scope.processPaymentForm(nonce);
                     //callback($scope.nonce);
                     // console.log("Inside: "+NonceData.getNonce());
@@ -293,8 +289,6 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
               async: false
             });
         };
-
-        var resultNonce ;
         setupBrainTree();
          //resultNonce = nonce;
         //     $scope.nonce = nonce;
@@ -372,100 +366,32 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
 
                         }
                     });
-                    // .error(function(data) {
-                    //     console.log(data);
-                  // });
+
             };
         $scope.processPayment = function() {
             document.getElementById('checkout').dispatchEvent(new Event('submit'));
-            // setupBrainTree(function(nonce){
-            //     // $.when.apply($, nonce).then(function() {
-            //     console.log("in submit: "+nonce);
-            // //     // form.formData.payment_method_nonce = nonce;
-            //  NonceData.setNonce(nonce);
-             
-             // });
         };
-    // define angular module/app
-        //var formApp = app.controller('formCtl', []);
-     //$('#date_time').datetimepicker();
 });
-// .directive('contenteditable', function() {
-//     return {
-//       restrict: 'A',
-//       require: '?ngModel',
-//       link: function(scope, element, attr, ngModel) {
-//         var read;
-//         if (!ngModel) {
-//           return;
-//         }
-//         ngModel.$render = function() {
-//           return element.html(ngModel.$viewValue);
-//         };
-//         element.bind('blur', function() {
-//           if (ngModel.$viewValue !== $.trim(element.html())) {
-//             return scope.$apply(read);
-//           }
-//         });
-//         return read = function() {
-//           //console.log("read()");
-//           return ngModel.$setViewValue($.trim(element.html()));
-//         };
-//       }
-//     };
-//   });
-
-app.directive('submitBT', function ($document) {
-    return {
-        restrict: 'C',
-        link: function(scope, element, attrs) {
-           scope.bt = function() {
-            console.log(element);
-            element.dispatchEvent(new Event('submit'));//tigger("submit");////.submit();.childNodes[1].
-            console.log(element[0].form.childNodes[5].childNodes[1]);
-           };  
-       }
-    };
-});
-
-
-// app.directive('datetimez', function() {
-//     return {(document).getElementById
-//         restrict: 'A',
-//         require : 'ngModel',
-//         link: function(scope, element, attrs, ngModelCtrl) {
-//           element.datetimepicker({
-//            format: "MM-yyyy",
-//            viewMode: "days", 
-//             minViewMode: "months",
-//               pickTime: false,
-//           }).on('changeDate', function(e) {
-//             ngModelCtrl.$setViewValue(e.date);
-//             scope.$apply();
-//           });
-//         }
-//     };
-// });
-
-
 
 app.controller('MainCtrl', function ($scope, $location, $analytics, productService, serverService, currencyRate) {
-    init();
-    function init(){
-    var exchangeRate;
-       $scope.rate = getCurrentRate(function(rate){
-            console.log(rate);
-            return parseFloat(rate);
-        });
-        console.log("Current Rate "+$scope.rate);
-    }
-    // convertCurrency.getCurrencyRate().success(function(data){
+    // init();
+    // function init(){
+    // var exchangeRate;
+    //    $scope.rate = getCurrentRate(function(rate){
+    //         console.log(rate);
+    //         return parseFloat(rate);
+    //     });
+    //     console.log("Current Rate "+$scope.rate);
+    // }
+    // // convertCurrency.getCurrencyRate().success(function(data){
         
-        console.log("Current Rate "+$scope.rate);
+    //     console.log("Current Rate "+$scope.rate);
 
     // });
     
     $scope.currentImage = productService.getCurrentProduct();
+    $scope.rate = currencyRate.getCurrencyRate();    
+    $scope.currentImage.price = +($scope.currentImage.price * $scope.rate).toFixed(2);
     $scope.slides = $scope.currentImage.image_array;
     $scope.api_key = serverService.api_key;
     $analytics.pageTrack('/form/main_pg');
@@ -491,33 +417,11 @@ app.controller('MainCtrl', function ($scope, $location, $analytics, productServi
         };
 });
 
-    // app.animation('.slide-animation', function () {
-    //     return {
-    //         addClass: function (element, className, done) {
-    //             if (className == 'ng-hide') {
-    //                 TweenMax.to(element, 0.5, {left: -element.parent().width(), onComplete: done });
-    //             }
-    //             else {
-    //                 done();
-    //             }
-    //         },
-    //         removeClass: function (element, className, done) {
-    //             if (className == 'ng-hide') {
-    //                 element.removeClass('ng-hide');
-
-    //                 TweenMax.set(element, { left: element.parent().width() });
-    //                 TweenMax.to(element, 0.5, {left: 0, onComplete: done });
-    //             }
-    //             else {
-    //                 done();
-    //             }
-    //         }
-    //     };
-    // });
 app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, productService, serverService, currencyRate, $location, $anchorScroll, convertCurrencyResolve) {
     console.log(convertCurrencyResolve);
     $scope.rate = parseFloat(convertCurrencyResolve.data.query.results.rate.Rate);
-    currencyRate.setCurrencyRate($scope.rate);
+    currencyRate.setCurrencyRate($scope.rate);   
+    $scope.currentImage.price = +($scope.currentImage.price * $scope.rate).toFixed(2);
     console.log("convertCurrencyResolve "+ $scope.rate);
     $scope.url = 'images.json';
     $scope.images = [];
