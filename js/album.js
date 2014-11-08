@@ -453,14 +453,14 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
     // };
 
     $scope.nextSlide = function () {
-        $(".rightArrow").click(function () { 
+        $(".rightArrow").ready(function () { 
             var leftPos = $('#thumbWrapper').scrollLeft();
                 $("#thumbWrapper").animate({scrollLeft: leftPos + 623}, 500);
         });
     };
 
     $scope.prevSlide = function () {
-        $(".leftArrow").click(function () { 
+        $(".leftArrow").ready(function () { 
         var leftPos = $('#thumbWrapper').scrollLeft();
         $("#thumbWrapper").animate({scrollLeft: leftPos - 623}, 500);
         });

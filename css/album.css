@@ -172,6 +172,11 @@ padding-top:10px;
     border-radius: 10px;
 }
 
+#albumWrapper {
+  position: relative;
+  top: -15px;
+}
+
 #thumbWrapper {
     width: 90%;
     overflow: auto;
