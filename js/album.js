@@ -1,6 +1,7 @@
 var app = angular.module('ABL.controllers', ['ngAnimate']);
 // var braintree = require('braintree');
 
+//Service that passes data from each view to the next
 app.service('productService', function ($window) {
     //var allProducts = getData();
     var currentProduct = {};
@@ -117,12 +118,14 @@ app.factory('NonceData', function () {
     };
 });
 
+//Controller for the completion page
 app.controller('CompleteCtrl', function ($scope, CustomerData) {
     $scope.customer_info = CustomerData.getCustomerData();
     console.log($scope.customer_info);
     // $scope.currentImage = productService.getCurrentProduct();
     // $scope.api_key = serverService.api_key;
 })
+//Controller for the Terms of Service
 app.controller('TermsCtrl', function ($scope, productService, serverService) {
     $scope.currentImage = productService.getCurrentProduct();
     $scope.api_key = serverService.api_key;
@@ -399,6 +402,8 @@ app.controller('MainCtrl', function ($scope, $location, $analytics, productServi
         $scope.nextState = function () {
             $location.path('/form/payment');
         }
+        
+        //Code below this line give the More-Info page its image slider functionality
         $scope.currentIndex = 0;
 
         $scope.setCurrentSlideIndex = function (index) {
@@ -433,6 +438,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
         productService.setData(data);
     }
 
+    //Initializes the description slider on the home page
     $scope.initSlider = function () {
             $('.description').on('hover', function() {
                 $(this).toggleClass('show-description');
@@ -452,6 +458,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
 
     // };
 
+    //jQuery function that slides the carousel right
     $scope.nextSlide = function () {
         $(".rightArrow").ready(function () { 
             var leftPos = $('#thumbWrapper').scrollLeft();
@@ -459,6 +466,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
         });
     };
 
+    //jQuery function that slides the carousel left
     $scope.prevSlide = function () {
         $(".leftArrow").ready(function () { 
         var leftPos = $('#thumbWrapper').scrollLeft();
@@ -487,6 +495,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
         $scope.imageCategories = _.uniq(_.pluck($scope.images, 'category'));
     }
 
+    //GET call that calls data from the API
     $scope.fetch = function () {
         $scope.serverHost = serverService.serverHost;
         $scope.serverPort = serverService.serverPort;
@@ -497,12 +506,14 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
         $http.get($scope.serverHost+"/api/product?city=whistler", {headers: {'Authorization': $scope.serverAuth}}).success($scope.handleImagesLoaded);
     };
 
+    //Sets the product the user clicks on and wants to view/buy
     $scope.setCurrentImage = function (image) {
         $scope.currentImage = image;
         productService.setData(image);
         _.$inject = ["$scope", "image"]
     };
 
+    //Function that directs the click to the next state
     $scope.nextState = function () {
         $location.path('/form/interests');
     }
