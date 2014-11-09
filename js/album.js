@@ -42,16 +42,15 @@ app.service('productService', function ($window) {
 //     };
 // });
 
-
 function getCurrentRate(callback){
     var query = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22CADUSD%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
         var rate = $.getJSON(query, function (data) {
             callback(data.query.results.rate.Rate);
         });
         //return rate;
-};
+}
 app.factory("currencyRate", function(){
-    var currency = { rate: 0 }
+    var currency = { rate: 0 };
     // var query = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22"+currency.convertFrom+currency.convertTo+"CADUSD%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
     // $.getJSON(query, function (data) {
     //  return currency = {
@@ -124,20 +123,22 @@ app.controller('CompleteCtrl', function ($scope, CustomerData) {
     console.log($scope.customer_info);
     // $scope.currentImage = productService.getCurrentProduct();
     // $scope.api_key = serverService.api_key;
-})
+});
 //Controller for the Terms of Service
 app.controller('TermsCtrl', function ($scope, productService, serverService) {
     $scope.currentImage = productService.getCurrentProduct();
     $scope.api_key = serverService.api_key;
-})
+});
+//Controller for viewing Age and Requirements
 app.controller('AgeCtrl', function ($scope, productService, serverService) {
     $scope.currentImage = productService.getCurrentProduct();
     $scope.api_key = serverService.api_key;
-})
-app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService, $state, serverService, CustomerData, NonceData, currencyRate) { 
+});
+//Controller for processing payments and transactions
+app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService, $state, serverService, CustomerData, NonceData, currencyRate) {
     $scope.currentImage = productService.getCurrentProduct();
 
-    $scope.rate = currencyRate.getCurrencyRate();    
+    $scope.rate = currencyRate.getCurrencyRate();
     //$scope.currentImage.price = +($scope.currentImage.price * $scope.rate).toFixed(2);
     
     $scope.api_key = serverService.api_key;
@@ -193,7 +194,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
 
   $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $scope.format = $scope.formats[0];
-  $scope.checkDate = function(dt) 
+  $scope.checkDate = function(dt)
   {
     //console.log(dt, $scope.minDate);
     if($scope.dt < $scope.minDate){
@@ -201,7 +202,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
     }    //$scope.maxDate = $scope.maxDate ? null : new Date($scope.currentImage.enddate);
   };
         $scope.calculatePrice = function () {
-            if($scope.currentImage.price!=0){
+            if($scope.currentImage.price!==0){
                 $scope.adultSubtotal = $scope.numberOfAdults * $scope.currentImage.price;
                 $scope.paymentSubtotal = $scope.adultSubtotal;
                 $scope.paymentHosting = $scope.numberOfAdults * $scope.currentImage.host_fee_value;
@@ -215,20 +216,20 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                 $scope.paymentPrice = 0;
             }
             console.log($scope.paymentSubtotal,$scope.paymentHosting,$scope.paymentTax, $scope.paymentPrice);
-            if($scope.currentImage.youthPrice!=0){
+            if($scope.currentImage.youthPrice!==0){
                 $scope.numberOfYouth = parseInt($scope.numberOfYouth);
-                $scope.youthSubtotal = $scope.numberOfYouth * $scope.currentImage.youthPrice;    
+                $scope.youthSubtotal = $scope.numberOfYouth * $scope.currentImage.youthPrice;
                 $scope.paymentSubtotal += $scope.youthSubtotal;
                 $scope.paymentHosting += $scope.numberOfYouth * $scope.currentImage.youth_host_fee_value;
                 $scope.paymentTax += $scope.numberOfYouth * $scope.currentImage.youth_tax_fee_value;
                 $scope.paymentPrice += $scope.numberOfYouth * $scope.currentImage.youthTotalPrice;
                 console.log(" "+$scope.numberOfYouth+ " "+ parseInt($scope.numberOfYouth));
-             console.log(isNaN($scope.numberOfYouth) , $scope.currentImage.youthPrice,$scope.paymentSubtotal,$scope.paymentHosting,$scope.paymentTax, $scope.paymentPrice);   
-            } 
+             console.log(isNaN($scope.numberOfYouth) , $scope.currentImage.youthPrice,$scope.paymentSubtotal,$scope.paymentHosting,$scope.paymentTax, $scope.paymentPrice);
+            }
             console.log($scope.paymentSubtotal,$scope.paymentHosting,$scope.paymentTax, $scope.paymentPrice);
-            if($scope.currentImage.childPrice!=0){
+            if($scope.currentImage.childPrice!==0){
                 $scope.numberOfChildren = parseInt($scope.numberOfChildren);
-                $scope.childSubtotal = $scope.numberOfChildren * $scope.currentImage.childPrice;    
+                $scope.childSubtotal = $scope.numberOfChildren * $scope.currentImage.childPrice;
                 $scope.paymentSubtotal += $scope.childSubtotal;
                 $scope.paymentHosting += $scope.numberOfChildren * $scope.currentImage.child_host_fee_value;
                 $scope.paymentTax = $scope.numberOfChildren * $scope.currentImage.child_tax_fee_value;
@@ -236,7 +237,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
             }
             $scope.tax_and_fee = $scope.paymentTax + $scope.paymentHosting;
             console.log($scope.paymentSubtotal,$scope.paymentHosting,$scope.paymentTax, $scope.paymentPrice,$scope.tax_and_fee);
-        }
+        };
     //this watches the ng-model input for changes and changes the payment price according to that and stores it
     $scope.$watch('numberOfAdults', function() {
         $scope.calculatePrice();
@@ -248,7 +249,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
     $scope.$watch('numberOfChildren', function() {
         $scope.calculatePrice();
 
-    });    
+    });
     $scope.$watch('timez', function() {
         $scope.boughtForDate = moment(new Date($scope.formData.date)).format('MM-DD-YYYY');
     });
@@ -291,7 +292,7 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
               cache: false,
               async: false
             });
-        };
+        }
         setupBrainTree();
          //resultNonce = nonce;
         //     $scope.nonce = nonce;
@@ -347,10 +348,10 @@ app.controller('PaymentCtrl', function ($scope, $http, $timeout, productService,
                             $scope.alerts = [];
                             var alert = {
                                 msg: data.error
-                            }
+                            };
                             alert.close = function(){
                                 $scope.alerts.splice($scope.alerts.indexOf(this), 1);
-                            }
+                            };
                             $scope.alerts.push(alert);
                             $timeout(function(){
                                 $scope.alerts.splice($scope.alerts.indexOf(alert), 1);
@@ -394,14 +395,14 @@ app.controller('MainCtrl', function ($scope, $location, $analytics, productServi
     // });
     
     $scope.currentImage = productService.getCurrentProduct();
-    $scope.rate = currencyRate.getCurrencyRate();    
+    $scope.rate = currencyRate.getCurrencyRate();
     // $scope.currentImage.price = +($scope.currentImage.price * $scope.rate).toFixed(2);
     $scope.slides = $scope.currentImage.image_array;
     $scope.api_key = serverService.api_key;
     $analytics.pageTrack('/form/main_pg');
         $scope.nextState = function () {
             $location.path('/form/payment');
-        }
+        };
         
         //Code below this line give the More-Info page its image slider functionality
         $scope.currentIndex = 0;
@@ -426,7 +427,7 @@ app.controller('MainCtrl', function ($scope, $location, $analytics, productServi
 app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, productService, serverService, currencyRate, $location, $anchorScroll, convertCurrencyResolve) {
     // console.log(convertCurrencyResolve);
     $scope.rate = parseFloat(convertCurrencyResolve.data.query.results.rate.Rate);
-    currencyRate.setCurrencyRate($scope.rate);   
+    currencyRate.setCurrencyRate($scope.rate);
 
     // console.log("convertCurrencyResolve "+ $scope.rate);
     $scope.url = 'images.json';
@@ -436,7 +437,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
     $scope.api_key = serverService.api_key;
     $scope.setData = function(data) {
         productService.setData(data);
-    }
+    };
 
     //Initializes the description slider on the home page
     $scope.initSlider = function () {
@@ -460,7 +461,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
 
     //jQuery function that slides the carousel right
     $scope.nextSlide = function () {
-        $(".rightArrow").ready(function () { 
+        $(".rightArrow").ready(function () {
             var leftPos = $('#thumbWrapper').scrollLeft();
                 $("#thumbWrapper").animate({scrollLeft: leftPos + 623}, 500);
         });
@@ -468,14 +469,13 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
 
     //jQuery function that slides the carousel left
     $scope.prevSlide = function () {
-        $(".leftArrow").ready(function () { 
+        $(".leftArrow").ready(function () {
         var leftPos = $('#thumbWrapper').scrollLeft();
         $("#thumbWrapper").animate({scrollLeft: leftPos - 623}, 500);
         });
     };
 
-
-
+    //Takes the data and sets them to scope to be displayed in the view
     $scope.handleImagesLoaded = function (data, status) {
         $scope.images = data;
         // $scope.setData = function(data) {
@@ -493,7 +493,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
         // $scope.currentImage.price = +($scope.currentImage.price * $scope.rate).toFixed(2);
         // Create a unique array based on the category property in the images objects
         $scope.imageCategories = _.uniq(_.pluck($scope.images, 'category'));
-    }
+    };
 
     //GET call that calls data from the API
     $scope.fetch = function () {
@@ -510,13 +510,13 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
     $scope.setCurrentImage = function (image) {
         $scope.currentImage = image;
         productService.setData(image);
-        _.$inject = ["$scope", "image"]
+        _.$inject = ["$scope", "image"];
     };
 
     //Function that directs the click to the next state
     $scope.nextState = function () {
         $location.path('/form/interests');
-    }
+    };
     $scope.clickFunction = function() {
         $rootScope.$broadcast('Update', $scope.currentImage);
       };
@@ -527,7 +527,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
 }).filter('capitalize', function() {
     return function(input, all) {
       return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) : '';
-    }
+    };
   });
 
         
