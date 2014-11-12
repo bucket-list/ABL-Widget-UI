@@ -8,7 +8,7 @@
 
                 <small>{{currentImage.highLight}} </small>
             </p>{{rate}}
-              <span ng-show="currentImage.youthPrice<currentImage.price && currentImage.price>currentImage.childPrice && || image.youthPrice==image.price || image.childPrice==image.price" class="price">${{currentImage.price}}</span>
+              <span ng-show="currentImage.youthPrice<=currentImage.price && currentImage.price>=currentImage.childPrice" class="price">${{currentImage.price}}</span>
               <span ng-show="currentImage.youthPrice>currentImage.price && currentImage.youthPrice>currentImage.childPrice" class="price">${{currentImage.youthPrice}}</span>
               <span ng-show="currentImage.youthPrice<currentImage.childPrice && currentImage.price<currentImage.childPrice" class="price">${{currentImage.childPrice}}</span>
                 <button ng-click="setCurrentImage(currentImage); nextState()" class="btn btn-warning btn-lg overimg-left" analytics-on="click" analytics-event="Main Page - Book Now - {{currentImage.title}}" analytics-category="{{api_key}}"><strong>Book Now</strong>
@@ -23,7 +23,7 @@
                 <img width="200px" height="150px" ng-src="{{image.image_lg}}" alt="{{image.title}}">
                 <div class="thumbnailDescription">
                     <p class="thumbnailTitle"> {{image.title | limitTo: 22}}{{image.title.length > 22 ? '...' : ''}}</p>
-                <p ng-show="image.youthPrice<image.price || image.youthPrice==image.price || image.childPrice==image.price" class="thumbnailPrice pull-right">${{image.price}}</p>
+                <p ng-show="image.youthPrice<=image.price" class="thumbnailPrice pull-right">${{image.price}}</p>
                 <p ng-show="image.youthPrice>image.price && image.youthPrice>image.childPrice" class="thumbnailPrice pull-right">${{image.youthPrice}}</p>
                 <p ng-show="image.youthPrice<image.childPrice && image.price<image.childPrice" class="thumbnailPrice pull-right">${{image.childPrice}}</p>
                 </div>
