@@ -1,4 +1,6 @@
-<div id="albumWrapper">
+<img src="http://www.adventurebucketlist.com/images/mainLogo_small.png" ng-hide="loading">
+
+<div ng-show="loading" id="albumWrapper">
     <div id="albumImage" style="position:relative">
         <img height="450px" ng-src="{{currentImage.image_lg}}" alt="{{currentImage.title}}">
         <div class="description highlighted">

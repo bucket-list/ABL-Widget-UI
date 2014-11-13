@@ -435,9 +435,11 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
     $scope.imageCategories = [];
     $scope.currentImage = {};
     $scope.api_key = serverService.api_key;
+    $scope.loading = false;
     $scope.setData = function(data) {
         productService.setData(data);
     };
+
 
     //Initializes the description slider on the home page
     $scope.initSlider = function () {
@@ -503,7 +505,15 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
     //console.log(serverService.serverHost+" "+serverService.serverPort+" "+serverService.serverAuth+" "+$scope.serverHost+" "+$scope.serverPort+" "+$scope.serverAuth+" ");
         // $http.defaults.headers.get = { 'Basic' : 'YWdyaWdnczpGdWNreW91MjAxNA' };
         //$http.defaults.headers.common.Authorization = 'Basic YWdyaWdnczpGdWNreW91MjAxNA==';
-        $http.get($scope.serverHost+"/api/product?city=whistler", {headers: {'Authorization': $scope.serverAuth}}).success($scope.handleImagesLoaded);
+        $http.get($scope.serverHost+"/api/product?city=whistler", {
+            headers: {'Authorization': $scope.serverAuth}})
+        .success(function(data) {
+            $scope.handleImagesLoaded(data);
+            $scope.loading=true;
+        })
+        .error(function(data) {
+            alert("Cannot Get Data");
+        });
     };
 
     //Sets the product the user clicks on and wants to view/buy
@@ -523,7 +533,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
 
 
     // Defer fetch for 1 second to give everything an opportunity layout
-    $timeout($scope.fetch, 5);
+    $timeout($scope.fetch, 3000);
 }).filter('capitalize', function() {
     return function(input, all) {
       return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) : '';
