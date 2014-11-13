@@ -68,14 +68,14 @@
     position: absolute;
     opacity: 1;
     left: -17px;
-    top: 46em;
+    top: 44em;
 }
 
 .arrow.next.home {
     position: absolute;
     opacity: 1;
     right: -17px;
-    top: 46em;
+    top: 44em;
 }
 
 .arrow.prev:hover {

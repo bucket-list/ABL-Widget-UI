@@ -9,7 +9,7 @@
                 <span class="productTitle2">{{currentImage.city}}, {{currentImage.state}}</span><br />
 
                 <small>{{currentImage.highLight}} </small>
-            </p>{{rate}}
+            </p>
               <span ng-show="currentImage.youthPrice<=currentImage.price && currentImage.price>=currentImage.childPrice" class="price">${{currentImage.price}}</span>
               <span ng-show="currentImage.youthPrice>currentImage.price && currentImage.youthPrice>currentImage.childPrice" class="price">${{currentImage.youthPrice}}</span>
               <span ng-show="currentImage.youthPrice<currentImage.childPrice && currentImage.price<currentImage.childPrice" class="price">${{currentImage.childPrice}}</span>
