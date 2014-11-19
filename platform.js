@@ -1,8 +1,8 @@
 'use strict';
 /*globals document, console, XMLHttpRequest*/
 //var server = "https://js.ablsolution.com";
-// var server = "http://162.242.170.162";
-var server = "http://localhost:54100";
+var server = "http://162.242.170.162";
+//var server = "http://localhost:54100";
 
 (function(global) {
     var serverHost = '<%= serverHost %>';
