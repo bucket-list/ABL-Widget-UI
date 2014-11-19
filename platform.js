@@ -1,7 +1,7 @@
 'use strict';
 /*globals document, console, XMLHttpRequest*/
-var server = "https://js.ablsolution.com";
-//var server = "http://162.242.170.162";
+//var server = "https://js.ablsolution.com";
+var server = "http://162.242.170.162";
 
 (function(global) {
     var serverHost = '<%= serverHost %>';
