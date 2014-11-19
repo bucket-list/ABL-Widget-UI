@@ -4,8 +4,13 @@
   display: absolute;
   top:0;
   right: 10px;
-  width: 50%;
+  width: 40%;
   float: right;
+}
+
+.reducePadding {
+  padding-right:10px;
+  padding-left:10px;
 }
 .overview {
   text-align: justify;
@@ -31,7 +36,7 @@
   <h3 class="moreInfoLocation text-center">{{currentImage.city | capitalize}}, {{currentImage.state | capitalize}}</h3>
 <tabset>
   <tab heading="Overview" analytics-on="click" analytics-event="Overview Tab - {{currentImage.title}}" analytics-category="{{api_key}}">      
-    <div class="container" style="max-width:100%;display: relative;">
+    <div class="container reducePadding" style="max-width:100%;display: relative;">
    
     <div class="slider">
       <img ng-repeat="slide in slides track by $index" class="slide slide-animation nonDraggableImage"
