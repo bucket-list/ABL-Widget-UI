@@ -75,12 +75,12 @@ app.factory("serverService", function() {
     return {
         //dev
         api_key: location.search.split("api_key=")[1],
-        serverHost: 'https://js.ablsolution.com',
+        // serverHost: 'https://js.ablsolution.com',
         serverPort: '8081',
         // serverAuth: 'Basic dGVzdDphc2Rm',
         serverAuth: 'Basic YWdyaWdnczplcGljaG91c2U=',
         //production
-        //serverHost: 'http://162.242.170.162',
+        serverHost: 'http://162.242.170.162',
         // serverPort: '8081'    
     };
 
