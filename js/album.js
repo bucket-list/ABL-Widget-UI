@@ -431,7 +431,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
     $scope.loading=true;
     console.log("Loading Page");
     console.log(activityResolve.data);
-    $scope.handleImagesLoaded(activityResolve.data);
+    
     // console.log("convertCurrencyResolve "+ $scope.rate);
     $scope.url = 'images.json';
     $scope.images = [];
@@ -500,7 +500,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
         $scope.imageCategories = _.uniq(_.pluck($scope.images, 'category'));
         $scope.loading=false;
     };
-
+    $scope.handleImagesLoaded(activityResolve.data);
     //GET call that calls data from the API
     $scope.fetch = function () {
         //console.log(serverService.serverHost+" "+serverService.serverPort+" "+serverService.serverAuth+" "+$scope.serverHost+" "+$scope.serverPort+" "+$scope.serverAuth+" ");
