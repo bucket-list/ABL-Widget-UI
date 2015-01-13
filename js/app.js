@@ -45,12 +45,12 @@ angular.module('formApp', ['ngAnimate', 'ABL.controllers', 'ui.router', 'ui.boot
                 activityResolve: function ($http, serverService) {
                     // $scope.serverHost = serverService.serverHost;
                     // $scope.serverPort = serverService.serverPort;
-                    console.log("activityResolve "+"http://162.242.170.162/api/product?city=whistler "+serverService.serverAuth);
+                    // console.log("activityResolve "+"http://162.242.170.162/api/product?city=whistler "+serverService.serverAuth);
                     $scope.serverAuth = serverService.serverAuth;
                     
-                    return $http({ method: 'GET', url: "http://162.242.170.162/api/product?city=whistler", headers: {'Authorization': $scope.serverAuth }})
-                    .then(function(data) {
-                        console.log("activityResolve success");
+                    return $http({ method: 'GET', url: "http://162.242.170.162/api/product?city=Whistler", headers: {'Authorization': $scope.serverAuth }})
+                    .success(function(data) {
+                        // console.log("activityResolve success");
                         return data;//$scope.handleImagesLoaded(data);
                         //$scope.loading=true;
                     })
