@@ -424,10 +424,11 @@ app.controller('MainCtrl', function ($scope, $location, $analytics, productServi
         };
 });
 
-app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, productService, serverService, currencyRate, $location, $anchorScroll, convertCurrencyResolve) {
+app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, productService, serverService, currencyRate, $location, $anchorScroll, convertCurrencyResolve, activityResolve) {
     // console.log(convertCurrencyResolve);
     $scope.rate = parseFloat(convertCurrencyResolve.data.query.results.rate.Rate);
     currencyRate.setCurrencyRate($scope.rate);
+    $scope.loading=true;
     console.log(activityResolve.data);
     $scope.handleImagesLoaded(activityResolve.data);
     // console.log("convertCurrencyResolve "+ $scope.rate);
@@ -496,6 +497,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
         // $scope.currentImage.price = +($scope.currentImage.price * $scope.rate).toFixed(2);
         // Create a unique array based on the category property in the images objects
         $scope.imageCategories = _.uniq(_.pluck($scope.images, 'category'));
+        $scope.loading=false;
     };
 
     //GET call that calls data from the API
