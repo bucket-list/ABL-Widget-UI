@@ -438,7 +438,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
     $scope.imageCategories = [];
     $scope.currentImage = {};
     $scope.api_key = serverService.api_key;
-    $scope.loading = false;
+    // $scope.loading = false;
     $scope.setData = function(data) {
         productService.setData(data);
     };
@@ -535,10 +535,10 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
     $scope.clickFunction = function() {
         $rootScope.$broadcast('Update', $scope.currentImage);
       };
-
-
+console.log("handleImagesLoaded");
+$scope.handleImagesLoaded(activityResolve.data)
     // Defer fetch for 1 second to give everything an opportunity layout
-    $timeout($scope.handleImagesLoaded(activityResolve.data), 3000);
+    //$timeout($scope.handleImagesLoaded(activityResolve.data), 3000);
 }).filter('capitalize', function() {
     return function(input, all) {
       return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) : '';
