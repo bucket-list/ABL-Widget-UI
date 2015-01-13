@@ -500,7 +500,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
         $scope.imageCategories = _.uniq(_.pluck($scope.images, 'category'));
         $scope.loading=false;
     };
-    $scope.handleImagesLoaded(activityResolve.data);
+    // $scope.handleImagesLoaded(activityResolve.data);
     //GET call that calls data from the API
     $scope.fetch = function () {
         //console.log(serverService.serverHost+" "+serverService.serverPort+" "+serverService.serverAuth+" "+$scope.serverHost+" "+$scope.serverPort+" "+$scope.serverAuth+" ");
@@ -538,7 +538,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
 
 
     // Defer fetch for 1 second to give everything an opportunity layout
-    // $timeout($scope.fetch, 3000);
+    $timeout($scope.handleImagesLoaded(activityResolve.data), 3000);
 }).filter('capitalize', function() {
     return function(input, all) {
       return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) : '';
