@@ -424,11 +424,11 @@ app.controller('MainCtrl', function ($scope, $location, $analytics, productServi
         };
 });
 
-app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, productService, serverService, currencyRate, $location, $anchorScroll, convertCurrencyResolve, activityResolve) {
+app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, productService, serverService, currencyRate, $location, $anchorScroll, convertCurrencyResolve) {
     // console.log(convertCurrencyResolve);
     $scope.rate = parseFloat(convertCurrencyResolve.data.query.results.rate.Rate);
     currencyRate.setCurrencyRate($scope.rate);
-    $scope.loading=true;
+    // $scope.loading=true;
     console.log("Loading Page");
     console.log(activityResolve.data);
     
@@ -438,7 +438,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
     $scope.imageCategories = [];
     $scope.currentImage = {};
     $scope.api_key = serverService.api_key;
-    // $scope.loading = false;
+    $scope.loading = false;
     $scope.setData = function(data) {
         productService.setData(data);
     };
