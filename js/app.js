@@ -43,6 +43,7 @@ angular.module('formApp', ['ngAnimate', 'ABL.controllers', 'ui.router', 'ui.boot
                     });
                 },
                 activityResolve: function ($http, serverService) {
+                    console.log("activityResolve");
                     $scope.serverHost = serverService.serverHost;
                     $scope.serverPort = serverService.serverPort;
                     $scope.serverAuth = serverService.serverAuth;
