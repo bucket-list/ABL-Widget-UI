@@ -41,6 +41,21 @@ angular.module('formApp', ['ngAnimate', 'ABL.controllers', 'ui.router', 'ui.boot
                         .then(function (data) {
                         return data;
                     });
+                },
+                activityResolve: function ($http, serverService) {
+                    $scope.serverHost = serverService.serverHost;
+                    $scope.serverPort = serverService.serverPort;
+                    $scope.serverAuth = serverService.serverAuth;
+
+                    $http.get($scope.serverHost+"/api/product?city=whistler", {
+                        headers: {'Authorization': $scope.serverAuth}})
+                    .success(function(data) {
+                        return data;//$scope.handleImagesLoaded(data);
+                        //$scope.loading=true;
+                    })
+                    .error(function(data) {
+                        alert("Cannot Get Data");
+                    });
                 }
             }    
         })
