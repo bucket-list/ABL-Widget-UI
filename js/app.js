@@ -41,24 +41,24 @@ angular.module('formApp', ['ngAnimate', 'ABL.controllers', 'ui.router', 'ui.boot
                         .then(function (data) {
                         return data;
                     });
-                }
-                activityResolve: function ($http, serverService) {
-                    // $scope.serverHost = serverService.serverHost;
-                    // $scope.serverPort = serverService.serverPort;
-                    // console.log("activityResolve "+"http://162.242.170.162/api/product?city=whistler "+serverService.serverAuth);
-                    $scope.serverAuth = serverService.serverAuth;
-                    var query = "http://162.242.170.162/api/product?city=Whistler";
-                    return $http({ method: 'GET', url: query, headers: {'Authorization': $scope.serverAuth }})
-                    .success( function (data) {
-                        // console.log("activityResolve success");
-                        return data;//$scope.handleImagesLoaded(data);
-                        //$scope.loading=true;
-                    })
-                    .error(function(data) {
-                        console.log("activityResolve Fail", data);
-                        //alert("Cannot Get Data");
-                    });
-                }
+                }//,
+                // activityResolve: function ($http, serverService) {
+                //     // $scope.serverHost = serverService.serverHost;
+                //     // $scope.serverPort = serverService.serverPort;
+                //     // console.log("activityResolve "+"http://162.242.170.162/api/product?city=whistler "+serverService.serverAuth);
+                //     $scope.serverAuth = serverService.serverAuth;
+                //     var query = "http://162.242.170.162/api/product?city=Whistler";
+                //     return $http({ method: 'GET', url: query, headers: {'Authorization': $scope.serverAuth }})
+                //     .success( function (data) {
+                //         // console.log("activityResolve success");
+                //         return data;//$scope.handleImagesLoaded(data);
+                //         //$scope.loading=true;
+                //     })
+                //     .error(function(data) {
+                //         console.log("activityResolve Fail", data);
+                //         //alert("Cannot Get Data");
+                //     });
+                // }
             }    
         })
         
