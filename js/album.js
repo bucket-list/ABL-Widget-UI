@@ -430,7 +430,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
     currencyRate.setCurrencyRate($scope.rate);
     // $scope.loading=true;
     console.log("Loading Page");
-    console.log(activityResolve.data);
+    // console.log(activityResolve.data);
     
     // console.log("convertCurrencyResolve "+ $scope.rate);
     $scope.url = 'images.json';
@@ -535,8 +535,8 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
     $scope.clickFunction = function() {
         $rootScope.$broadcast('Update', $scope.currentImage);
       };
-console.log("handleImagesLoaded");
-$scope.handleImagesLoaded(activityResolve.data)
+// console.log("handleImagesLoaded");
+// $scope.handleImagesLoaded(activityResolve.data)
     // Defer fetch for 1 second to give everything an opportunity layout
     $timeout($scope.fetch, 3000);
 }).filter('capitalize', function() {
