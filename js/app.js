@@ -47,17 +47,16 @@ angular.module('formApp', ['ngAnimate', 'ABL.controllers', 'ui.router', 'ui.boot
                     $scope.serverHost = serverService.serverHost;
                     $scope.serverPort = serverService.serverPort;
                     $scope.serverAuth = serverService.serverAuth;
-
-                    $http.get($scope.serverHost+"/api/product?city=whistler", {
-                        headers: {'Authorization': $scope.serverAuth}})
+                    console.log($scope.serverHost+"/api/product?city=whistler");
+                    $http.get($scope.serverHost+"/api/product?city=whistler", { headers: {'Authorization': $scope.serverAuth }})
                     .success(function(data) {
                         console.log("activityResolve success");
                         return data;//$scope.handleImagesLoaded(data);
                         //$scope.loading=true;
                     })
-                    .error(err, function(data) {
-                        console.log("activityResolve Fail", err);
-                        alert("Cannot Get Data");
+                    .error(function(data) {
+                        console.log("activityResolve Fail", data);
+                        //alert("Cannot Get Data");
                     });
                 }
             }    
