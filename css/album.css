@@ -142,8 +142,8 @@ padding-top:10px;
 }
 
 .btn-xlarge {
-    padding: 18px 28px;
-    font-size: 22px; 
+    padding: 10px 28px;
+    font-size: 28px;
     line-height: normal;
     -webkit-border-radius: 8px;
        -moz-border-radius: 8px;
@@ -220,7 +220,7 @@ padding-top:10px;
 position: absolute;
 display: block;
 bottom: 1pc;
-left: 32pc;
+left: 31pc;
 margin: 0 auto;
 height: 72px;
 }
@@ -277,7 +277,7 @@ height: 50px;
 .price {
 bottom: 8px;
 position: absolute;
-right: 547px;
+right: 556px;
 color: white;
 font-size: 50px;
 }
@@ -316,22 +316,22 @@ font-size: 50px;
 }
 
 .btn-warning {
-  background-color:#FF5930;
-  border-color: #E6502B;
+  background-color:#F99400;
+  border-color: #F88C00;
 }
 
 .btn-warning:hover {
-  background-color:#CF4827 ;
-  border-color:#BA4123;
+  background-color:#F87F14 ;
+  border-color:#F77200;
 }
 
 .local-activities {
   color:white;
   background-color: rgba(0,0,0,0.5);
-  width:45%;
+  width:48%;
   position:absolute;
-  right: 12pc;
+  right: 11pc;
   top: 1pc;
-  border-radius:5px;
+  border-radius:8px;
 }
 
