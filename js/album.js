@@ -429,6 +429,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
     $scope.rate = parseFloat(convertCurrencyResolve.data.query.results.rate.Rate);
     currencyRate.setCurrencyRate($scope.rate);
     $scope.loading=true;
+    console.log("Loading Page");
     console.log(activityResolve.data);
     $scope.handleImagesLoaded(activityResolve.data);
     // console.log("convertCurrencyResolve "+ $scope.rate);
