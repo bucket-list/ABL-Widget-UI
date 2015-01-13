@@ -428,6 +428,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
     // console.log(convertCurrencyResolve);
     $scope.rate = parseFloat(convertCurrencyResolve.data.query.results.rate.Rate);
     currencyRate.setCurrencyRate($scope.rate);
+    console.log(activityResolve.data);
     $scope.handleImagesLoaded(activityResolve.data);
     // console.log("convertCurrencyResolve "+ $scope.rate);
     $scope.url = 'images.json';
