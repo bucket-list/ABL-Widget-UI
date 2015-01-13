@@ -538,7 +538,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $timeout, $rootScope, produ
 console.log("handleImagesLoaded");
 $scope.handleImagesLoaded(activityResolve.data)
     // Defer fetch for 1 second to give everything an opportunity layout
-    //$timeout($scope.handleImagesLoaded(activityResolve.data), 3000);
+    $timeout($scope.fetch, 3000);
 }).filter('capitalize', function() {
     return function(input, all) {
       return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) : '';
