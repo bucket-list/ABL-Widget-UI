@@ -43,11 +43,10 @@ angular.module('formApp', ['ngAnimate', 'ABL.controllers', 'ui.router', 'ui.boot
                 //     });
                 // },
                 activityResolve: function ($http, serverService) {
-                    console.log("activityResolve");
                     $scope.serverHost = serverService.serverHost;
                     $scope.serverPort = serverService.serverPort;
                     $scope.serverAuth = serverService.serverAuth;
-                    console.log($scope.serverHost+"/api/product?city=whistler");
+                    console.log("activityResolve "+$scope.serverHost+"/api/product?city=whistler");
                     return $http({ method: 'GET', url: $scope.serverHost+"/api/product?city=whistler", headers: {'Authorization': $scope.serverAuth }})
                     .then(function(data) {
                         console.log("activityResolve success");
