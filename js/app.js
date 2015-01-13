@@ -52,11 +52,11 @@ angular.module('formApp', ['ngAnimate', 'ABL.controllers', 'ui.router', 'ui.boot
                         console.log("activityResolve success");
                         return data;//$scope.handleImagesLoaded(data);
                         //$scope.loading=true;
+                    })
+                    .error(function(data) {
+                        console.log("activityResolve Fail", data);
+                        //alert("Cannot Get Data");
                     });
-                    // .error(function(data) {
-                    //     console.log("activityResolve Fail", data);
-                    //     //alert("Cannot Get Data");
-                    // });
                 }
             }    
         })
