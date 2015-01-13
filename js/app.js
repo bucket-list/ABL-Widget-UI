@@ -49,7 +49,7 @@ angular.module('formApp', ['ngAnimate', 'ABL.controllers', 'ui.router', 'ui.boot
                     $scope.serverAuth = serverService.serverAuth;
                     var query = "http://162.242.170.162/api/product?city=Whistler";
                     return $http({ method: 'GET', url: query, headers: {'Authorization': $scope.serverAuth }})
-                    .success(function(data) {
+                    .success( function (data) {
                         // console.log("activityResolve success");
                         return data;//$scope.handleImagesLoaded(data);
                         //$scope.loading=true;
