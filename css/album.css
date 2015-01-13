@@ -220,9 +220,9 @@ padding-top:10px;
 position: absolute;
 display: block;
 bottom: 1pc;
-left: 1pc;
+left: 32pc;
 margin: 0 auto;
-height: 50px;
+height: 72px;
 }
 
 .overimg-right {
@@ -275,9 +275,9 @@ height: 50px;
 }
 
 .price {
-bottom: 1pc;
+bottom: 8px;
 position: absolute;
-right: 1pc;
+right: 547px;
 color: white;
 font-size: 50px;
 }
@@ -314,3 +314,24 @@ font-size: 50px;
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     select {padding-right:18px}
 }
+
+.btn-warning {
+  background-color:#FF5930;
+  border-color: #E6502B;
+}
+
+.btn-warning:hover {
+  background-color:#CF4827 ;
+  border-color:#BA4123;
+}
+
+.local-activities {
+  color:white;
+  background-color: rgba(0,0,0,0.5);
+  width:45%;
+  position:absolute;
+  right: 12pc;
+  top: 1pc;
+  border-radius:5px;
+}
+

@@ -1,5 +1,6 @@
 <div id="albumWrapper">
     <div id="albumImage" style="position:relative">
+        <div class="local-activities text-center"><h2>Book Local Activities</h2></div>
         <img height="450px" ng-src="{{currentImage.image_lg}}" alt="{{currentImage.title}}">
         <div class="description highlighted">
             <p class="updescription">
@@ -11,7 +12,7 @@
               <span ng-show="currentImage.youthPrice<=currentImage.price && currentImage.price>=currentImage.childPrice" class="price">${{currentImage.price}}</span>
               <span ng-show="currentImage.youthPrice>currentImage.price && currentImage.youthPrice>currentImage.childPrice" class="price">${{currentImage.youthPrice}}</span>
               <span ng-show="currentImage.youthPrice<currentImage.childPrice && currentImage.price<currentImage.childPrice" class="price">${{currentImage.childPrice}}</span>
-                <button ng-click="setCurrentImage(currentImage); nextState()" class="btn btn-warning btn-lg overimg-left" analytics-on="click" analytics-event="Main Page - Learn More - {{currentImage.title}}" analytics-category="{{api_key}}"><strong>Learn More</strong>
+                <button ng-click="setCurrentImage(currentImage); nextState()" class="btn btn-warning btn-xlarge overimg-left" analytics-on="click" analytics-event="Main Page - Learn More - {{currentImage.title}}" analytics-category="{{api_key}}"><strong>Buy Now</strong>
             </button>
         </div>
     </div>
