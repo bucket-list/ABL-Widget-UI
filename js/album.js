@@ -78,7 +78,7 @@ app.factory("serverService", function() {
         //serverHost: 'https://js.ablsolution.com',
         serverPort: '8081',
         // serverAuth: 'Basic dGVzdDphc2Rm',
-        serverAuth: 'Basic YWxleC5ncmlnZ3NAZ21haWwuY29tOmVwaWNob3VzZQ',
+        serverAuth: 'Basic YWxleC5ncmlnZ3NAZ21haWwuY29tOmVwaWNob',
         //production
         serverHost: 'http://162.242.170.162',
         // serverPort: '8081'    
