@@ -51,10 +51,12 @@ angular.module('formApp', ['ngAnimate', 'ABL.controllers', 'ui.router', 'ui.boot
                     $http.get($scope.serverHost+"/api/product?city=whistler", {
                         headers: {'Authorization': $scope.serverAuth}})
                     .success(function(data) {
+                        console.log("activityResolve success");
                         return data;//$scope.handleImagesLoaded(data);
                         //$scope.loading=true;
                     })
-                    .error(function(data) {
+                    .error(err, function(data) {
+                        console.log("activityResolve Fail", err);
                         alert("Cannot Get Data");
                     });
                 }
